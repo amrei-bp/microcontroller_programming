@@ -249,6 +249,127 @@
     "text": "The BBC micro:bit V2 — front\nScroll down to explore the main components.\n\n\n\n\nThis is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.\n\n\n\n\nThe 5×5 LED matrix is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a light sensor — it can detect ambient brightness without any extra components.\n\n\n\n\nButton A is on the left side of the board. In MakeCode, pressing it triggers an on button A pressed event. You can programme any action in response — displaying a reading, toggling a light, or sending a radio message.\n\n\n\n\nButton B mirrors Button A on the right. You can programme A and B independently, or detect when both are pressed together for a third action.\n\n\n\n\nThe gold touch logo at the top is a capacitive touch sensor — unique to the V2. Your finger doesn’t need to press it: just touching it is enough.\n\n\n\n\nThe small dot to the right of the logo is the microphone activity LED. It lights up whenever the built-in microphone is recording — a privacy indicator so you always know when sound is being measured.\n\n\n\n\nThe gold band along the bottom is the edge connector. The three large holes — labelled 0, 1, and 2 — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. 3V supplies power to connected components; GND completes the circuit.\n\n\n\n\nThat covers the front. Now let’s flip it over.\n\n\n\n\nThe BBC micro:bit V2 — back\nMost of the processing and sensing happens here.\n\n\n\n\nHere is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.\n\n\n\n\nThe gold zig-zag trace in the top left is the Bluetooth and radio antenna — printed directly onto the board, no separate component needed. It handles both Bluetooth Low Energy (for phone connectivity) and the micro:bit’s own 2.4 GHz radio protocol (for micro:bit-to-micro:bit communication).\n\n\n\n\nThe micro USB port at the top centre is how you connect the micro:bit to your laptop to download programmes. It also powers the board from USB. When you drag a .hex file onto the MICROBIT drive, it enters through this port.\n\n\n\n\nThe square component in the centre is the speaker. It can play tones, melodies, and sound effects directly, with no extra wiring. In MakeCode, use the Music category.\n\n\n\n\nThe small component close to the speaker is the backside of the microphone — on the front you will see it as a little whole. It detects sound level and can recognise loud events such as claps or shouts. The LED you saw on the front indicates when it is active.\n\n\n\n\nThe battery connector on the right edge accepts a standard 2× AAA battery pack. This is how you power the micro:bit away from a laptop — essential for portable projects and demos.\n\n\n\n\nThe chip left of the speaker is the processor — a Nordic nRF52833 running at 64 MHz with 512 KB of flash memory. Your programme lives here. It also contains a built-in temperature sensor that measures the chip temperature — a rough proxy for air temperature.\n\n\n\n\nThe two chips on the bottom left are the accelerometer and compass. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.\n\n\n\n\nThat is the complete micro:bit V2. Front and back, now you know what every component does."
   },
   {
+    "objectID": "lecture3.html",
+    "href": "lecture3.html",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "",
+    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 3 quiz on Canvas before the course starts.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#learning-objectives",
+    "href": "lecture3.html#learning-objectives",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what the Sensorbit does and how it connects to the micro:bit\nIdentify each component in the Elecfreaks Smart Health Kit\nDescribe what each sensor measures and what signal type it produces\nGive at least one medical and one agricultural use case for each component\nDescribe at least one limitation of each sensor\nExplain how to add the Elecfreaks extension in MakeCode",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#the-smart-health-kit",
+    "href": "lecture3.html#the-smart-health-kit",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "1. The Smart Health Kit",
+    "text": "1. The Smart Health Kit\nThe Elecfreaks Smart Health Kit is a collection of sensors and actuators designed to explore health and environmental monitoring with the BBC micro:bit. Although it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.\nThe kit does not include a micro:bit — that is your core controller, and you bring it to the kit.\nThe kit contains:\n\nThe Sensorbit — the interface board\nDHT11 — temperature and humidity sensor\nSoil moisture sensor\nMQ3 alcohol sensor\nAnalog UV sensor\nPIR sensor\nCrash sensor brick\nOLED screen\nRainbow LED\n180° servo motor\nDC motor with fan\n\nWe will go through each of these in this lecture.\n\n\n\n\n\n\nThe kit as it arrives — the guide booklet sits on top of the foam tray\n\n\n\n\n\n\n\nAll components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#the-sensorbit",
+    "href": "lecture3.html#the-sensorbit",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "2. The Sensorbit",
+    "text": "2. The Sensorbit\n\n\n\nThe Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.\n\n\nThe Sensorbit is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.\nWithout the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.\nIt also provides stable 3.3 V power to the connected sensors, sourced from the micro:bit’s own power supply.\nOne important point: when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
+    "href": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "3. Adding the Elecfreaks extension in MakeCode",
+    "text": "3. Adding the Elecfreaks extension in MakeCode\nThe Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors — particularly the OLED screen — require a dedicated software library.\nTo add the Elecfreaks extension:\n\nOpen your project in MakeCode\nClick Extensions at the bottom of the toolbox (middle panel)\nIn the search box, type smarthome\nSelect the smarthome package from Elecfreaks\nNew block categories will appear in your toolbox\n\nOnce installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#environmental-sensors",
+    "href": "lecture3.html#environmental-sensors",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "4. Environmental sensors",
+    "text": "4. Environmental sensors\nThese sensors measure conditions in the surrounding environment.\n\nDHT11 — Temperature and humidity\n\n\n\n\n\nThe DHT11 measures both air temperature (0–50°C, ±2°C accuracy) and relative humidity (20–90% RH, ±5% accuracy) in a single, small package. It communicates using a simple digital protocol over a single data wire.\nMedical use: Monitoring ward temperature and humidity, which affect patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.\nAgricultural use: Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth; the DHT11 can trigger an alert when conditions become dangerous.\nLimitations: - Can only be read once every two seconds — reading it faster produces errors - Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics - Range stops at 50°C, which limits use in very hot outdoor environments\n\n\n\nSoil moisture sensor\n\n\n\n\n\nThe soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an analog signal — a number that varies continuously with moisture level.\nMedical use: Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.\nAgricultural use: The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold — saving water and preventing crop stress.\nLimitations: - The probe tips corrode over time when left in soil, causing readings to drift - The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage — you need to test your specific soil type to set meaningful thresholds - Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings\n\n\n\nMQ3 — Alcohol sensor\n\n\n\n\n\nThe MQ3 detects alcohol vapour in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an analog signal.\nMedical use: Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.\nAgricultural use: Monitoring fermentation in biogas digesters or alcohol-based crop processing.\nLimitations: - Requires a warm-up time of approximately 60 seconds after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the presence of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs\n\n\n\nAnalog UV sensor\n\n\n\n\n\nThe UV sensor measures ultraviolet light intensity and produces an analog signal. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).\nMedical use: Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.\nAgricultural use: Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.\nLimitations: - The raw output requires calibration to convert to a standard UV index - Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun - Does not distinguish between UVA and UVB",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#presence-and-interaction-sensors",
+    "href": "lecture3.html#presence-and-interaction-sensors",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "5. Presence and interaction sensors",
+    "text": "5. Presence and interaction sensors\nThese sensors detect events or physical interactions rather than measuring continuous quantities.\n\nPIR sensor — Passive Infrared\n\n\n\n\n\nThe PIR sensor detects movement of warm bodies — people, animals, or anything emitting infrared radiation at body temperature. It produces a digital signal: 1 (motion detected) or 0 (no motion). It is “passive” because it does not emit anything — it only listens.\nMedical use: Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.\nAgricultural use: Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.\nLimitations: - Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals - Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m) — placement matters - Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor\n\n\n\nCrash sensor brick\n\n\n\n\n\nThe crash sensor is a simple push button with a lever, designed to detect physical contact or impact. It produces a digital signal: pressed or not pressed.\nMedical use: Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).\nAgricultural use: Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.\nLimitations: - Requires direct physical contact — it cannot detect proximity - The lever can be damaged by repeated heavy impact - Produces a single on/off signal with no information about force or duration",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#output-components",
+    "href": "lecture3.html#output-components",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "6. Output components",
+    "text": "6. Output components\nThese components display information or produce effects that a person can see.\n\nOLED screen\n\n\n\n\n\nThe OLED (Organic Light-Emitting Diode) screen is a small display that can show text and simple graphics. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.\nUnlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.\nUse cases: Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.\nLimitations: - Small physical size limits how much can be displayed at once - Not visible in direct bright sunlight - Requires the extension library; it cannot be used with the standard MakeCode blocks alone\n\n\n\nRainbow LED\n\n\n\n\n\nThe Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the Neopixel blocks.\nUse cases: Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.\nLimitations: - Draws more current than a single LED — running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply - Not suitable for precise phototherapy — the LEDs are not medically calibrated",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#actuators",
+    "href": "lecture3.html#actuators",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "7. Actuators",
+    "text": "7. Actuators\nThese components produce physical actions in response to signals from the micro:bit.\n\n180° Servo motor\nThe servo motor rotates to a specific angle between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.\nMedical use: Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).\nAgricultural use: Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.\nLimitations: - Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead - Can only exert limited force (torque) — not suitable for heavy mechanical loads - Draws significant current when under load, which can cause the micro:bit to reset if not powered externally\n\n\n\nDC motor with fan\n\n\n\n\n\nThe DC motor spins continuously in one direction when powered. In the kit it is attached to a fan blade, making it immediately useful for airflow. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.\nMedical use: Ventilation in an enclosed monitoring device. Cooling a prototype that generates heat. Air circulation in a patient room monitor.\nAgricultural use: Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.\nLimitations: - The fan draws significant current — almost always requires external battery power - Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control - The motor produces electrical noise that can interfere with sensitive analog sensors — good circuit design keeps motor and sensor wiring separate",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#choosing-the-right-component-for-your-use-case",
+    "href": "lecture3.html#choosing-the-right-component-for-your-use-case",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "8. Choosing the right component for your use case",
+    "text": "8. Choosing the right component for your use case\nHaving a kit full of sensors does not mean every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.\nAsk these questions about any sensor you are considering:\n\n\n\n\n\n\n\nQuestion\nWhy it matters\n\n\n\n\nDoes it measure the right thing?\nA soil moisture sensor cannot measure air humidity\n\n\nIs the range appropriate?\nThe DHT11 stops at 50°C — unsuitable for sterilisation monitoring\n\n\nIs the accuracy good enough?\n±2°C is fine for storage monitoring, not for clinical thermometry\n\n\nHow fast does it need to update?\nThe DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm\n\n\nDoes it need warm-up time?\nThe MQ3 needs 60 seconds — is that acceptable in your design?\n\n\nHow much power does it draw?\nMotors and servos need external power in sustained use\n\n\nWill it degrade over time?\nThe soil moisture sensor corrodes — plan for maintenance\n\n\n\nThis kind of systematic evaluation is part of what separates a prototype from a reliable device.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#summary",
+    "href": "lecture3.html#summary",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "Summary",
+    "text": "Summary\n\nThe Sensorbit connects sensors to the micro:bit and provides labelled, powered ports\nThe Elecfreaks extension must be added in MakeCode for some components (especially the OLED)\nEnvironmental sensors: DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV\nPresence sensors: PIR (motion), crash sensor (contact)\nOutput displays: OLED screen, Rainbow LED\nActuators: servo motor (angle), DC motor with fan (continuous rotation)\nEvery sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lecture 3 quiz on Canvas before the course starts on 16 June.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
     "objectID": "microbit_explorer.html",
     "href": "microbit_explorer.html",
     "title": "Interactive: Explore the micro:bit",

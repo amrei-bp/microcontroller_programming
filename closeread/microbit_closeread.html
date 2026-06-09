@@ -92,11 +92,11 @@ ul.task-list li input[type="checkbox"] {
       <!-- user-provided yaml closeread style options -->
       <style>
         :root {
-          --cr-narrative-border-radius: 6px;
---cr-section-background-color: #1a1a2e;
+          --cr-narrative-text-color-overlay: #ffffff;
+--cr-narrative-border-radius: 6px;
 --cr-narrative-background-color-overlay: rgba(0,0,0,0.6);
---cr-narrative-text-color-overlay: #ffffff;
 --cr-narrative-font-size: 1.1rem;
+--cr-section-background-color: #1a1a2e;
         }
       </style>
     
@@ -106,18 +106,18 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="cr-section cr-column-screen overlay-left">
 <div class="narrative-col">
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-front">
+<div class="trigger new-trigger" data-focus-on="cr-front" data-scale-by="1">
 <div class="narrative">
 <p><strong>The BBC micro:bit V2 — front</strong><br>
 Scroll down to explore the main components.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-front">
+<div class="trigger new-trigger" data-focus-on="cr-front" data-scale-by="1">
 <div class="narrative">
 <p>This is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1.4" data-focus-on="cr-front">
+<div class="trigger new-trigger" data-focus-on="cr-front" data-scale-by="1.4">
 <div class="narrative">
 <p>The <strong>5×5 LED matrix</strong> is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a <strong>light sensor</strong> — it can detect ambient brightness without any extra components.</p>
 </div>
@@ -147,18 +147,18 @@ Scroll down to explore the main components.</p>
 <p>The gold band along the bottom is the <strong>edge connector</strong>. The three large holes — labelled <strong>0</strong>, <strong>1</strong>, and <strong>2</strong> — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. <strong>3V</strong> supplies power to connected components; <strong>GND</strong> completes the circuit.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-front">
+<div class="trigger new-trigger" data-focus-on="cr-front" data-scale-by="1">
 <div class="narrative">
 <p>That covers the front. Now let’s flip it over.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-back">
+<div class="trigger new-trigger" data-focus-on="cr-back" data-scale-by="1">
 <div class="narrative">
 <p><strong>The BBC micro:bit V2 — back</strong><br>
 Most of the processing and sensing happens here.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-back">
+<div class="trigger new-trigger" data-focus-on="cr-back" data-scale-by="1">
 <div class="narrative">
 <p>Here is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.</p>
 </div>
@@ -198,7 +198,7 @@ Most of the processing and sensing happens here.</p>
 <p>The two chips on the bottom left are the <strong>accelerometer</strong> and <strong>compass</strong>. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.</p>
 </div>
 </div>
-<div class="trigger new-trigger" data-scale-by="1" data-focus-on="cr-back">
+<div class="trigger new-trigger" data-focus-on="cr-back" data-scale-by="1">
 <div class="narrative">
 <p>That is the complete micro:bit V2. Front and back, now you know what every component does.</p>
 </div>

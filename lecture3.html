@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lecture3 – Microcontrollers for Health &amp; Agriculture</title>
+<title>Lecture 3: The Elecfreaks Smart Health Kit – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -182,17 +182,377 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#the-smart-health-kit" id="toc-the-smart-health-kit" class="nav-link" data-scroll-target="#the-smart-health-kit">1. The Smart Health Kit</a></li>
+  <li><a href="#the-sensorbit" id="toc-the-sensorbit" class="nav-link" data-scroll-target="#the-sensorbit">2. The Sensorbit</a></li>
+  <li><a href="#adding-the-elecfreaks-extension-in-makecode" id="toc-adding-the-elecfreaks-extension-in-makecode" class="nav-link" data-scroll-target="#adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</a></li>
+  <li><a href="#environmental-sensors" id="toc-environmental-sensors" class="nav-link" data-scroll-target="#environmental-sensors">4. Environmental sensors</a>
+  <ul class="collapse">
+  <li><a href="#dht11-temperature-and-humidity" id="toc-dht11-temperature-and-humidity" class="nav-link" data-scroll-target="#dht11-temperature-and-humidity">DHT11 — Temperature and humidity</a></li>
+  <li><a href="#soil-moisture-sensor" id="toc-soil-moisture-sensor" class="nav-link" data-scroll-target="#soil-moisture-sensor">Soil moisture sensor</a></li>
+  <li><a href="#mq3-alcohol-sensor" id="toc-mq3-alcohol-sensor" class="nav-link" data-scroll-target="#mq3-alcohol-sensor">MQ3 — Alcohol sensor</a></li>
+  <li><a href="#analog-uv-sensor" id="toc-analog-uv-sensor" class="nav-link" data-scroll-target="#analog-uv-sensor">Analog UV sensor</a></li>
+  </ul></li>
+  <li><a href="#presence-and-interaction-sensors" id="toc-presence-and-interaction-sensors" class="nav-link" data-scroll-target="#presence-and-interaction-sensors">5. Presence and interaction sensors</a>
+  <ul class="collapse">
+  <li><a href="#pir-sensor-passive-infrared" id="toc-pir-sensor-passive-infrared" class="nav-link" data-scroll-target="#pir-sensor-passive-infrared">PIR sensor — Passive Infrared</a></li>
+  <li><a href="#crash-sensor-brick" id="toc-crash-sensor-brick" class="nav-link" data-scroll-target="#crash-sensor-brick">Crash sensor brick</a></li>
+  </ul></li>
+  <li><a href="#output-components" id="toc-output-components" class="nav-link" data-scroll-target="#output-components">6. Output components</a>
+  <ul class="collapse">
+  <li><a href="#oled-screen" id="toc-oled-screen" class="nav-link" data-scroll-target="#oled-screen">OLED screen</a></li>
+  <li><a href="#rainbow-led" id="toc-rainbow-led" class="nav-link" data-scroll-target="#rainbow-led">Rainbow LED</a></li>
+  </ul></li>
+  <li><a href="#actuators" id="toc-actuators" class="nav-link" data-scroll-target="#actuators">7. Actuators</a>
+  <ul class="collapse">
+  <li><a href="#servo-motor" id="toc-servo-motor" class="nav-link" data-scroll-target="#servo-motor">180° Servo motor</a></li>
+  <li><a href="#dc-motor-with-fan" id="toc-dc-motor-with-fan" class="nav-link" data-scroll-target="#dc-motor-with-fan">DC motor with fan</a></li>
+  </ul></li>
+  <li><a href="#choosing-the-right-component-for-your-use-case" id="toc-choosing-the-right-component-for-your-use-case" class="nav-link" data-scroll-target="#choosing-the-right-component-for-your-use-case">8. Choosing the right component for your use case</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./lecture3.html">3. The Elecfreaks Smart Health Kit</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./lecture3.html">3. The Elecfreaks Smart Health Kit</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Lecture 3: The Elecfreaks Smart Health Kit</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a pre-course lecture. Watch the recorded video, then complete the <strong>Lecture 3 quiz on Canvas</strong> before the course starts.</p>
+</div>
+</div>
+<hr>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this lecture you should be able to:</p>
+<ul>
+<li>Explain what the Sensorbit does and how it connects to the micro:bit</li>
+<li>Identify each component in the Elecfreaks Smart Health Kit</li>
+<li>Describe what each sensor measures and what signal type it produces</li>
+<li>Give at least one medical and one agricultural use case for each component</li>
+<li>Describe at least one limitation of each sensor</li>
+<li>Explain how to add the Elecfreaks extension in MakeCode</li>
+</ul>
+<hr>
+</section>
+<section id="the-smart-health-kit" class="level2">
+<h2 class="anchored" data-anchor-id="the-smart-health-kit">1. The Smart Health Kit</h2>
+<p>The Elecfreaks Smart Health Kit is a collection of sensors and actuators designed to explore health and environmental monitoring with the BBC micro:bit. Although it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.</p>
+<p>The kit does <strong>not</strong> include a micro:bit — that is your core controller, and you bring it to the kit.</p>
+<p>The kit contains:</p>
+<ul>
+<li>The <strong>Sensorbit</strong> — the interface board</li>
+<li><strong>DHT11</strong> — temperature and humidity sensor</li>
+<li><strong>Soil moisture sensor</strong></li>
+<li><strong>MQ3 alcohol sensor</strong></li>
+<li><strong>Analog UV sensor</strong></li>
+<li><strong>PIR sensor</strong></li>
+<li><strong>Crash sensor brick</strong></li>
+<li><strong>OLED screen</strong></li>
+<li><strong>Rainbow LED</strong></li>
+<li><strong>180° servo motor</strong></li>
+<li><strong>DC motor with fan</strong></li>
+</ul>
+<p>We will go through each of these in this lecture.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/Kit_open.jpeg" class="img-fluid figure-img"></p>
+<figcaption>The kit as it arrives — the guide booklet sits on top of the foam tray</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/kit_components.jpeg" class="img-fluid figure-img"></p>
+<figcaption>All components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-sensorbit" class="level2">
+<h2 class="anchored" data-anchor-id="the-sensorbit">2. The Sensorbit</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/sensor_bit.png" class="img-fluid figure-img" style="width:42.0%"></p>
+<figcaption>The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.</figcaption>
+</figure>
+</div>
+<p>The <strong>Sensorbit</strong> is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.</p>
+<p>Without the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.</p>
+<p>It also provides stable <strong>3.3 V power</strong> to the connected sensors, sourced from the micro:bit’s own power supply.</p>
+<p><strong>One important point:</strong> when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.</p>
+<hr>
+</section>
+<section id="adding-the-elecfreaks-extension-in-makecode" class="level2">
+<h2 class="anchored" data-anchor-id="adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</h2>
+<p>The Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors — particularly the OLED screen — require a dedicated software library.</p>
+<p>To add the Elecfreaks extension:</p>
+<ol type="1">
+<li>Open your project in MakeCode</li>
+<li>Click <strong>Extensions</strong> at the bottom of the toolbox (middle panel)</li>
+<li>In the search box, type <code>smarthome</code></li>
+<li>Select the <strong>smarthome</strong> package from Elecfreaks</li>
+<li>New block categories will appear in your toolbox</li>
+</ol>
+<p>Once installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.</p>
+<hr>
+</section>
+<section id="environmental-sensors" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-sensors">4. Environmental sensors</h2>
+<p>These sensors measure conditions in the surrounding environment.</p>
+<section id="dht11-temperature-and-humidity" class="level3">
+<h3 class="anchored" data-anchor-id="dht11-temperature-and-humidity">DHT11 — Temperature and humidity</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/DHT11_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The DHT11 measures both <strong>air temperature</strong> (0–50°C, ±2°C accuracy) and <strong>relative humidity</strong> (20–90% RH, ±5% accuracy) in a single, small package. It communicates using a simple digital protocol over a single data wire.</p>
+<p><strong>Medical use:</strong> Monitoring ward temperature and humidity, which affect patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.</p>
+<p><strong>Agricultural use:</strong> Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth; the DHT11 can trigger an alert when conditions become dangerous.</p>
+<p><strong>Limitations:</strong> - Can only be read once every <strong>two seconds</strong> — reading it faster produces errors - Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics - Range stops at 50°C, which limits use in very hot outdoor environments</p>
+<hr>
+</section>
+<section id="soil-moisture-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="soil-moisture-sensor">Soil moisture sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/soil_moisture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:22.0%"></p>
+</figure>
+</div>
+<p>The soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an <strong>analog signal</strong> — a number that varies continuously with moisture level.</p>
+<p><strong>Medical use:</strong> Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.</p>
+<p><strong>Agricultural use:</strong> The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold — saving water and preventing crop stress.</p>
+<p><strong>Limitations:</strong> - The probe tips corrode over time when left in soil, causing readings to drift - The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage — you need to test your specific soil type to set meaningful thresholds - Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings</p>
+<hr>
+</section>
+<section id="mq3-alcohol-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="mq3-alcohol-sensor">MQ3 — Alcohol sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/mq3_alcohol_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<p>The MQ3 detects <strong>alcohol vapour</strong> in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an <strong>analog signal</strong>.</p>
+<p><strong>Medical use:</strong> Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.</p>
+<p><strong>Agricultural use:</strong> Monitoring fermentation in biogas digesters or alcohol-based crop processing.</p>
+<p><strong>Limitations:</strong> - Requires a <strong>warm-up time of approximately 60 seconds</strong> after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the <em>presence</em> of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs</p>
+<hr>
+</section>
+<section id="analog-uv-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="analog-uv-sensor">Analog UV sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/uv_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:24.0%"></p>
+</figure>
+</div>
+<p>The UV sensor measures <strong>ultraviolet light intensity</strong> and produces an <strong>analog signal</strong>. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).</p>
+<p><strong>Medical use:</strong> Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.</p>
+<p><strong>Agricultural use:</strong> Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.</p>
+<p><strong>Limitations:</strong> - The raw output requires calibration to convert to a standard UV index - Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun - Does not distinguish between UVA and UVB</p>
+<hr>
+</section>
+</section>
+<section id="presence-and-interaction-sensors" class="level2">
+<h2 class="anchored" data-anchor-id="presence-and-interaction-sensors">5. Presence and interaction sensors</h2>
+<p>These sensors detect events or physical interactions rather than measuring continuous quantities.</p>
+<section id="pir-sensor-passive-infrared" class="level3">
+<h3 class="anchored" data-anchor-id="pir-sensor-passive-infrared">PIR sensor — Passive Infrared</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/pir_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
+</figure>
+</div>
+<p>The PIR sensor detects <strong>movement of warm bodies</strong> — people, animals, or anything emitting infrared radiation at body temperature. It produces a <strong>digital signal</strong>: 1 (motion detected) or 0 (no motion). It is “passive” because it does not emit anything — it only listens.</p>
+<p><strong>Medical use:</strong> Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.</p>
+<p><strong>Agricultural use:</strong> Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.</p>
+<p><strong>Limitations:</strong> - Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals - Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m) — placement matters - Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor</p>
+<hr>
+</section>
+<section id="crash-sensor-brick" class="level3">
+<h3 class="anchored" data-anchor-id="crash-sensor-brick">Crash sensor brick</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/crash_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+<p>The crash sensor is a simple <strong>push button with a lever</strong>, designed to detect physical contact or impact. It produces a <strong>digital signal</strong>: pressed or not pressed.</p>
+<p><strong>Medical use:</strong> Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).</p>
+<p><strong>Agricultural use:</strong> Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.</p>
+<p><strong>Limitations:</strong> - Requires direct physical contact — it cannot detect proximity - The lever can be damaged by repeated heavy impact - Produces a single on/off signal with no information about force or duration</p>
+<hr>
+</section>
+</section>
+<section id="output-components" class="level2">
+<h2 class="anchored" data-anchor-id="output-components">6. Output components</h2>
+<p>These components display information or produce effects that a person can see.</p>
+<section id="oled-screen" class="level3">
+<h3 class="anchored" data-anchor-id="oled-screen">OLED screen</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/oled.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
+</figure>
+</div>
+<p>The OLED (Organic Light-Emitting Diode) screen is a small display that can show <strong>text and simple graphics</strong>. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.</p>
+<p>Unlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.</p>
+<p><strong>Use cases:</strong> Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.</p>
+<p><strong>Limitations:</strong> - Small physical size limits how much can be displayed at once - Not visible in direct bright sunlight - Requires the extension library; it cannot be used with the standard MakeCode blocks alone</p>
+<hr>
+</section>
+<section id="rainbow-led" class="level3">
+<h3 class="anchored" data-anchor-id="rainbow-led">Rainbow LED</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/rainbow_led.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the <strong>Neopixel</strong> blocks.</p>
+<p><strong>Use cases:</strong> Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.</p>
+<p><strong>Limitations:</strong> - Draws more current than a single LED — running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply - Not suitable for precise phototherapy — the LEDs are not medically calibrated</p>
+<hr>
+</section>
+</section>
+<section id="actuators" class="level2">
+<h2 class="anchored" data-anchor-id="actuators">7. Actuators</h2>
+<p>These components produce physical actions in response to signals from the micro:bit.</p>
+<section id="servo-motor" class="level3">
+<h3 class="anchored" data-anchor-id="servo-motor">180° Servo motor</h3>
+<p>The servo motor rotates to a <strong>specific angle</strong> between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.</p>
+<p><strong>Medical use:</strong> Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).</p>
+<p><strong>Agricultural use:</strong> Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.</p>
+<p><strong>Limitations:</strong> - Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead - Can only exert limited force (torque) — not suitable for heavy mechanical loads - Draws significant current when under load, which can cause the micro:bit to reset if not powered externally</p>
+<hr>
+</section>
+<section id="dc-motor-with-fan" class="level3">
+<h3 class="anchored" data-anchor-id="dc-motor-with-fan">DC motor with fan</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/motor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The DC motor spins continuously in one direction when powered. In the kit it is attached to a fan blade, making it immediately useful for airflow. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.</p>
+<p><strong>Medical use:</strong> Ventilation in an enclosed monitoring device. Cooling a prototype that generates heat. Air circulation in a patient room monitor.</p>
+<p><strong>Agricultural use:</strong> Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.</p>
+<p><strong>Limitations:</strong> - The fan draws significant current — almost always requires external battery power - Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control - The motor produces electrical noise that can interfere with sensitive analog sensors — good circuit design keeps motor and sensor wiring separate</p>
+<hr>
+</section>
+</section>
+<section id="choosing-the-right-component-for-your-use-case" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-right-component-for-your-use-case">8. Choosing the right component for your use case</h2>
+<p>Having a kit full of sensors does not mean every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.</p>
+<p>Ask these questions about any sensor you are considering:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Does it measure the right thing?</td>
+<td>A soil moisture sensor cannot measure air humidity</td>
+</tr>
+<tr class="even">
+<td>Is the range appropriate?</td>
+<td>The DHT11 stops at 50°C — unsuitable for sterilisation monitoring</td>
+</tr>
+<tr class="odd">
+<td>Is the accuracy good enough?</td>
+<td>±2°C is fine for storage monitoring, not for clinical thermometry</td>
+</tr>
+<tr class="even">
+<td>How fast does it need to update?</td>
+<td>The DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm</td>
+</tr>
+<tr class="odd">
+<td>Does it need warm-up time?</td>
+<td>The MQ3 needs 60 seconds — is that acceptable in your design?</td>
+</tr>
+<tr class="even">
+<td>How much power does it draw?</td>
+<td>Motors and servos need external power in sustained use</td>
+</tr>
+<tr class="odd">
+<td>Will it degrade over time?</td>
+<td>The soil moisture sensor corrodes — plan for maintenance</td>
+</tr>
+</tbody>
+</table>
+<p>This kind of systematic evaluation is part of what separates a prototype from a reliable device.</p>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>The <strong>Sensorbit</strong> connects sensors to the micro:bit and provides labelled, powered ports</li>
+<li>The <strong>Elecfreaks extension</strong> must be added in MakeCode for some components (especially the OLED)</li>
+<li><strong>Environmental sensors:</strong> DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV</li>
+<li><strong>Presence sensors:</strong> PIR (motion), crash sensor (contact)</li>
+<li><strong>Output displays:</strong> OLED screen, Rainbow LED</li>
+<li><strong>Actuators:</strong> servo motor (angle), DC motor with fan (continuous rotation)</li>
+<li>Every sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing</li>
+</ul>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ready for the quiz?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Complete the <strong>Lecture 3 quiz on Canvas</strong> before the course starts on 16 June.</p>
+</div>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
