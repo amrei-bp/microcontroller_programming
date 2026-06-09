@@ -1,0 +1,85 @@
+---
+title: "Microcontroller Programming and Interfacing for Medical and Agricultural Technology"
+---
+
+Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.
+
+We use the **BBC micro:bit** and the **Elecfreaks Smart Health Kit** as our hardware platform, and **MakeCode** as our programming environment.
+
+---
+
+## Course goals
+
+By the end of this course you will be able to:
+
+1. Understand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.
+2. Understand basic microcontroller architecture.
+3. Understand program flow, variables, loops, procedures, and querying peripherals with MakeCode.
+4. Understand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.
+5. Understand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.
+6. Apply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.
+7. Create a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.
+
+---
+
+## How this course works
+
+This course follows a **flipped, spaced-repetition** format:
+
+| Exposure | When | What |
+|----------|------|------|
+| **First** | Before the course | Watch the lecture videos and answer the Canvas quizzes |
+| **Second** | In-class discussion | Revisit and deepen the same content together |
+| **Third** | Lab and project | Apply the knowledge with real hardware |
+
+This means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.
+
+---
+
+## Schedule
+
+### Before 16 June — Pre-course preparation
+
+Watch the three pre-course lectures below and complete the Canvas quizzes for each.
+
+| Lecture | Topic |
+|---------|-------|
+| [Lecture 1](lecture1.qmd) | Microcontrollers, sensors, and actuators |
+| [Lecture 2](lecture2.qmd) | Programming with MakeCode |
+| [Lecture 3](lecture3.qmd) | The Elecfreaks Smart Health Kit |
+
+---
+
+### 16 June — Introductory day
+
+| Time | Activity |
+|------|----------|
+| 9:30 | Course start. Roll call. Meet the teachers. Student introductions. |
+| 10:00 | **Discussion:** Microcontroller architecture, sensors, and actuators |
+| 11:00 | **Discussion:** MakeCode programming |
+| 12:00 | Lunch break |
+| 13:00 | **Discussion:** The Elecfreaks Smart Health Kit |
+| 14:00 | **Lab:** Guided exercise with the Elecfreaks Smart Health Kit |
+| 16:00 | **Mixer:** Discuss project ideas and form teams. Tea and cookies. |
+| 17:00 | End of day |
+
+**Evening:** Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.
+
+---
+
+### 17 June — Project day
+
+| Time | Activity |
+|------|----------|
+| 9:30 | Questions about additional micro:bit kits |
+| 10:00 | Discuss and organise projects. Start work. |
+| 15:00 | **Shark tank:** Present projects to teachers and students |
+| 17:00 | Time to change the world. |
+
+---
+
+## Teams
+
+You will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.
+
+Each team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.

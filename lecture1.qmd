@@ -1,0 +1,175 @@
+---
+title: "Lecture 1: Microcontrollers, Sensors, and Actuators"
+---
+
+::: {.callout-note}
+This is a pre-course lecture. Watch the recorded video, then complete the **Lecture 1 quiz on Canvas** before the course starts.
+:::
+
+---
+
+## Learning objectives
+
+By the end of this lecture you should be able to:
+
+- Explain what a microcontroller is and what it contains
+- Describe what the BBC micro:bit is and identify its main components
+- Distinguish between a sensor and an actuator
+- Distinguish between a digital and an analog signal
+- Give examples of sensors and actuators relevant to medicine and agriculture
+
+---
+
+## 1. What is a microcontroller?
+
+Think about what a doctor does. They receive information — a patient's temperature, pulse, breathing rate — they process it, make a decision, and then act: prescribing a drug, adjusting a drip, raising an alarm.
+
+A microcontroller does exactly this, but with electricity instead of clinical judgment.
+
+A **microcontroller** is a small, self-contained computer on a single chip. It has three essential parts:
+
+- A **processor** — the part that runs instructions, one step at a time
+- **Memory** — where the program and temporary data are stored
+- **Input/output pins** — physical connections to the outside world, where signals come in from sensors and go out to actuators
+
+Microcontrollers are everywhere: in insulin pumps, pulse oximeters, irrigation timers, incubators, and refrigerators that keep vaccines cold. They are cheap, low-power, and reliable — which makes them ideal for low-resource settings.
+
+---
+
+## 2. The BBC micro:bit
+
+The micro:bit is a small microcontroller board designed for learning. It is about the size of a credit card. We will use it throughout this course.
+
+It contains:
+
+- A **processor and memory** — the micro:bit V2 has a 64 MHz ARM processor and 512 KB of flash memory
+- A **5×5 LED matrix** — 25 small lights that can display text, numbers, and simple images
+- **Two buttons** (A and B) — physical inputs you can press
+- An **accelerometer** — measures movement and tilt
+- A **compass / magnetometer** — detects magnetic fields and orientation
+- A **temperature sensor** — built into the processor chip
+- A **microphone and speaker** (V2 only)
+- **Bluetooth and radio** — for wireless communication between micro:bits or with a phone
+- **Edge connector pins** — 25 pins along the bottom edge for connecting external sensors and actuators
+
+The edge connector is what makes the micro:bit extensible. By plugging in a breakout board — like the Elecfreaks Sensorbit we use in this course — you can connect many different sensors and actuators without soldering.
+
+**Explore the micro:bit interactively:** scroll through the annotated diagram below to see each component up close.
+
+```{=html}
+<div style="position: relative; width: 100%; height: 80vh; overflow: hidden; border-radius: 8px; margin-bottom: 1.5rem;">
+  <iframe
+    src="closeread/microbit_closeread.html"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+    allowfullscreen>
+  </iframe>
+</div>
+```
+
+---
+
+## 3. Signals: digital and analog
+
+Before we talk about sensors and actuators, we need to understand two kinds of signals.
+
+**Digital signals** have only two states: on or off, 1 or 0, high or low. A light switch is digital — it is either up or down, nothing in between. A button press is digital. A motion detector that says "motion detected / no motion" is digital.
+
+**Analog signals** exist on a continuous scale. A dimmer switch is analog — you can set the light to any brightness between fully off and fully on. Temperature is analog — it can be 21.3°C, 21.35°C, or 37.2°C. Analog signals are converted to numbers by an **analog-to-digital converter (ADC)**, which samples the signal and turns it into a value the processor can work with.
+
+Why does this matter? Because sensors produce different kinds of signals, and you need to read them correctly in your program.
+
+---
+
+## 4. Sensors
+
+A **sensor** is a device that measures something in the physical world and converts it into an electrical signal.
+
+| Sensor | What it measures | Signal type | Example use |
+|--------|-----------------|-------------|-------------|
+| DHT11 | Temperature and humidity | Digital (serial) | Monitor storage conditions for vaccines or grain |
+| Soil moisture | Water content in soil | Analog | Trigger irrigation when soil is too dry |
+| PIR | Movement of warm bodies | Digital | Detect a patient entering a room; scare animals from crops |
+| MQ3 alcohol | Alcohol vapor in air | Analog | Screen for alcohol in breath; monitor fermentation |
+| UV | Ultraviolet light intensity | Analog | Measure sun exposure; optimise plant growth |
+| Crash sensor | Physical contact / pressure | Digital | Detect if a door or container has been opened |
+
+Some important things to understand about sensors:
+
+- **Every sensor has a range.** The DHT11 measures temperature between 0°C and 50°C. Outside that range, the reading is wrong or absent. Choosing the right sensor for your use case means checking the range.
+- **Every sensor has accuracy limits.** The DHT11 is accurate to ±2°C. For monitoring a patient's fever that may be acceptable; for calibrating a laboratory instrument it is not.
+- **Sensors need time.** The MQ3 alcohol sensor requires a warm-up period before its readings are reliable. The DHT11 can only be read once every two seconds.
+- **Sensors can fail or drift.** A soil moisture sensor left in the ground for months may corrode and give false readings.
+
+Evaluating a sensor means asking: does it measure the right thing, at the right range, with enough accuracy, reliably enough, for my use case?
+
+---
+
+## 5. Actuators
+
+An **actuator** is a device that converts an electrical signal into a physical action.
+
+| Actuator | What it does | Example use |
+|----------|-------------|-------------|
+| LED / Rainbow LED | Emits light in different colours | Status indicator; phototherapy prototype |
+| OLED screen | Displays text and graphics | Show readings to a user |
+| Servo motor (180°) | Rotates to a specific angle | Open a valve; move a flap |
+| DC motor with fan | Spins continuously | Ventilation; cooling |
+
+Actuators are the outputs of your system. A well-designed device combines sensors with actuators: a temperature sensor detects that a storage room is too hot, and a fan actuator turns on to cool it down.
+
+---
+
+## 6. Putting it together: sense → decide → act
+
+Every microcontroller-based system follows the same basic pattern:
+
+1. A **sensor** measures something and sends a signal to the microcontroller
+2. The **processor** runs your program, which reads the signal and decides what to do
+3. The program sends a signal to an **actuator**, which does something in the world
+
+**Example:** A simple hand sanitiser dispenser for a clinic entrance.
+
+- A PIR sensor detects that someone has approached
+- The micro:bit detects the signal and checks: "is there motion?"
+- If yes, it sends a signal to a servo motor that presses the sanitiser pump
+
+This is not a complicated program. It is a real product. This is what we will learn to build.
+
+---
+
+## 7. Why this matters in medicine and agriculture
+
+Microcontrollers are particularly valuable in settings where:
+
+- Continuous monitoring is needed but trained staff are limited
+- Automation can reduce human error
+- Cost is a constraint
+- Power supply may be intermittent
+
+In Uganda and across sub-Saharan Africa, there are real problems these tools can address:
+
+- Cold chain monitoring for vaccines and blood products
+- Automated irrigation for small-scale farms
+- Environmental monitoring in patient wards
+- Early warning systems for crop disease or pest activity
+- Point-of-care diagnostic aids
+
+This course will not solve all of these problems. But by the end of it, you will have the practical knowledge to begin.
+
+---
+
+## Summary
+
+- A microcontroller has a processor, memory, and input/output pins
+- The BBC micro:bit is a microcontroller with many built-in sensors and a connector for external ones
+- Digital signals have two states; analog signals are continuous
+- Sensors convert physical phenomena into electrical signals
+- Actuators convert electrical signals into physical action
+- Every system follows the pattern: **sense → decide → act**
+
+---
+
+::: {.callout-tip}
+## Ready for the quiz?
+Complete the **Lecture 1 quiz on Canvas** before the course starts on 16 June.
+:::

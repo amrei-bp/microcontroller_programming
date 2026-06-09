@@ -1,0 +1,44 @@
+project:
+  type: website
+
+highlight-style: a11y
+
+website:
+  title: "Microcontrollers for Health & Agriculture"
+  navbar:
+    background: primary
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/amrei-bp/microcontroller_programming
+          - text: Report an Issue
+            href: https://github.com/amrei-bp/microcontroller_programming/issues
+  search:
+    location: navbar
+    type: textbox
+
+  sidebar:
+    style: "docked"
+    search: true
+    logo: figures/logo/SLUBI_logo.png
+    contents:
+      - text: "About the course"
+        href: index.qmd
+      - section: "Pre-course lectures"
+        contents:
+          - text: "1. Microcontrollers, Sensors & Actuators"
+            href: lecture1.qmd
+          - text: "2. Programming with MakeCode"
+            href: lecture2.qmd
+          - text: "3. The Elecfreaks Smart Health Kit"
+            href: lecture3.qmd
+
+format:
+  html:
+    theme: sandstone
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto

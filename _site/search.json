@@ -1,0 +1,162 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "",
+    "text": "Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.\nWe use the BBC micro:bit and the Elecfreaks Smart Health Kit as our hardware platform, and MakeCode as our programming environment.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#course-goals",
+    "href": "index.html#course-goals",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Course goals",
+    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#how-this-course-works",
+    "href": "index.html#how-this-course-works",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "How this course works",
+    "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Schedule",
+    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#teams",
+    "href": "index.html#teams",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Teams",
+    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "lecture1.html",
+    "href": "lecture1.html",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "",
+    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 1 quiz on Canvas before the course starts.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#learning-objectives",
+    "href": "lecture1.html#learning-objectives",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what a microcontroller is and what it contains\nDescribe what the BBC micro:bit is and identify its main components\nDistinguish between a sensor and an actuator\nDistinguish between a digital and an analog signal\nGive examples of sensors and actuators relevant to medicine and agriculture",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#what-is-a-microcontroller",
+    "href": "lecture1.html#what-is-a-microcontroller",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "1. What is a microcontroller?",
+    "text": "1. What is a microcontroller?\nThink about what a doctor does. They receive information — a patient’s temperature, pulse, breathing rate — they process it, make a decision, and then act: prescribing a drug, adjusting a drip, raising an alarm.\nA microcontroller does exactly this, but with electricity instead of clinical judgment.\nA microcontroller is a small, self-contained computer on a single chip. It has three essential parts:\n\nA processor — the part that runs instructions, one step at a time\nMemory — where the program and temporary data are stored\nInput/output pins — physical connections to the outside world, where signals come in from sensors and go out to actuators\n\nMicrocontrollers are everywhere: in insulin pumps, pulse oximeters, irrigation timers, incubators, and refrigerators that keep vaccines cold. They are cheap, low-power, and reliable — which makes them ideal for low-resource settings.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#the-bbc-microbit",
+    "href": "lecture1.html#the-bbc-microbit",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "2. The BBC micro:bit",
+    "text": "2. The BBC micro:bit\nThe micro:bit is a small microcontroller board designed for learning. It is about the size of a credit card. We will use it throughout this course.\nIt contains:\n\nA processor and memory — the micro:bit V2 has a 64 MHz ARM processor and 512 KB of flash memory\nA 5×5 LED matrix — 25 small lights that can display text, numbers, and simple images\nTwo buttons (A and B) — physical inputs you can press\nAn accelerometer — measures movement and tilt\nA compass / magnetometer — detects magnetic fields and orientation\nA temperature sensor — built into the processor chip\nA microphone and speaker (V2 only)\nBluetooth and radio — for wireless communication between micro:bits or with a phone\nEdge connector pins — 25 pins along the bottom edge for connecting external sensors and actuators\n\nThe edge connector is what makes the micro:bit extensible. By plugging in a breakout board — like the Elecfreaks Sensorbit we use in this course — you can connect many different sensors and actuators without soldering.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#signals-digital-and-analog",
+    "href": "lecture1.html#signals-digital-and-analog",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "3. Signals: digital and analog",
+    "text": "3. Signals: digital and analog\nBefore we talk about sensors and actuators, we need to understand two kinds of signals.\nDigital signals have only two states: on or off, 1 or 0, high or low. A light switch is digital — it is either up or down, nothing in between. A button press is digital. A motion detector that says “motion detected / no motion” is digital.\nAnalog signals exist on a continuous scale. A dimmer switch is analog — you can set the light to any brightness between fully off and fully on. Temperature is analog — it can be 21.3°C, 21.35°C, or 37.2°C. Analog signals are converted to numbers by an analog-to-digital converter (ADC), which samples the signal and turns it into a value the processor can work with.\nWhy does this matter? Because sensors produce different kinds of signals, and you need to read them correctly in your program.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#sensors",
+    "href": "lecture1.html#sensors",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "4. Sensors",
+    "text": "4. Sensors\nA sensor is a device that measures something in the physical world and converts it into an electrical signal.\n\n\n\n\n\n\n\n\n\nSensor\nWhat it measures\nSignal type\nExample use\n\n\n\n\nDHT11\nTemperature and humidity\nDigital (serial)\nMonitor storage conditions for vaccines or grain\n\n\nSoil moisture\nWater content in soil\nAnalog\nTrigger irrigation when soil is too dry\n\n\nPIR\nMovement of warm bodies\nDigital\nDetect a patient entering a room; scare animals from crops\n\n\nMQ3 alcohol\nAlcohol vapor in air\nAnalog\nScreen for alcohol in breath; monitor fermentation\n\n\nUV\nUltraviolet light intensity\nAnalog\nMeasure sun exposure; optimise plant growth\n\n\nCrash sensor\nPhysical contact / pressure\nDigital\nDetect if a door or container has been opened\n\n\n\nSome important things to understand about sensors:\n\nEvery sensor has a range. The DHT11 measures temperature between 0°C and 50°C. Outside that range, the reading is wrong or absent. Choosing the right sensor for your use case means checking the range.\nEvery sensor has accuracy limits. The DHT11 is accurate to ±2°C. For monitoring a patient’s fever that may be acceptable; for calibrating a laboratory instrument it is not.\nSensors need time. The MQ3 alcohol sensor requires a warm-up period before its readings are reliable. The DHT11 can only be read once every two seconds.\nSensors can fail or drift. A soil moisture sensor left in the ground for months may corrode and give false readings.\n\nEvaluating a sensor means asking: does it measure the right thing, at the right range, with enough accuracy, reliably enough, for my use case?",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#actuators",
+    "href": "lecture1.html#actuators",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "5. Actuators",
+    "text": "5. Actuators\nAn actuator is a device that converts an electrical signal into a physical action.\n\n\n\n\n\n\n\n\nActuator\nWhat it does\nExample use\n\n\n\n\nLED / Rainbow LED\nEmits light in different colours\nStatus indicator; phototherapy prototype\n\n\nOLED screen\nDisplays text and graphics\nShow readings to a user\n\n\nServo motor (180°)\nRotates to a specific angle\nOpen a valve; move a flap\n\n\nDC motor with fan\nSpins continuously\nVentilation; cooling\n\n\n\nActuators are the outputs of your system. A well-designed device combines sensors with actuators: a temperature sensor detects that a storage room is too hot, and a fan actuator turns on to cool it down.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#putting-it-together-sense-decide-act",
+    "href": "lecture1.html#putting-it-together-sense-decide-act",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "6. Putting it together: sense → decide → act",
+    "text": "6. Putting it together: sense → decide → act\nEvery microcontroller-based system follows the same basic pattern:\n\nA sensor measures something and sends a signal to the microcontroller\nThe processor runs your program, which reads the signal and decides what to do\nThe program sends a signal to an actuator, which does something in the world\n\nExample: A simple hand sanitiser dispenser for a clinic entrance.\n\nA PIR sensor detects that someone has approached\nThe micro:bit detects the signal and checks: “is there motion?”\nIf yes, it sends a signal to a servo motor that presses the sanitiser pump\n\nThis is not a complicated program. It is a real product. This is what we will learn to build.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#why-this-matters-in-medicine-and-agriculture",
+    "href": "lecture1.html#why-this-matters-in-medicine-and-agriculture",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "7. Why this matters in medicine and agriculture",
+    "text": "7. Why this matters in medicine and agriculture\nMicrocontrollers are particularly valuable in settings where:\n\nContinuous monitoring is needed but trained staff are limited\nAutomation can reduce human error\nCost is a constraint\nPower supply may be intermittent\n\nIn Uganda and across sub-Saharan Africa, there are real problems these tools can address:\n\nCold chain monitoring for vaccines and blood products\nAutomated irrigation for small-scale farms\nEnvironmental monitoring in patient wards\nEarly warning systems for crop disease or pest activity\nPoint-of-care diagnostic aids\n\nThis course will not solve all of these problems. But by the end of it, you will have the practical knowledge to begin.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  },
+  {
+    "objectID": "lecture1.html#summary",
+    "href": "lecture1.html#summary",
+    "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
+    "section": "Summary",
+    "text": "Summary\n\nA microcontroller has a processor, memory, and input/output pins\nThe BBC micro:bit is a microcontroller with many built-in sensors and a connector for external ones\nDigital signals have two states; analog signals are continuous\nSensors convert physical phenomena into electrical signals\nActuators convert electrical signals into physical action\nEvery system follows the pattern: sense → decide → act\n\n\n\n\n\n\n\n\nReady for the quiz?\n\n\n\nComplete the Lecture 1 quiz on Canvas before the course starts on 16 June.",
+    "crumbs": [
+      "Pre-course lectures",
+      "1. Microcontrollers, Sensors & Actuators"
+    ]
+  }
+]
