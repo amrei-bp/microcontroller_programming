@@ -1,70 +1,134 @@
 [
   {
-    "objectID": "closeread/microbit_closeread.html",
-    "href": "closeread/microbit_closeread.html",
-    "title": "Microcontrollers for Health & Agriculture",
+    "objectID": "lecture2.html",
+    "href": "lecture2.html",
+    "title": "Lecture 2: Programming with MakeCode",
     "section": "",
-    "text": "The BBC micro:bit V2 — front\nScroll down to explore the main components.\n\n\n\n\nThis is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.\n\n\n\n\nThe 5×5 LED matrix is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a light sensor — it can detect ambient brightness without any extra components.\n\n\n\n\nButton A is on the left side of the board. In MakeCode, pressing it triggers an on button A pressed event. You can programme any action in response — displaying a reading, toggling a light, or sending a radio message.\n\n\n\n\nButton B mirrors Button A on the right. You can programme A and B independently, or detect when both are pressed together for a third action.\n\n\n\n\nThe gold touch logo at the top is a capacitive touch sensor — unique to the V2. Your finger doesn’t need to press it: just touching it is enough.\n\n\n\n\nThe small dot to the right of the logo is the microphone activity LED. It lights up whenever the built-in microphone is recording — a privacy indicator so you always know when sound is being measured.\n\n\n\n\nThe gold band along the bottom is the edge connector. The three large holes — labelled 0, 1, and 2 — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. 3V supplies power to connected components; GND completes the circuit.\n\n\n\n\nThat covers the front. Now let’s flip it over.\n\n\n\n\nThe BBC micro:bit V2 — back\nMost of the processing and sensing happens here.\n\n\n\n\nHere is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.\n\n\n\n\nThe gold zig-zag trace in the top left is the Bluetooth and radio antenna — printed directly onto the board, no separate component needed. It handles both Bluetooth Low Energy (for phone connectivity) and the micro:bit’s own 2.4 GHz radio protocol (for micro:bit-to-micro:bit communication).\n\n\n\n\nThe micro USB port at the top centre is how you connect the micro:bit to your laptop to download programmes. It also powers the board from USB. When you drag a .hex file onto the MICROBIT drive, it enters through this port.\n\n\n\n\nThe square component in the centre is the speaker. It can play tones, melodies, and sound effects directly, with no extra wiring. In MakeCode, use the Music category.\n\n\n\n\nThe small component close to the speaker is the backside of the microphone — on the front you will see it as a little whole. It detects sound level and can recognise loud events such as claps or shouts. The LED you saw on the front indicates when it is active.\n\n\n\n\nThe battery connector on the right edge accepts a standard 2× AAA battery pack. This is how you power the micro:bit away from a laptop — essential for portable projects and demos.\n\n\n\n\nThe chip left of the speaker is the processor — a Nordic nRF52833 running at 64 MHz with 512 KB of flash memory. Your programme lives here. It also contains a built-in temperature sensor that measures the chip temperature — a rough proxy for air temperature.\n\n\n\n\nThe two chips on the bottom left are the accelerometer and compass. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.\n\n\n\n\nThat is the complete micro:bit V2. Front and back, now you know what every component does."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "",
-    "text": "Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.\nWe use the BBC micro:bit and the Elecfreaks Smart Health Kit as our hardware platform, and MakeCode as our programming environment.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#course-goals",
-    "href": "index.html#course-goals",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Course goals",
-    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#how-this-course-works",
-    "href": "index.html#how-this-course-works",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "How this course works",
-    "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Schedule",
-    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#teams",
-    "href": "index.html#teams",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Teams",
-    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "microbit_explorer.html",
-    "href": "microbit_explorer.html",
-    "title": "Interactive: Explore the micro:bit",
-    "section": "",
-    "text": "Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.",
+    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 2 quiz on Canvas before the course starts.",
     "crumbs": [
       "Pre-course lectures",
-      "↳ Explore the micro:bit"
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#learning-objectives",
+    "href": "lecture2.html#learning-objectives",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what a program is\nNavigate the MakeCode block editor\nDescribe the difference between on start and forever\nUse variables, conditionals, loops, and functions in MakeCode\nExplain how code gets from your browser onto the micro:bit",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#what-is-a-program",
+    "href": "lecture2.html#what-is-a-program",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "1. What is a program?",
+    "text": "1. What is a program?\nA program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do — in what order, under what conditions, and how many times.\nConsider a clinical protocol for managing a febrile patient:\n\nMeasure temperature\nIf temperature is above 38.5°C, administer paracetamol\nWait 30 minutes\nMeasure temperature again\nIf still above 38.5°C, escalate to the doctor\nRepeat every hour\n\nThis is already a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking — you are writing a protocol for a machine to follow.\nThe difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters.",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#makecode",
+    "href": "lecture2.html#makecode",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "2. MakeCode",
+    "text": "2. MakeCode\nMakeCode is a browser-based programming environment for the BBC micro:bit, developed by Microsoft. You do not need to install anything — it runs at makecode.microbit.org.\nMakeCode uses blocks: coloured, puzzle-piece shaped instructions that you drag and snap together. This removes the need to type code manually, which reduces errors and lets you focus on logic rather than syntax.\nThe interface has three panels:\n\nLeft — simulator: a virtual micro:bit that runs your program in the browser, so you can test without hardware\nMiddle — toolbox: blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more)\nRight — workspace: where you drag blocks and build your program\n\n\nThe simulator is useful but limited — it can only simulate the micro:bit’s built-in components. External sensors connected via the Sensorbit cannot be simulated; for those, you need the physical device.\nYou can switch between Blocks, JavaScript, and Python views using the buttons at the top of the screen. The same program looks different in each view, but they all do the same thing.",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#on-start-and-forever",
+    "href": "lecture2.html#on-start-and-forever",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "3. on start and forever",
+    "text": "3. on start and forever\nWhen you open MakeCode, two blocks are already on the workspace.\non start runs its contents once, when the micro:bit powers on or resets. Use it for setup: displaying a startup message, setting initial variable values.\nforever runs its contents in a continuous loop, repeating as long as the micro:bit is powered on. Use it for monitoring: reading sensors, checking conditions, updating a display.\nMost programs use both:\non start:\n    show \"Ready\"\n\nforever:\n    read temperature\n    if temperature &gt; 38.5:\n        show warning icon\n    else:\n        show temperature value\n    wait 2 seconds\nThe forever loop is why your device keeps working without you pressing anything — it is constantly cycling through its instructions, checking and responding.\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nbasic.showString(\"Ready\")\n\nbasic.forever(function () {\n    let temperature = input.temperature()\n    if (temperature &gt; 38.5) {\n        basic.showIcon(IconNames.Target)\n    } else {\n        basic.showNumber(temperature)\n    }\n    basic.pause(2000)\n})",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#variables",
+    "href": "lecture2.html#variables",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "4. Variables",
+    "text": "4. Variables\nA variable is a named container for a value that can change.\nThink of it as a labelled box. You put a number, a piece of text, or a true/false value into the box, give the box a name, and refer to it by that name later in your program.\nset temperature to 0\n\nforever:\n    set temperature to [read temperature sensor]\n    show temperature on display\nVariables are essential because they let your program work with values it does not know in advance — like a sensor reading that changes every second.\nVariable types you will use:\n\nNumber — any numeric value (37.2, 0, -5)\nString — text (“Ready”, “Warning”, “Team A”)\nBoolean — true or false only, used for on/off states and conditions\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet temperature = 0\n\nbasic.forever(function () {\n    temperature = input.temperature()\n    basic.showNumber(temperature)\n})",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#conditionals",
+    "href": "lecture2.html#conditionals",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "5. Conditionals",
+    "text": "5. Conditionals\nA conditional lets your program make a decision: do one thing if a condition is true, do something else if it is not.\nif temperature &gt; 39.5:\n    show \"CRITICAL\"\nelse if temperature &gt; 38.5:\n    show \"FEVER\"\nelse:\n    show \"NORMAL\"\nThe micro:bit evaluates conditions from top to bottom and runs the first branch that is true. Only one branch runs per evaluation.\nComparison operators you will use:\n\n\n\nOperator\nMeaning\n\n\n\n\n&gt;\ngreater than\n\n\n&lt;\nless than\n\n\n=\nequal to\n\n\n≥\ngreater than or equal to\n\n\n≤\nless than or equal to\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nif (temperature &gt; 39.5) {\n    basic.showString(\"CRITICAL\")\n} else if (temperature &gt; 38.5) {\n    basic.showString(\"FEVER\")\n} else {\n    basic.showString(\"NORMAL\")\n}",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#loops",
+    "href": "lecture2.html#loops",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "6. Loops",
+    "text": "6. Loops\nA loop repeats a block of instructions.\nforever is one kind of loop. But sometimes you want to repeat something a specific number of times, or only while a condition holds.\nRepeat N times — runs exactly N times, then stops:\nrepeat 5 times:\n    show heart icon\n    wait 500 ms\n    clear display\n    wait 500 ms\nWhile loop — repeats as long as a condition is true:\nwhile temperature &gt; 38.5:\n    play alarm sound\n    wait 1 second\n    read temperature again\nLoops require care. A loop with a condition that is never false will run forever and freeze your program. Always make sure a loop has a clear exit condition.\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\n// Repeat N times\nfor (let index = 0; index &lt; 5; index++) {\n    basic.showIcon(IconNames.Heart)\n    basic.pause(500)\n    basic.clearScreen()\n    basic.pause(500)\n}\n\n// While loop\nwhile (temperature &gt; 38.5) {\n    music.playTone(880, music.beat(BeatFraction.Whole))\n    basic.pause(1000)\n    temperature = input.temperature()\n}",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#functions",
+    "href": "lecture2.html#functions",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "7. Functions",
+    "text": "7. Functions\nA function is a named block of instructions you can call from anywhere in your program.\nIf you find yourself writing the same sequence of blocks in multiple places, put it in a function:\nfunction showAlert:\n    show warning icon\n    play high tone\n    wait 1 second\n    clear display\n\nforever:\n    if temperature &gt; 38.5:\n        call showAlert\n    if motion detected:\n        call showAlert\nFunctions make programs shorter, easier to read, and easier to fix — if the alert behaviour needs to change, you update it in one place, not everywhere it appears.\nIn MakeCode, you create functions in the Functions category in the toolbox.\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nfunction showAlert() {\n    basic.showIcon(IconNames.Target)\n    music.playTone(880, music.beat(BeatFraction.Whole))\n    basic.pause(1000)\n    basic.clearScreen()\n}\n\nbasic.forever(function () {\n    if (temperature &gt; 38.5) {\n        showAlert()\n    }\n    if (motionDetected) {\n        showAlert()\n    }\n})",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#reading-a-sensor",
+    "href": "lecture2.html#reading-a-sensor",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "8. Reading a sensor",
+    "text": "8. Reading a sensor\nReading a sensor means getting a value from a connected input device and storing it in a variable. The pattern is always the same:\nset [variable name] to [sensor reading block]\nFor the micro:bit’s built-in temperature sensor this is straightforward. For external sensors connected via the Sensorbit, you will use extension blocks provided by Elecfreaks — we will look at those specifically in Lecture 3. The principle is identical.",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#getting-your-program-onto-the-microbit",
+    "href": "lecture2.html#getting-your-program-onto-the-microbit",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "9. Getting your program onto the micro:bit",
+    "text": "9. Getting your program onto the micro:bit\n\nConnect the micro:bit to your laptop with a USB cable\nThe micro:bit appears as a USB drive called MICROBIT\nIn MakeCode, click the Download button (bottom left of the workspace)\nA .hex file is saved to your computer\nDrag or copy the .hex file onto the MICROBIT drive\nThe orange LED on the micro:bit flashes while it writes the program\nWhen it stops flashing, the program is running\n\nYou will do this many times during the lab. It takes about 10 seconds. You cannot permanently break a micro:bit by transferring a bad program — simply download and transfer again.",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
+    ]
+  },
+  {
+    "objectID": "lecture2.html#summary",
+    "href": "lecture2.html#summary",
+    "title": "Lecture 2: Programming with MakeCode",
+    "section": "Summary",
+    "text": "Summary\n\nA program is a precise set of instructions for a machine to follow\nMakeCode uses drag-and-drop blocks and runs in the browser at makecode.microbit.org\nThe interface has a simulator (left), toolbox (middle), and workspace (right)\non start runs once at startup; forever runs continuously\nVariables store values that change, like sensor readings\nConditionals make decisions (if / else if / else)\nLoops repeat instructions (repeat N times, while, forever)\nFunctions group reusable instructions under a name\nPrograms are transferred to the micro:bit as a .hex file via USB\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lecture 2 quiz on Canvas before the course starts.",
+    "crumbs": [
+      "Pre-course lectures",
+      "2. Programming with MakeCode"
     ]
   },
   {
@@ -171,142 +235,78 @@
     "href": "lecture1.html#summary",
     "title": "Lecture 1: Microcontrollers, Sensors, and Actuators",
     "section": "Summary",
-    "text": "Summary\n\nA microcontroller has a processor, memory, and input/output pins\nThe BBC micro:bit is a microcontroller with many built-in sensors and a connector for external ones\nDigital signals have two states; analog signals are continuous\nSensors convert physical phenomena into electrical signals\nActuators convert electrical signals into physical action\nEvery system follows the pattern: sense → decide → act\n\n\n\n\n\n\n\n\nReady for the quiz?\n\n\n\nComplete the Lecture 1 quiz on Canvas before the course starts on 16 June.",
+    "text": "Summary\n\nA microcontroller has a processor, memory, and input/output pins\nThe BBC micro:bit is a microcontroller with many built-in sensors and a connector for external ones\nDigital signals have two states; analog signals are continuous\nSensors convert physical phenomena into electrical signals\nActuators convert electrical signals into physical action\nEvery system follows the pattern: sense → decide → act\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lecture 1 quiz on Canvas before the course starts on 16 June.",
     "crumbs": [
       "Pre-course lectures",
       "1. Microcontrollers, Sensors & Actuators"
     ]
   },
   {
-    "objectID": "lecture2.html",
-    "href": "lecture2.html",
-    "title": "Lecture 2: Programming with MakeCode",
+    "objectID": "closeread/microbit_closeread.html",
+    "href": "closeread/microbit_closeread.html",
+    "title": "Microcontrollers for Health & Agriculture",
     "section": "",
-    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 2 quiz on Canvas before the course starts.",
+    "text": "The BBC micro:bit V2 — front\nScroll down to explore the main components.\n\n\n\n\nThis is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.\n\n\n\n\nThe 5×5 LED matrix is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a light sensor — it can detect ambient brightness without any extra components.\n\n\n\n\nButton A is on the left side of the board. In MakeCode, pressing it triggers an on button A pressed event. You can programme any action in response — displaying a reading, toggling a light, or sending a radio message.\n\n\n\n\nButton B mirrors Button A on the right. You can programme A and B independently, or detect when both are pressed together for a third action.\n\n\n\n\nThe gold touch logo at the top is a capacitive touch sensor — unique to the V2. Your finger doesn’t need to press it: just touching it is enough.\n\n\n\n\nThe small dot to the right of the logo is the microphone activity LED. It lights up whenever the built-in microphone is recording — a privacy indicator so you always know when sound is being measured.\n\n\n\n\nThe gold band along the bottom is the edge connector. The three large holes — labelled 0, 1, and 2 — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. 3V supplies power to connected components; GND completes the circuit.\n\n\n\n\nThat covers the front. Now let’s flip it over.\n\n\n\n\nThe BBC micro:bit V2 — back\nMost of the processing and sensing happens here.\n\n\n\n\nHere is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.\n\n\n\n\nThe gold zig-zag trace in the top left is the Bluetooth and radio antenna — printed directly onto the board, no separate component needed. It handles both Bluetooth Low Energy (for phone connectivity) and the micro:bit’s own 2.4 GHz radio protocol (for micro:bit-to-micro:bit communication).\n\n\n\n\nThe micro USB port at the top centre is how you connect the micro:bit to your laptop to download programmes. It also powers the board from USB. When you drag a .hex file onto the MICROBIT drive, it enters through this port.\n\n\n\n\nThe square component in the centre is the speaker. It can play tones, melodies, and sound effects directly, with no extra wiring. In MakeCode, use the Music category.\n\n\n\n\nThe small component close to the speaker is the backside of the microphone — on the front you will see it as a little whole. It detects sound level and can recognise loud events such as claps or shouts. The LED you saw on the front indicates when it is active.\n\n\n\n\nThe battery connector on the right edge accepts a standard 2× AAA battery pack. This is how you power the micro:bit away from a laptop — essential for portable projects and demos.\n\n\n\n\nThe chip left of the speaker is the processor — a Nordic nRF52833 running at 64 MHz with 512 KB of flash memory. Your programme lives here. It also contains a built-in temperature sensor that measures the chip temperature — a rough proxy for air temperature.\n\n\n\n\nThe two chips on the bottom left are the accelerometer and compass. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.\n\n\n\n\nThat is the complete micro:bit V2. Front and back, now you know what every component does."
+  },
+  {
+    "objectID": "microbit_explorer.html",
+    "href": "microbit_explorer.html",
+    "title": "Interactive: Explore the micro:bit",
+    "section": "",
+    "text": "Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.",
     "crumbs": [
       "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "↳ Explore the micro:bit"
     ]
   },
   {
-    "objectID": "lecture2.html#learning-objectives",
-    "href": "lecture2.html#learning-objectives",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "Learning objectives",
-    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what a program is\nNavigate the MakeCode block editor\nDescribe the difference between on start and forever\nUse variables, conditionals, loops, and functions in MakeCode\nExplain how code gets from your browser onto the micro:bit",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "",
+    "text": "Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.\nWe use the BBC micro:bit and the Elecfreaks Smart Health Kit as our hardware platform, and MakeCode as our programming environment.",
     "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "About the course"
     ]
   },
   {
-    "objectID": "lecture2.html#what-is-a-program",
-    "href": "lecture2.html#what-is-a-program",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "1. What is a program?",
-    "text": "1. What is a program?\nA program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do — in what order, under what conditions, and how many times.\nConsider a clinical protocol for managing a febrile patient:\n\nMeasure temperature\nIf temperature is above 38.5°C, administer paracetamol\nWait 30 minutes\nMeasure temperature again\nIf still above 38.5°C, escalate to the doctor\nRepeat every hour\n\nThis is already a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking — you are writing a protocol for a machine to follow.\nThe difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters.",
+    "objectID": "index.html#course-goals",
+    "href": "index.html#course-goals",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Course goals",
+    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.",
     "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "About the course"
     ]
   },
   {
-    "objectID": "lecture2.html#makecode",
-    "href": "lecture2.html#makecode",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "2. MakeCode",
-    "text": "2. MakeCode\nMakeCode is a browser-based programming environment for the BBC micro:bit, developed by Microsoft. You do not need to install anything — it runs at makecode.microbit.org.\nMakeCode uses blocks: coloured, puzzle-piece shaped instructions that you drag and snap together. This removes the need to type code manually, which reduces errors and lets you focus on logic rather than syntax.\nThe interface has three panels:\n\nLeft — simulator: a virtual micro:bit that runs your program in the browser, so you can test without hardware\nMiddle — toolbox: blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more)\nRight — workspace: where you drag blocks and build your program\n\n\nThe simulator is useful but limited — it can only simulate the micro:bit’s built-in components. External sensors connected via the Sensorbit cannot be simulated; for those, you need the physical device.\nYou can switch between Blocks, JavaScript, and Python views using the buttons at the top of the screen. The same program looks different in each view, but they all do the same thing.",
+    "objectID": "index.html#how-this-course-works",
+    "href": "index.html#how-this-course-works",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "How this course works",
+    "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.",
     "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "About the course"
     ]
   },
   {
-    "objectID": "lecture2.html#on-start-and-forever",
-    "href": "lecture2.html#on-start-and-forever",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "3. on start and forever",
-    "text": "3. on start and forever\nWhen you open MakeCode, two blocks are already on the workspace.\non start runs its contents once, when the micro:bit powers on or resets. Use it for setup: displaying a startup message, setting initial variable values.\nforever runs its contents in a continuous loop, repeating as long as the micro:bit is powered on. Use it for monitoring: reading sensors, checking conditions, updating a display.\nMost programs use both:\non start:\n    show \"Ready\"\n\nforever:\n    read temperature\n    if temperature &gt; 38.5:\n        show warning icon\n    else:\n        show temperature value\n    wait 2 seconds\nThe forever loop is why your device keeps working without you pressing anything — it is constantly cycling through its instructions, checking and responding.\n\n\n\n\n\n\nJavaScript equivalent\n\n\n\n\n\nbasic.showString(\"Ready\")\n\nbasic.forever(function () {\n    let temperature = input.temperature()\n    if (temperature &gt; 38.5) {\n        basic.showIcon(IconNames.Target)\n    } else {\n        basic.showNumber(temperature)\n    }\n    basic.pause(2000)\n})",
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Schedule",
+    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world.",
     "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "About the course"
     ]
   },
   {
-    "objectID": "lecture2.html#variables",
-    "href": "lecture2.html#variables",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "4. Variables",
-    "text": "4. Variables\nA variable is a named container for a value that can change.\nThink of it as a labelled box. You put a number, a piece of text, or a true/false value into the box, give the box a name, and refer to it by that name later in your program.\nset temperature to 0\n\nforever:\n    set temperature to [read temperature sensor]\n    show temperature on display\nVariables are essential because they let your program work with values it does not know in advance — like a sensor reading that changes every second.\nVariable types you will use:\n\nNumber — any numeric value (37.2, 0, -5)\nString — text (“Ready”, “Warning”, “Team A”)\nBoolean — true or false only, used for on/off states and conditions\n\n\n\n\n\n\n\nJavaScript equivalent\n\n\n\n\n\nlet temperature = 0\n\nbasic.forever(function () {\n    temperature = input.temperature()\n    basic.showNumber(temperature)\n})",
+    "objectID": "index.html#teams",
+    "href": "index.html#teams",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Teams",
+    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.",
     "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#conditionals",
-    "href": "lecture2.html#conditionals",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "5. Conditionals",
-    "text": "5. Conditionals\nA conditional lets your program make a decision: do one thing if a condition is true, do something else if it is not.\nif temperature &gt; 39.5:\n    show \"CRITICAL\"\nelse if temperature &gt; 38.5:\n    show \"FEVER\"\nelse:\n    show \"NORMAL\"\nThe micro:bit evaluates conditions from top to bottom and runs the first branch that is true. Only one branch runs per evaluation.\nComparison operators you will use:\n\n\n\nOperator\nMeaning\n\n\n\n\n&gt;\ngreater than\n\n\n&lt;\nless than\n\n\n=\nequal to\n\n\n≥\ngreater than or equal to\n\n\n≤\nless than or equal to\n\n\n\n\n\n\n\n\n\nJavaScript equivalent\n\n\n\n\n\nif (temperature &gt; 39.5) {\n    basic.showString(\"CRITICAL\")\n} else if (temperature &gt; 38.5) {\n    basic.showString(\"FEVER\")\n} else {\n    basic.showString(\"NORMAL\")\n}",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#loops",
-    "href": "lecture2.html#loops",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "6. Loops",
-    "text": "6. Loops\nA loop repeats a block of instructions.\nforever is one kind of loop. But sometimes you want to repeat something a specific number of times, or only while a condition holds.\nRepeat N times — runs exactly N times, then stops:\nrepeat 5 times:\n    show heart icon\n    wait 500 ms\n    clear display\n    wait 500 ms\nWhile loop — repeats as long as a condition is true:\nwhile temperature &gt; 38.5:\n    play alarm sound\n    wait 1 second\n    read temperature again\nLoops require care. A loop with a condition that is never false will run forever and freeze your program. Always make sure a loop has a clear exit condition.\n\n\n\n\n\n\nJavaScript equivalent\n\n\n\n\n\n// Repeat N times\nfor (let index = 0; index &lt; 5; index++) {\n    basic.showIcon(IconNames.Heart)\n    basic.pause(500)\n    basic.clearScreen()\n    basic.pause(500)\n}\n\n// While loop\nwhile (temperature &gt; 38.5) {\n    music.playTone(880, music.beat(BeatFraction.Whole))\n    basic.pause(1000)\n    temperature = input.temperature()\n}",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#functions",
-    "href": "lecture2.html#functions",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "7. Functions",
-    "text": "7. Functions\nA function is a named block of instructions you can call from anywhere in your program.\nIf you find yourself writing the same sequence of blocks in multiple places, put it in a function:\nfunction showAlert:\n    show warning icon\n    play high tone\n    wait 1 second\n    clear display\n\nforever:\n    if temperature &gt; 38.5:\n        call showAlert\n    if motion detected:\n        call showAlert\nFunctions make programs shorter, easier to read, and easier to fix — if the alert behaviour needs to change, you update it in one place, not everywhere it appears.\nIn MakeCode, you create functions in the Functions category in the toolbox.\n\n\n\n\n\n\nJavaScript equivalent\n\n\n\n\n\nfunction showAlert() {\n    basic.showIcon(IconNames.Target)\n    music.playTone(880, music.beat(BeatFraction.Whole))\n    basic.pause(1000)\n    basic.clearScreen()\n}\n\nbasic.forever(function () {\n    if (temperature &gt; 38.5) {\n        showAlert()\n    }\n    if (motionDetected) {\n        showAlert()\n    }\n})",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#reading-a-sensor",
-    "href": "lecture2.html#reading-a-sensor",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "8. Reading a sensor",
-    "text": "8. Reading a sensor\nReading a sensor means getting a value from a connected input device and storing it in a variable. The pattern is always the same:\nset [variable name] to [sensor reading block]\nFor the micro:bit’s built-in temperature sensor this is straightforward. For external sensors connected via the Sensorbit, you will use extension blocks provided by Elecfreaks — we will look at those specifically in Lecture 3. The principle is identical.",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#getting-your-program-onto-the-microbit",
-    "href": "lecture2.html#getting-your-program-onto-the-microbit",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "9. Getting your program onto the micro:bit",
-    "text": "9. Getting your program onto the micro:bit\n\nConnect the micro:bit to your laptop with a USB cable\nThe micro:bit appears as a USB drive called MICROBIT\nIn MakeCode, click the Download button (bottom left of the workspace)\nA .hex file is saved to your computer\nDrag or copy the .hex file onto the MICROBIT drive\nThe orange LED on the micro:bit flashes while it writes the program\nWhen it stops flashing, the program is running\n\nYou will do this many times during the lab. It takes about 10 seconds. You cannot permanently break a micro:bit by transferring a bad program — simply download and transfer again.",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
-    ]
-  },
-  {
-    "objectID": "lecture2.html#summary",
-    "href": "lecture2.html#summary",
-    "title": "Lecture 2: Programming with MakeCode",
-    "section": "Summary",
-    "text": "Summary\n\nA program is a precise set of instructions for a machine to follow\nMakeCode uses drag-and-drop blocks and runs in the browser at makecode.microbit.org\nThe interface has a simulator (left), toolbox (middle), and workspace (right)\non start runs once at startup; forever runs continuously\nVariables store values that change, like sensor readings\nConditionals make decisions (if / else if / else)\nLoops repeat instructions (repeat N times, while, forever)\nFunctions group reusable instructions under a name\nPrograms are transferred to the micro:bit as a .hex file via USB\n\n\n\n\n\n\n\n\nReady for the quiz?\n\n\n\nComplete the Lecture 2 quiz on Canvas before the course starts.",
-    "crumbs": [
-      "Pre-course lectures",
-      "2. Programming with MakeCode"
+      "About the course"
     ]
   }
 ]
