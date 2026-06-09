@@ -1,0 +1,15 @@
+---
+title: "Interactive: Explore the micro:bit"
+---
+
+Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.
+
+```{=html}
+<div style="width: 100%; height: 85vh; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
+  <iframe
+    src="closeread/microbit_closeread.html"
+    style="width: 100%; height: 100%; border: none;"
+    allowfullscreen>
+  </iframe>
+</div>
+```

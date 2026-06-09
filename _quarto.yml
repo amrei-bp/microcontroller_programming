@@ -29,6 +29,8 @@ website:
         contents:
           - text: "1. Microcontrollers, Sensors & Actuators"
             href: lecture1.qmd
+          - text: "↳ Explore the micro:bit"
+            href: microbit_explorer.qmd
           - text: "2. Programming with MakeCode"
             href: lecture2.qmd
           - text: "3. The Elecfreaks Smart Health Kit"
