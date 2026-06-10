@@ -370,6 +370,66 @@
     ]
   },
   {
+    "objectID": "troubleshooting.html",
+    "href": "troubleshooting.html",
+    "title": "Troubleshooting & FAQ",
+    "section": "",
+    "text": "Things go wrong in every hardware lab — that is normal, and almost everything here is fixable in under a minute. Work through the relevant section before calling a teacher; the habit of systematic troubleshooting is itself part of what this course teaches.",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#connecting-and-flashing",
+    "href": "troubleshooting.html#connecting-and-flashing",
+    "title": "Troubleshooting & FAQ",
+    "section": "Connecting and flashing",
+    "text": "Connecting and flashing\n\nThe MICROBIT drive does not appear on my laptop\n\nTry a different USB cable — charge-only cables look identical to data cables but cannot transfer programs. This is the most common cause.\nTry a different USB port on the laptop.\nUnplug, wait five seconds, replug.\nIf the micro:bit shows an error number on its LED matrix, see below.\n\n\n\nCopying the .hex file fails, or the micro:bit shows an error number\n\nAn error code (e.g. 529, 528) scrolling on the LED matrix means the flash failed. Delete nothing — just download the .hex again from MakeCode and copy it again.\nMake sure you copied the .hex file to the MICROBIT drive, not to a folder on your laptop.\nIf the drive is named MAINTENANCE instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.\n\n\n\nFlashing is slow and tedious\nIn Chrome or Edge you can skip the drag-and-drop entirely: click the three dots next to the Download button → Connect device, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#the-program-runs-but-misbehaves",
+    "href": "troubleshooting.html#the-program-runs-but-misbehaves",
+    "title": "Troubleshooting & FAQ",
+    "section": "The program runs but misbehaves",
+    "text": "The program runs but misbehaves\n\nNothing happens at all\n\nDid the orange LED finish flashing? Wait for it.\nAre your blocks inside on start or forever? Blocks floating loose on the workspace (greyed out) are not part of the program.\nPress the reset button on the back of the micro:bit to restart the program.\n\n\n\nIt works in the simulator but not on the device\nThe simulator only simulates the micro:bit’s built-in components. External sensors connected through the Sensorbit do not exist in the simulator — for those, only the real hardware tells the truth.\n\n\nThe micro:bit restarts itself when the motor or servo runs\nThe motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone. (See Lecture 3, Section 2.)",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#the-oled",
+    "href": "troubleshooting.html#the-oled",
+    "title": "Troubleshooting & FAQ",
+    "section": "The OLED",
+    "text": "The OLED\n\nThe OLED stays black\n\nIs it plugged into the IIC socket on the Sensorbit (not a numbered G/V/S port)?\nDid you add the initialize OLED width 128 height 64 block in on start? Nothing displays without it.\nDid you add the smarthome extension to this project? Extensions are per-project — a new project needs the extension added again.\n\n\n\nThe OLED flickers\nYour forever loop is clearing and rewriting the display on every pass. Either slow the loop down with a pause, or — better — only redraw when the value being shown has actually changed (compare with a variable holding the previous value).",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#sensors",
+    "href": "troubleshooting.html#sensors",
+    "title": "Troubleshooting & FAQ",
+    "section": "Sensors",
+    "text": "Sensors\n\nA sensor reads 0, a constant value, or nonsense\n\nCheck the wiring first — G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a “dead” sensor.\nCheck that the pin number in your program matches the port the sensor is physically plugged into.\n\n\n\nThe DHT11 gives no reading or wrong readings\n\nThe DHT11 can only be read once every two seconds. Make sure your forever loop ends with pause 2000.\nMake sure the DHT11 query block runs before the blocks that fetch temperature and humidity.\n\n\n\nThe MQ3 readings make no sense\n\nThe MQ3 needs about 60 seconds of warm-up after power-on. Readings during warm-up are meaningless.\nThe sensor getting warm is normal — it contains a heater.\nIt responds to other volatiles too: cleaning spray or disinfectant used nearby will raise the reading.\n\n\n\nThe PIR triggers when nobody moved (or doesn’t trigger when they did)\n\nThe PIR needs 30–60 seconds to settle after power-on; ignore its output until then.\nDirect sunlight, a draft from a window, or a heat source near the sensor can cause false triggers.\nIt detects movement, not presence — a person standing still stops triggering it after a few seconds.\n\n\n\nThe soil moisture readings drift or differ from yesterday\nThis sensor is relative, not calibrated — readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.\n\n\nThe Rainbow LED shows nothing, or only some LEDs light\n\nCheck the wiring and that the pin in the Neopixel setup block matches the physical port.\nCheck that the number of LEDs in the setup block matches your strip — if it is set too low, the remaining LEDs stay dark.\nDid the set strip to ... block run in on start? Without it, the show-colour blocks have nothing to control.",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#still-stuck",
+    "href": "troubleshooting.html#still-stuck",
+    "title": "Troubleshooting & FAQ",
+    "section": "Still stuck?",
+    "text": "Still stuck?\nAsk a teacher — but come with answers to these three questions, because they will ask:\n\nWhat did you expect to happen?\nWhat happened instead?\nWhat have you already checked?",
+    "crumbs": [
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
     "objectID": "microbit_explorer.html",
     "href": "microbit_explorer.html",
     "title": "Interactive: Explore the micro:bit",
