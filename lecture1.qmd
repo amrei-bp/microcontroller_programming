@@ -70,19 +70,21 @@ The edge connector is what makes the micro:bit extensible. By plugging in a brea
 
 ## 3. Signals: digital and analog
 
-Before we talk about sensors and actuators, we need to understand two kinds of signals.
+Going back to the doctor receiving and acting on information: we can say that they receive and act on signals. In the machine equivalent, sensors produce and transmit different signals:
 
 **Digital signals** have only two states: on or off, 1 or 0, high or low. A light switch is digital — it is either up or down, nothing in between. A button press is digital. A motion detector that says "motion detected / no motion" is digital.
 
 **Analog signals** exist on a continuous scale. A dimmer switch is analog — you can set the light to any brightness between fully off and fully on. Temperature is analog — it can be 21.3°C, 21.35°C, or 37.2°C. Analog signals are converted to numbers by an **analog-to-digital converter (ADC)**, which samples the signal and turns it into a value the processor can work with.
 
-Why does this matter? Because sensors produce different kinds of signals, and you need to read them correctly in your program.
+Some sensors communicate through a third approach: a **serial protocol**. Instead of holding a pin simply high or low, the sensor sends a rapid, timed sequence of digital pulses that together encode a number — think of it like Morse code rather than a light switch. In our kits, the DHT11 temperature and humidity sensor works this way: it squeezes two measurements into a single stream of 40 pulses. Decoding that stream manually would be complicated, which is exactly why a software library — in our case the smarthome extension in MakeCode — does it for you. From your perspective as a programmer, you call one block and get a temperature value; the serial protocol is hidden underneath.
+
+The types of signals matter for us as programmers, because we need to read them correctly in your program.
 
 ---
 
 ## 4. Sensors
 
-A **sensor** is a device that measures something in the physical world and converts it into an electrical signal.
+A **sensor** is a device that measures something in the physical world and converts it into an electrical signal. There are several different sensors included in the kit we will be working with during the course.
 
 | Sensor | What it measures | Signal type | Example use |
 |--------|-----------------|-------------|-------------|
@@ -93,7 +95,7 @@ A **sensor** is a device that measures something in the physical world and conve
 | UV | Ultraviolet light intensity | Analog | Measure sun exposure; optimise plant growth |
 | Crash sensor | Physical contact / pressure | Digital | Detect if a door or container has been opened |
 
-Some important things to understand about sensors:
+Some more important things to understand about sensors:
 
 - **Every sensor has a range.** The DHT11 measures temperature between 0°C and 50°C. Outside that range, the reading is wrong or absent. Choosing the right sensor for your use case means checking the range.
 - **Every sensor has accuracy limits.** The DHT11 is accurate to ±2°C. For monitoring a patient's fever that may be acceptable; for calibrating a laboratory instrument it is not.
@@ -106,7 +108,7 @@ Evaluating a sensor means asking: does it measure the right thing, at the right 
 
 ## 5. Actuators
 
-An **actuator** is a device that converts an electrical signal into a physical action.
+An **actuator** is a device that converts an electrical signal into a physical action. We also have a few of those in our kit: 
 
 | Actuator | What it does | Example use |
 |----------|-------------|-------------|
@@ -119,7 +121,7 @@ Actuators are the outputs of your system. A well-designed device combines sensor
 
 ---
 
-## 6. Putting it together: sense → decide → act
+## 6. Microcontrollers in action: sense → decide → act
 
 Every microcontroller-based system follows the same basic pattern:
 
@@ -133,11 +135,12 @@ Every microcontroller-based system follows the same basic pattern:
 - The micro:bit detects the signal and checks: "is there motion?"
 - If yes, it sends a signal to a servo motor that presses the sanitiser pump
 
-This is not a complicated program. It is a real product. This is what we will learn to build.
+In this course you will see that this is not a complicated program, and easy to build. 
+
 
 ---
 
-## 7. Why this matters in medicine and agriculture
+## 7. Use cases in medicine and agriculture
 
 Microcontrollers are particularly valuable in settings where:
 
@@ -146,7 +149,7 @@ Microcontrollers are particularly valuable in settings where:
 - Cost is a constraint
 - Power supply may be intermittent
 
-In Uganda and across sub-Saharan Africa, there are real problems these tools can address:
+Here are some real problems these tools can address:
 
 - Cold chain monitoring for vaccines and blood products
 - Automated irrigation for small-scale farms
@@ -154,7 +157,7 @@ In Uganda and across sub-Saharan Africa, there are real problems these tools can
 - Early warning systems for crop disease or pest activity
 - Point-of-care diagnostic aids
 
-This course will not solve all of these problems. But by the end of it, you will have the practical knowledge to begin.
+This course will not solve all of them. But by the end of it, we hope you have the practical knowledge to begin tackling the ones you see need solving.
 
 ---
 
