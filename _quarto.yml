@@ -35,6 +35,12 @@ website:
             href: lecture2.qmd
           - text: "3. The Elecfreaks Smart Health Kit"
             href: lecture3.qmd
+      - section: "16 June — Lab"
+        contents:
+          - text: "Guided sensor exercises"
+            href: lab_exercise.qmd
+      - text: "Troubleshooting & FAQ"
+        href: troubleshooting.qmd
 
 format:
   html:
