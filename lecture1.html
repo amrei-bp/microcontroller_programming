@@ -193,8 +193,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#signals-digital-and-analog" id="toc-signals-digital-and-analog" class="nav-link" data-scroll-target="#signals-digital-and-analog">3. Signals: digital and analog</a></li>
   <li><a href="#sensors" id="toc-sensors" class="nav-link" data-scroll-target="#sensors">4. Sensors</a></li>
   <li><a href="#actuators" id="toc-actuators" class="nav-link" data-scroll-target="#actuators">5. Actuators</a></li>
-  <li><a href="#putting-it-together-sense-decide-act" id="toc-putting-it-together-sense-decide-act" class="nav-link" data-scroll-target="#putting-it-together-sense-decide-act">6. Putting it together: sense → decide → act</a></li>
-  <li><a href="#why-this-matters-in-medicine-and-agriculture" id="toc-why-this-matters-in-medicine-and-agriculture" class="nav-link" data-scroll-target="#why-this-matters-in-medicine-and-agriculture">7. Why this matters in medicine and agriculture</a></li>
+  <li><a href="#microcontrollers-in-action-sense-decide-act" id="toc-microcontrollers-in-action-sense-decide-act" class="nav-link" data-scroll-target="#microcontrollers-in-action-sense-decide-act">6. Microcontrollers in action: sense → decide → act</a></li>
+  <li><a href="#use-cases-in-medicine-and-agriculture" id="toc-use-cases-in-medicine-and-agriculture" class="nav-link" data-scroll-target="#use-cases-in-medicine-and-agriculture">7. Use cases in medicine and agriculture</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
@@ -285,15 +285,16 @@ Note
 </section>
 <section id="signals-digital-and-analog" class="level2">
 <h2 class="anchored" data-anchor-id="signals-digital-and-analog">3. Signals: digital and analog</h2>
-<p>Before we talk about sensors and actuators, we need to understand two kinds of signals.</p>
+<p>Going back to the doctor receiving and acting on information: we can say that they receive and act on signals. In the machine equivalent, sensors produce and transmit different signals:</p>
 <p><strong>Digital signals</strong> have only two states: on or off, 1 or 0, high or low. A light switch is digital — it is either up or down, nothing in between. A button press is digital. A motion detector that says “motion detected / no motion” is digital.</p>
 <p><strong>Analog signals</strong> exist on a continuous scale. A dimmer switch is analog — you can set the light to any brightness between fully off and fully on. Temperature is analog — it can be 21.3°C, 21.35°C, or 37.2°C. Analog signals are converted to numbers by an <strong>analog-to-digital converter (ADC)</strong>, which samples the signal and turns it into a value the processor can work with.</p>
-<p>Why does this matter? Because sensors produce different kinds of signals, and you need to read them correctly in your program.</p>
+<p>Some sensors communicate through a third approach: a <strong>serial protocol</strong>. Instead of holding a pin simply high or low, the sensor sends a rapid, timed sequence of digital pulses that together encode a number — think of it like Morse code rather than a light switch. In our kits, the DHT11 temperature and humidity sensor works this way: it squeezes two measurements into a single stream of 40 pulses. Decoding that stream manually would be complicated, which is exactly why a software library — in our case the smarthome extension in MakeCode — does it for you. From your perspective as a programmer, you call one block and get a temperature value; the serial protocol is hidden underneath.</p>
+<p>The types of signals matter for us as programmers, because we need to read them correctly in your program.</p>
 <hr>
 </section>
 <section id="sensors" class="level2">
 <h2 class="anchored" data-anchor-id="sensors">4. Sensors</h2>
-<p>A <strong>sensor</strong> is a device that measures something in the physical world and converts it into an electrical signal.</p>
+<p>A <strong>sensor</strong> is a device that measures something in the physical world and converts it into an electrical signal. There are several different sensors included in the kit we will be working with during the course.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 15%">
@@ -348,7 +349,7 @@ Note
 </tr>
 </tbody>
 </table>
-<p>Some important things to understand about sensors:</p>
+<p>Some more important things to understand about sensors:</p>
 <ul>
 <li><strong>Every sensor has a range.</strong> The DHT11 measures temperature between 0°C and 50°C. Outside that range, the reading is wrong or absent. Choosing the right sensor for your use case means checking the range.</li>
 <li><strong>Every sensor has accuracy limits.</strong> The DHT11 is accurate to ±2°C. For monitoring a patient’s fever that may be acceptable; for calibrating a laboratory instrument it is not.</li>
@@ -360,7 +361,7 @@ Note
 </section>
 <section id="actuators" class="level2">
 <h2 class="anchored" data-anchor-id="actuators">5. Actuators</h2>
-<p>An <strong>actuator</strong> is a device that converts an electrical signal into a physical action.</p>
+<p>An <strong>actuator</strong> is a device that converts an electrical signal into a physical action. We also have a few of those in our kit:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
@@ -400,8 +401,8 @@ Note
 <p>Actuators are the outputs of your system. A well-designed device combines sensors with actuators: a temperature sensor detects that a storage room is too hot, and a fan actuator turns on to cool it down.</p>
 <hr>
 </section>
-<section id="putting-it-together-sense-decide-act" class="level2">
-<h2 class="anchored" data-anchor-id="putting-it-together-sense-decide-act">6. Putting it together: sense → decide → act</h2>
+<section id="microcontrollers-in-action-sense-decide-act" class="level2">
+<h2 class="anchored" data-anchor-id="microcontrollers-in-action-sense-decide-act">6. Microcontrollers in action: sense → decide → act</h2>
 <p>Every microcontroller-based system follows the same basic pattern:</p>
 <ol type="1">
 <li>A <strong>sensor</strong> measures something and sends a signal to the microcontroller</li>
@@ -414,11 +415,11 @@ Note
 <li>The micro:bit detects the signal and checks: “is there motion?”</li>
 <li>If yes, it sends a signal to a servo motor that presses the sanitiser pump</li>
 </ul>
-<p>This is not a complicated program. It is a real product. This is what we will learn to build.</p>
+<p>In this course you will see that this is not a complicated program, and easy to build.</p>
 <hr>
 </section>
-<section id="why-this-matters-in-medicine-and-agriculture" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-matters-in-medicine-and-agriculture">7. Why this matters in medicine and agriculture</h2>
+<section id="use-cases-in-medicine-and-agriculture" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases-in-medicine-and-agriculture">7. Use cases in medicine and agriculture</h2>
 <p>Microcontrollers are particularly valuable in settings where:</p>
 <ul>
 <li>Continuous monitoring is needed but trained staff are limited</li>
@@ -426,7 +427,7 @@ Note
 <li>Cost is a constraint</li>
 <li>Power supply may be intermittent</li>
 </ul>
-<p>In Uganda and across sub-Saharan Africa, there are real problems these tools can address:</p>
+<p>Here are some real problems these tools can address:</p>
 <ul>
 <li>Cold chain monitoring for vaccines and blood products</li>
 <li>Automated irrigation for small-scale farms</li>
@@ -434,7 +435,7 @@ Note
 <li>Early warning systems for crop disease or pest activity</li>
 <li>Point-of-care diagnostic aids</li>
 </ul>
-<p>This course will not solve all of these problems. But by the end of it, you will have the practical knowledge to begin.</p>
+<p>This course will not solve all of them. But by the end of it, we hope you have the practical knowledge to begin tackling the ones you see need solving.</p>
 <hr>
 </section>
 <section id="summary" class="level2">
