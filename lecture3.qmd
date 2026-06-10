@@ -53,7 +53,7 @@ We will go through each of these in this lecture.
 
 ## 2. The Sensorbit
 
-![The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.](figures/sensor_bit.png){fig-align="center" width="42%"}
+![The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (bottom) give labelled, powered access to every pin.](figures/sensor_bit.png){fig-align="center" width="42%"}
 
 The **Sensorbit** is the foundation of the kit. It is a breakout board that plugs onto the micro:bit's edge connector and gives you easy, labelled access to its pins.
 
@@ -62,6 +62,24 @@ Without the Sensorbit, connecting a sensor to the micro:bit would require using 
 It also provides stable **3.3 V power** to the connected sensors, sourced from the micro:bit's own power supply.
 
 **One important point:** when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.
+
+### Wiring: G, V, and S
+
+Most components in the kit connect to the Sensorbit with a **three-wire cable**. The three wires are not interchangeable — each one has a job:
+
+| Pin | Name | Job | Usual wire colour |
+|-----|------|-----|-------------------|
+| **G** | Ground | Completes the circuit | Black |
+| **V** | Voltage | Supplies 3.3 V power to the sensor | Red |
+| **S** | Signal | Carries the measurement to the micro:bit | Yellow (or another colour) |
+
+On the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are labelled **G**, **V**, and **S** on the board itself. The sensors carry the same labels next to their pins.
+
+**The rule:** G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually isn't damaged, but it will not work, and a reversed cable is the single most common hardware problem in the lab. **Match the labels printed on the boards, not just the wire colours** — colours are a convention, the labels are the truth.
+
+If a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.
+
+The OLED screen is the exception — it has **four** pins and plugs into the Sensorbit's dedicated **IIC** socket, which is keyed so it only fits one way.
 
 ---
 
@@ -134,6 +152,11 @@ The MQ3 detects **alcohol vapour** in the air. It works by measuring a change in
 - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols
 - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the *presence* of alcohol, not measuring a precise concentration
 - The heating element consumes more power than most sensors, which matters in battery-powered designs
+
+::: {.callout-warning}
+## The MQ3 gets warm — that is normal
+The MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Don't be alarmed, and don't enclose the sensor in anything that traps heat.
+:::
 
 ---
 
