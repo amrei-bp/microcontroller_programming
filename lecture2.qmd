@@ -22,7 +22,7 @@ By the end of this lecture you should be able to:
 
 ## 1. What is a program?
 
-A program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do — in what order, under what conditions, and how many times.
+A program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do: in what order, under what conditions, and how many times.
 
 Consider a clinical protocol for managing a febrile patient:
 
@@ -33,9 +33,9 @@ Consider a clinical protocol for managing a febrile patient:
 5. If still above 38.5°C, escalate to the doctor
 6. Repeat every hour
 
-This is already a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking — you are writing a protocol for a machine to follow.
+This is a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking: you are writing a protocol for a machine to follow.
 
-The difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters.
+The difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters, and testing the programm under different circumstances is a necessity. 
 
 ---
 
@@ -47,15 +47,15 @@ MakeCode uses **blocks**: coloured, puzzle-piece shaped instructions that you dr
 
 The interface has three panels:
 
-- **Left — simulator:** a virtual micro:bit that runs your program in the browser, so you can test without hardware
-- **Middle — toolbox:** blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more)
-- **Right — workspace:** where you drag blocks and build your program
-
-![](figures/user_interface.png)
+- **Left — simulator:** a virtual micro:bit that runs your program in the browser, so you can test without hardware. The color of the microbit can vary, but the functionality stays the same. 
+- **Middle — toolbox:** blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more). 
+- **Right — workspace:** where you drag blocks and build your program. If the shapes of the blocks from the middle fit together they can be used together in a program. 
 
 The simulator is useful but limited — it can only simulate the micro:bit's built-in components. External sensors connected via the Sensorbit cannot be simulated; for those, you need the physical device.
 
 You can switch between **Blocks**, **JavaScript**, and **Python** views using the buttons at the top of the screen. The same program looks different in each view, but they all do the same thing.
+
+![The MakeCode interface: simulator (left), toolbox (middle), workspace (right). The `on start` and `forever` blocks are already placed in the workspace when you create a new project.](figures/user_interface.png){fig-align="center" width="100%"}
 
 ---
 
@@ -75,12 +75,16 @@ on start:
 
 forever:
     read temperature
-    if temperature > 38.5:
+    if temperature > 38:
         show warning icon
     else:
         show temperature value
     wait 2 seconds
 ```
+
+::: {.callout-note}
+Notice that the threshold is a whole number. The micro:bit's built-in temperature sensor reports whole degrees only — it will read 38 or 39, never 38.5. A threshold of `> 38.5` would behave exactly like `> 38` but suggest a precision the sensor does not have. The clinical protocol in Section 1 can say 38.5°C; your program should use thresholds that match what the sensor can actually measure.
+:::
 
 The `forever` loop is why your device keeps working without you pressing anything — it is constantly cycling through its instructions, checking and responding.
 
@@ -92,7 +96,7 @@ basic.showString("Ready")
 
 basic.forever(function () {
     let temperature = input.temperature()
-    if (temperature > 38.5) {
+    if (temperature > 38) {
         basic.showIcon(IconNames.Target)
     } else {
         basic.showNumber(temperature)
@@ -146,9 +150,9 @@ basic.forever(function () {
 A **conditional** lets your program make a decision: do one thing if a condition is true, do something else if it is not.
 
 ```
-if temperature > 39.5:
+if temperature > 40:
     show "CRITICAL"
-else if temperature > 38.5:
+else if temperature > 38:
     show "FEVER"
 else:
     show "NORMAL"
@@ -170,9 +174,9 @@ The micro:bit evaluates conditions from top to bottom and runs the first branch 
 ## JavaScript equivalent
 
 ```javascript
-if (temperature > 39.5) {
+if (temperature > 40) {
     basic.showString("CRITICAL")
-} else if (temperature > 38.5) {
+} else if (temperature > 38) {
     basic.showString("FEVER")
 } else {
     basic.showString("NORMAL")
@@ -201,7 +205,7 @@ repeat 5 times:
 **While loop** — repeats as long as a condition is true:
 
 ```
-while temperature > 38.5:
+while temperature > 38:
     play alarm sound
     wait 1 second
     read temperature again
@@ -222,7 +226,7 @@ for (let index = 0; index < 5; index++) {
 }
 
 // While loop
-while (temperature > 38.5) {
+while (temperature > 38) {
     music.playTone(880, music.beat(BeatFraction.Whole))
     basic.pause(1000)
     temperature = input.temperature()
@@ -246,7 +250,7 @@ function showAlert:
     clear display
 
 forever:
-    if temperature > 38.5:
+    if temperature > 38:
         call showAlert
     if motion detected:
         call showAlert
@@ -268,7 +272,7 @@ function showAlert() {
 }
 
 basic.forever(function () {
-    if (temperature > 38.5) {
+    if (temperature > 38) {
         showAlert()
     }
     if (motionDetected) {
@@ -294,6 +298,8 @@ For the micro:bit's built-in temperature sensor this is straightforward. For ext
 
 ## 9. Getting your program onto the micro:bit
 
+Once you satisfied with your program, you need to transfer it to the micro:bit: 
+
 1. Connect the micro:bit to your laptop with a USB cable
 2. The micro:bit appears as a USB drive called **MICROBIT**
 3. In MakeCode, click the **Download** button (bottom left of the workspace)
@@ -302,7 +308,9 @@ For the micro:bit's built-in temperature sensor this is straightforward. For ext
 6. The orange LED on the micro:bit flashes while it writes the program
 7. When it stops flashing, the program is running
 
-You will do this many times during the lab. It takes about 10 seconds. You cannot permanently break a micro:bit by transferring a bad program — simply download and transfer again.
+You will do this many times during the lab. It takes about 10 seconds. You cannot permanently break a micro:bit by transferring a bad program — simply download and transfer again. 
+
+And that means that you can also play around with the programs, they don't have to be perfect from the start. In reality all programs go through an iterative process while they are written and tested. 
 
 ---
 
@@ -322,5 +330,5 @@ You will do this many times during the lab. It takes about 10 seconds. You canno
 
 ::: {.callout-tip}
 ## Ready for the quiz?
-Complete the **Lecture 2 quiz on Canvas** before the course starts.
+Complete the **Lecture 2 quiz on Canvas** before the course starts on 16 June.
 :::
