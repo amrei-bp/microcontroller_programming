@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2336d13c9a453953089c5e2c3b756323.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-437e534a4dad3c42c0e147ef314c86c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +189,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
   <li><a href="#the-smart-health-kit" id="toc-the-smart-health-kit" class="nav-link" data-scroll-target="#the-smart-health-kit">1. The Smart Health Kit</a></li>
-  <li><a href="#the-sensorbit" id="toc-the-sensorbit" class="nav-link" data-scroll-target="#the-sensorbit">2. The Sensorbit</a></li>
+  <li><a href="#the-sensorbit" id="toc-the-sensorbit" class="nav-link" data-scroll-target="#the-sensorbit">2. The Sensorbit</a>
+  <ul class="collapse">
+  <li><a href="#wiring-g-v-and-s" id="toc-wiring-g-v-and-s" class="nav-link" data-scroll-target="#wiring-g-v-and-s">Wiring: G, V, and S</a></li>
+  </ul></li>
   <li><a href="#adding-the-elecfreaks-extension-in-makecode" id="toc-adding-the-elecfreaks-extension-in-makecode" class="nav-link" data-scroll-target="#adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</a></li>
   <li><a href="#environmental-sensors" id="toc-environmental-sensors" class="nav-link" data-scroll-target="#environmental-sensors">4. Environmental sensors</a>
   <ul class="collapse">
@@ -313,14 +316,58 @@ Note
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/sensor_bit.png" class="img-fluid figure-img" style="width:42.0%"></p>
-<figcaption>The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.</figcaption>
+<figcaption>The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (bottom) give labelled, powered access to every pin.</figcaption>
 </figure>
 </div>
 <p>The <strong>Sensorbit</strong> is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.</p>
 <p>Without the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.</p>
 <p>It also provides stable <strong>3.3 V power</strong> to the connected sensors, sourced from the micro:bit’s own power supply.</p>
 <p><strong>One important point:</strong> when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.</p>
+<section id="wiring-g-v-and-s" class="level3">
+<h3 class="anchored" data-anchor-id="wiring-g-v-and-s">Wiring: G, V, and S</h3>
+<p>Most components in the kit connect to the Sensorbit with a <strong>three-wire cable</strong>. The three wires are not interchangeable — each one has a job:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pin</th>
+<th>Name</th>
+<th>Job</th>
+<th>Usual wire colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>G</strong></td>
+<td>Ground</td>
+<td>Completes the circuit</td>
+<td>Black</td>
+</tr>
+<tr class="even">
+<td><strong>V</strong></td>
+<td>Voltage</td>
+<td>Supplies 3.3 V power to the sensor</td>
+<td>Red</td>
+</tr>
+<tr class="odd">
+<td><strong>S</strong></td>
+<td>Signal</td>
+<td>Carries the measurement to the micro:bit</td>
+<td>Yellow (or another colour)</td>
+</tr>
+</tbody>
+</table>
+<p>On the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are labelled <strong>G</strong>, <strong>V</strong>, and <strong>S</strong> on the board itself. The sensors carry the same labels next to their pins.</p>
+<p><strong>The rule:</strong> G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually isn’t damaged, but it will not work, and a reversed cable is the single most common hardware problem in the lab. <strong>Match the labels printed on the boards, not just the wire colours</strong> — colours are a convention, the labels are the truth.</p>
+<p>If a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.</p>
+<p>The OLED screen is the exception — it has <strong>four</strong> pins and plugs into the Sensorbit’s dedicated <strong>IIC</strong> socket, which is keyed so it only fits one way.</p>
 <hr>
+</section>
 </section>
 <section id="adding-the-elecfreaks-extension-in-makecode" class="level2">
 <h2 class="anchored" data-anchor-id="adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</h2>
@@ -376,6 +423,19 @@ Note
 <p><strong>Medical use:</strong> Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.</p>
 <p><strong>Agricultural use:</strong> Monitoring fermentation in biogas digesters or alcohol-based crop processing.</p>
 <p><strong>Limitations:</strong> - Requires a <strong>warm-up time of approximately 60 seconds</strong> after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the <em>presence</em> of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The MQ3 gets warm — that is normal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Don’t be alarmed, and don’t enclose the sensor in anything that traps heat.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="analog-uv-sensor" class="level3">
