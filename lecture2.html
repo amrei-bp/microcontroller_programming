@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-437e534a4dad3c42c0e147ef314c86c8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2336d13c9a453953089c5e2c3b756323.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -286,7 +286,7 @@ Note
 </section>
 <section id="what-is-a-program" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-program">1. What is a program?</h2>
-<p>A program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do — in what order, under what conditions, and how many times.</p>
+<p>A program is a set of instructions, written in a language a machine can follow, that tells it exactly what to do: in what order, under what conditions, and how many times.</p>
 <p>Consider a clinical protocol for managing a febrile patient:</p>
 <ol type="1">
 <li>Measure temperature</li>
@@ -296,8 +296,8 @@ Note
 <li>If still above 38.5°C, escalate to the doctor</li>
 <li>Repeat every hour</li>
 </ol>
-<p>This is already a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking — you are writing a protocol for a machine to follow.</p>
-<p>The difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters.</p>
+<p>This is a program. It has measurements, decisions, waiting, and repetition. Programming a microcontroller is the same kind of thinking: you are writing a protocol for a machine to follow.</p>
+<p>The difference is that a machine follows instructions with complete literalness. It does exactly what you write, nothing more, nothing less. If your instructions are ambiguous or out of order, it will fail silently or behave unexpectedly. Precision matters, and testing the programm under different circumstances is a necessity.</p>
 <hr>
 </section>
 <section id="makecode" class="level2">
@@ -306,13 +306,18 @@ Note
 <p>MakeCode uses <strong>blocks</strong>: coloured, puzzle-piece shaped instructions that you drag and snap together. This removes the need to type code manually, which reduces errors and lets you focus on logic rather than syntax.</p>
 <p>The interface has three panels:</p>
 <ul>
-<li><strong>Left — simulator:</strong> a virtual micro:bit that runs your program in the browser, so you can test without hardware</li>
-<li><strong>Middle — toolbox:</strong> blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more)</li>
-<li><strong>Right — workspace:</strong> where you drag blocks and build your program</li>
+<li><strong>Left — simulator:</strong> a virtual micro:bit that runs your program in the browser, so you can test without hardware. The color of the microbit can vary, but the functionality stays the same.</li>
+<li><strong>Middle — toolbox:</strong> blocks organised by category (Basic, Input, Logic, Loops, Variables, Functions, and more).</li>
+<li><strong>Right — workspace:</strong> where you drag blocks and build your program. If the shapes of the blocks from the middle fit together they can be used together in a program.</li>
 </ul>
-<p><img src="figures/user_interface.png" class="img-fluid"></p>
 <p>The simulator is useful but limited — it can only simulate the micro:bit’s built-in components. External sensors connected via the Sensorbit cannot be simulated; for those, you need the physical device.</p>
 <p>You can switch between <strong>Blocks</strong>, <strong>JavaScript</strong>, and <strong>Python</strong> views using the buttons at the top of the screen. The same program looks different in each view, but they all do the same thing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/user_interface.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>The MakeCode interface: simulator (left), toolbox (middle), workspace (right). The <code>on start</code> and <code>forever</code> blocks are already placed in the workspace when you create a new project.</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 <section id="on-start-and-forever" class="level2">
@@ -326,14 +331,27 @@ Note
 
 forever:
     read temperature
-    if temperature &gt; 38.5:
+    if temperature &gt; 38:
         show warning icon
     else:
         show temperature value
     wait 2 seconds</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that the threshold is a whole number. The micro:bit’s built-in temperature sensor reports whole degrees only — it will read 38 or 39, never 38.5. A threshold of <code>&gt; 38.5</code> would behave exactly like <code>&gt; 38</code> but suggest a precision the sensor does not have. The clinical protocol in Section 1 can say 38.5°C; your program should use thresholds that match what the sensor can actually measure.</p>
+</div>
+</div>
 <p>The <code>forever</code> loop is why your device keeps working without you pressing anything — it is constantly cycling through its instructions, checking and responding.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -342,13 +360,13 @@ forever:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">showString</span>(<span class="st">"Ready"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> temperature <span class="op">=</span> input<span class="op">.</span><span class="fu">temperature</span>()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="fl">38.5</span>) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="dv">38</span>) {</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">showIcon</span>(IconNames<span class="op">.</span><span class="at">Target</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">showNumber</span>(temperature)</span>
@@ -377,7 +395,7 @@ forever:
 <li><strong>Boolean</strong> — true or false only, used for on/off states and conditions</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -386,7 +404,7 @@ forever:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> temperature <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -402,9 +420,9 @@ forever:
 <section id="conditionals" class="level2">
 <h2 class="anchored" data-anchor-id="conditionals">5. Conditionals</h2>
 <p>A <strong>conditional</strong> lets your program make a decision: do one thing if a condition is true, do something else if it is not.</p>
-<pre><code>if temperature &gt; 39.5:
+<pre><code>if temperature &gt; 40:
     show "CRITICAL"
-else if temperature &gt; 38.5:
+else if temperature &gt; 38:
     show "FEVER"
 else:
     show "NORMAL"</code></pre>
@@ -441,7 +459,7 @@ else:
 </tbody>
 </table>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -450,11 +468,11 @@ else:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="fl">39.5</span>) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="dv">40</span>) {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">showString</span>(<span class="st">"CRITICAL"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="fl">38.5</span>) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="dv">38</span>) {</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">showString</span>(<span class="st">"FEVER"</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">showString</span>(<span class="st">"NORMAL"</span>)</span>
@@ -475,13 +493,13 @@ else:
     clear display
     wait 500 ms</code></pre>
 <p><strong>While loop</strong> — repeats as long as a condition is true:</p>
-<pre><code>while temperature &gt; 38.5:
+<pre><code>while temperature &gt; 38:
     play alarm sound
     wait 1 second
     read temperature again</code></pre>
 <p>Loops require care. A loop with a condition that is never false will run forever and freeze your program. Always make sure a loop has a clear exit condition.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -490,7 +508,7 @@ else:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Repeat N times</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">let</span> index <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> index <span class="op">&lt;</span> <span class="dv">5</span><span class="op">;</span> index<span class="op">++</span>) {</span>
@@ -501,7 +519,7 @@ else:
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">// While loop</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (temperature <span class="op">&gt;</span> <span class="fl">38.5</span>) {</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (temperature <span class="op">&gt;</span> <span class="dv">38</span>) {</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    music<span class="op">.</span><span class="fu">playTone</span>(<span class="dv">880</span><span class="op">,</span> music<span class="op">.</span><span class="fu">beat</span>(BeatFraction<span class="op">.</span><span class="at">Whole</span>))</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">1000</span>)</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    temperature <span class="op">=</span> input<span class="op">.</span><span class="fu">temperature</span>()</span>
@@ -522,14 +540,14 @@ else:
     clear display
 
 forever:
-    if temperature &gt; 38.5:
+    if temperature &gt; 38:
         call showAlert
     if motion detected:
         call showAlert</code></pre>
 <p>Functions make programs shorter, easier to read, and easier to fix — if the alert behaviour needs to change, you update it in one place, not everywhere it appears.</p>
 <p>In MakeCode, you create functions in the <strong>Functions</strong> category in the toolbox.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -538,7 +556,7 @@ forever:
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">showAlert</span>() {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">showIcon</span>(IconNames<span class="op">.</span><span class="at">Target</span>)</span>
@@ -548,7 +566,7 @@ forever:
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="fl">38.5</span>) {</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="dv">38</span>) {</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">showAlert</span>()</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (motionDetected) {</span>
@@ -569,6 +587,7 @@ forever:
 </section>
 <section id="getting-your-program-onto-the-microbit" class="level2">
 <h2 class="anchored" data-anchor-id="getting-your-program-onto-the-microbit">9. Getting your program onto the micro:bit</h2>
+<p>Once you satisfied with your program, you need to transfer it to the micro:bit:</p>
 <ol type="1">
 <li>Connect the micro:bit to your laptop with a USB cable</li>
 <li>The micro:bit appears as a USB drive called <strong>MICROBIT</strong></li>
@@ -579,6 +598,7 @@ forever:
 <li>When it stops flashing, the program is running</li>
 </ol>
 <p>You will do this many times during the lab. It takes about 10 seconds. You cannot permanently break a micro:bit by transferring a bad program — simply download and transfer again.</p>
+<p>And that means that you can also play around with the programs, they don’t have to be perfect from the start. In reality all programs go through an iterative process while they are written and tested.</p>
 <hr>
 </section>
 <section id="summary" class="level2">
@@ -605,7 +625,7 @@ forever:
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Complete the <strong>Lecture 2 quiz on Canvas</strong> before the course starts.</p>
+<p>Complete the <strong>Lecture 2 quiz on Canvas</strong> before the course starts on 16 June.</p>
 </div>
 </div>
 
