@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">16 June — Lab</a></li><li class="breadcrumb-item"><a href="./lab_exercise.html">Guided sensor exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">Exercises</a></li><li class="breadcrumb-item"><a href="./lab_exercise.html">Basic sensor exercises</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">16 June — Lab</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,17 +224,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lab_exercise.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Guided sensor exercises</span></a>
+ <span class="menu-text">Basic sensor exercises</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting &amp; FAQ</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">16 June — Lab</a></li><li class="breadcrumb-item"><a href="./lab_exercise.html">Guided sensor exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">Exercises</a></li><li class="breadcrumb-item"><a href="./lab_exercise.html">Basic sensor exercises</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Lab: Guided Sensor Exercises</h1>
 </div>
@@ -1287,6 +1287,12 @@ Tip
 </ul></li>
 </ol>
 <p><strong>Step 4 — Download and test</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_p5_optional.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>The complete motion alert. Any icon works in the <code>if</code> branch — pick one your team likes.</figcaption>
+</figure>
+</div>
 <p>Flash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to <code>"Ready"</code> within a few seconds.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1505,6 +1511,12 @@ Tip
 else:
     clear LED matrix</code></pre>
 <p><strong>Step 5 — Download and test</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_p6_optional.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>The complete sanitiser detector: warm-up handling in <code>on start</code>, detection in <code>forever</code>. The threshold (500) is an example — use a value roughly halfway between <em>your</em> baseline and peak.</figcaption>
+</figure>
+</div>
 <p>Flash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1671,6 +1683,35 @@ Tip
 </section>
 
 </main> <!-- /main -->
+<script>
+// Persist lab observation inputs (class="persist") in this browser's localStorage,
+// so values entered during the lab are still there in the evening for the Canvas quiz.
+document.addEventListener("DOMContentLoaded", function () {
+  const prefix = "labinput:" + location.pathname + ":";
+  document.querySelectorAll("input.persist").forEach(function (el) {
+    if (el.type === "radio") {
+      const key = prefix + el.name;
+      if (localStorage.getItem(key) === el.value) el.checked = true;
+      el.addEventListener("change", function () {
+        if (el.checked) localStorage.setItem(key, el.value);
+      });
+    } else if (el.type === "checkbox") {
+      const key = prefix + el.id;
+      el.checked = localStorage.getItem(key) === "1";
+      el.addEventListener("change", function () {
+        localStorage.setItem(key, el.checked ? "1" : "0");
+      });
+    } else {
+      const key = prefix + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener("input", function () {
+        localStorage.setItem(key, el.value);
+      });
+    }
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

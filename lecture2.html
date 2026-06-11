@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">16 June — Lab</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,17 +224,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lab_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guided sensor exercises</span></a>
+ <span class="menu-text">Basic sensor exercises</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting &amp; FAQ</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -656,6 +656,35 @@ forever:
 </section>
 
 </main> <!-- /main -->
+<script>
+// Persist lab observation inputs (class="persist") in this browser's localStorage,
+// so values entered during the lab are still there in the evening for the Canvas quiz.
+document.addEventListener("DOMContentLoaded", function () {
+  const prefix = "labinput:" + location.pathname + ":";
+  document.querySelectorAll("input.persist").forEach(function (el) {
+    if (el.type === "radio") {
+      const key = prefix + el.name;
+      if (localStorage.getItem(key) === el.value) el.checked = true;
+      el.addEventListener("change", function () {
+        if (el.checked) localStorage.setItem(key, el.value);
+      });
+    } else if (el.type === "checkbox") {
+      const key = prefix + el.id;
+      el.checked = localStorage.getItem(key) === "1";
+      el.addEventListener("change", function () {
+        localStorage.setItem(key, el.checked ? "1" : "0");
+      });
+    } else {
+      const key = prefix + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener("input", function () {
+        localStorage.setItem(key, el.value);
+      });
+    }
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

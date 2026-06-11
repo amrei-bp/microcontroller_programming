@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">16 June — Lab</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,24 +189,34 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lab_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guided sensor exercises</span></a>
+ <span class="menu-text">Basic sensor exercises</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting &amp; FAQ</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-components-at-a-glance" id="toc-the-components-at-a-glance" class="nav-link active" data-scroll-target="#the-components-at-a-glance">The components at a glance</a>
+  <ul class="collapse">
+  <li><a href="#front" id="toc-front" class="nav-link" data-scroll-target="#front">Front</a></li>
+  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -235,10 +245,90 @@ ul.task-list li input[type="checkbox"] {
   <iframe src="closeread/microbit_closeread.html" style="width: 100%; height: 100%; border: none;" allowfullscreen="">
   </iframe>
 </div>
+<section id="the-components-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="the-components-at-a-glance">The components at a glance</h2>
+<p>The numbers below match the numbered labels on the images above.</p>
+<section id="front" class="level3">
+<h3 class="anchored" data-anchor-id="front">Front</h3>
+<ol type="1">
+<li><strong>Buttons A and B</strong> — physical inputs you can press, separately or together</li>
+<li><strong>LED display</strong> — 25 red LEDs for text, numbers, and icons; doubles as a light sensor</li>
+<li><strong>Pins 0, 1, 2</strong> — general-purpose input/output pins for connecting sensors and actuators</li>
+<li><strong>3V pin</strong> — supplies power to connected components</li>
+<li><strong>GND pin</strong> — ground; completes the circuit</li>
+<li><strong>Touch logo</strong> — capacitive touch sensor; reacts to a finger without pressing</li>
+<li><strong>Microphone LED</strong> — lights up whenever the microphone is active</li>
+</ol>
+</section>
+<section id="back" class="level3">
+<h3 class="anchored" data-anchor-id="back">Back</h3>
+<ol>
+  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
+  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
+  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
+  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
+  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
+  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
+</ol>
+<ol start="9">
+  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
+  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
+  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
+  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
+  <li><strong>Red power LED</strong> — on whenever the board has power</li>
+  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
+  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit <strong>V1</strong>, which our <strong>V2</strong> boards replace with numbers 14 and 15.</p>
+</div>
+</div>
+<hr>
+<p><em>Board images: micro:bit Educational Foundation, <a href="https://microbit.org/get-started/features/overview/">micro:bit features overview</a>.</em></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
+<script>
+// Persist lab observation inputs (class="persist") in this browser's localStorage,
+// so values entered during the lab are still there in the evening for the Canvas quiz.
+document.addEventListener("DOMContentLoaded", function () {
+  const prefix = "labinput:" + location.pathname + ":";
+  document.querySelectorAll("input.persist").forEach(function (el) {
+    if (el.type === "radio") {
+      const key = prefix + el.name;
+      if (localStorage.getItem(key) === el.value) el.checked = true;
+      el.addEventListener("change", function () {
+        if (el.checked) localStorage.setItem(key, el.value);
+      });
+    } else if (el.type === "checkbox") {
+      const key = prefix + el.id;
+      el.checked = localStorage.getItem(key) === "1";
+      el.addEventListener("change", function () {
+        localStorage.setItem(key, el.checked ? "1" : "0");
+      });
+    } else {
+      const key = prefix + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener("input", function () {
+        localStorage.setItem(key, el.value);
+      });
+    }
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

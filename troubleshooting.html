@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./troubleshooting.html">Troubleshooting &amp; FAQ</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">Exercises</a></li><li class="breadcrumb-item"><a href="./troubleshooting.html">Troubleshooting &amp; FAQ</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">16 June — Lab</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,17 +189,17 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lab_exercise.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Guided sensor exercises</span></a>
+ <span class="menu-text">Basic sensor exercises</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./troubleshooting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Troubleshooting &amp; FAQ</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -233,6 +233,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-dht11-gives-no-reading-or-wrong-readings" id="toc-the-dht11-gives-no-reading-or-wrong-readings" class="nav-link" data-scroll-target="#the-dht11-gives-no-reading-or-wrong-readings">The DHT11 gives no reading or wrong readings</a></li>
   <li><a href="#the-mq3-readings-make-no-sense" id="toc-the-mq3-readings-make-no-sense" class="nav-link" data-scroll-target="#the-mq3-readings-make-no-sense">The MQ3 readings make no sense</a></li>
   <li><a href="#the-pir-triggers-when-nobody-moved-or-doesnt-trigger-when-they-did" id="toc-the-pir-triggers-when-nobody-moved-or-doesnt-trigger-when-they-did" class="nav-link" data-scroll-target="#the-pir-triggers-when-nobody-moved-or-doesnt-trigger-when-they-did">The PIR triggers when nobody moved (or doesn’t trigger when they did)</a></li>
+  <li><a href="#which-ports-are-safe-for-my-own-project" id="toc-which-ports-are-safe-for-my-own-project" class="nav-link" data-scroll-target="#which-ports-are-safe-for-my-own-project">Which ports are safe for my own project?</a></li>
   <li><a href="#the-soil-moisture-readings-drift-or-differ-from-yesterday" id="toc-the-soil-moisture-readings-drift-or-differ-from-yesterday" class="nav-link" data-scroll-target="#the-soil-moisture-readings-drift-or-differ-from-yesterday">The soil moisture readings drift or differ from yesterday</a></li>
   <li><a href="#the-rainbow-led-shows-nothing-or-only-some-leds-light" id="toc-the-rainbow-led-shows-nothing-or-only-some-leds-light" class="nav-link" data-scroll-target="#the-rainbow-led-shows-nothing-or-only-some-leds-light">The Rainbow LED shows nothing, or only some LEDs light</a></li>
   </ul></li>
@@ -243,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lab_exercise.html">Exercises</a></li><li class="breadcrumb-item"><a href="./troubleshooting.html">Troubleshooting &amp; FAQ</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Troubleshooting &amp; FAQ</h1>
 </div>
@@ -375,6 +376,46 @@ ul.task-list li input[type="checkbox"] {
 <li>It detects <strong>movement</strong>, not presence — a person standing still stops triggering it after a few seconds.</li>
 </ul>
 </section>
+<section id="which-ports-are-safe-for-my-own-project" class="level3">
+<h3 class="anchored" data-anchor-id="which-ports-are-safe-for-my-own-project">Which ports are safe for my own project?</h3>
+<p>Not every numbered port on the Sensorbit is free to use — several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ports</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P1, P2, P8, P12, P13–P16</strong></td>
+<td>✅ Safe for sensors and actuators</td>
+</tr>
+<tr class="even">
+<td>P3, P4, P6, P7, P9, P10</td>
+<td>❌ Shared with the <strong>LED matrix</strong> — nonsense readings whenever the display is in use</td>
+</tr>
+<tr class="odd">
+<td>P5, P11</td>
+<td>❌ Wired to <strong>buttons A and B</strong></td>
+</tr>
+<tr class="even">
+<td>P0</td>
+<td>❌ No GVS port — wired to the Sensorbit’s buzzer and headphone jack</td>
+</tr>
+</tbody>
+</table>
+<p>Two more rules for project day:</p>
+<ul>
+<li><strong>Analog sensors</strong> (soil moisture, MQ3, UV — anything read with <code>analog read pin</code>) must go on <strong>P1 or P2</strong>. The other analog-capable pins are all shared with the LED matrix.</li>
+<li><strong>P16</strong> is the conventional home of the Rainbow LED strip — keep it free if your project uses one.</li>
+</ul>
+<p>If a sensor “worked yesterday on a different pin” and now reads nonsense, check this table before suspecting the sensor.</p>
+</section>
 <section id="the-soil-moisture-readings-drift-or-differ-from-yesterday" class="level3">
 <h3 class="anchored" data-anchor-id="the-soil-moisture-readings-drift-or-differ-from-yesterday">The soil moisture readings drift or differ from yesterday</h3>
 <p>This sensor is relative, not calibrated — readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.</p>
@@ -402,6 +443,35 @@ ul.task-list li input[type="checkbox"] {
 </section>
 
 </main> <!-- /main -->
+<script>
+// Persist lab observation inputs (class="persist") in this browser's localStorage,
+// so values entered during the lab are still there in the evening for the Canvas quiz.
+document.addEventListener("DOMContentLoaded", function () {
+  const prefix = "labinput:" + location.pathname + ":";
+  document.querySelectorAll("input.persist").forEach(function (el) {
+    if (el.type === "radio") {
+      const key = prefix + el.name;
+      if (localStorage.getItem(key) === el.value) el.checked = true;
+      el.addEventListener("change", function () {
+        if (el.checked) localStorage.setItem(key, el.value);
+      });
+    } else if (el.type === "checkbox") {
+      const key = prefix + el.id;
+      el.checked = localStorage.getItem(key) === "1";
+      el.addEventListener("change", function () {
+        localStorage.setItem(key, el.checked ? "1" : "0");
+      });
+    } else {
+      const key = prefix + el.id;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) el.value = saved;
+      el.addEventListener("input", function () {
+        localStorage.setItem(key, el.value);
+      });
+    }
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
