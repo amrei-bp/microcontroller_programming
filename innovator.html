@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercise 4: Irrigation alarm – Microcontrollers for Health &amp; Agriculture</title>
+<title>Start here: What makes an innovator? – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -231,12 +196,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#what-you-will-build" id="toc-what-you-will-build" class="nav-link" data-scroll-target="#what-you-will-build">What you will build</a></li>
-  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
-  <li><a href="#building-the-program" id="toc-building-the-program" class="nav-link" data-scroll-target="#building-the-program">Building the program</a></li>
-  <li><a href="#discussion-calibration-and-drift" id="toc-discussion-calibration-and-drift" class="nav-link" data-scroll-target="#discussion-calibration-and-drift">Discussion — calibration and drift</a></li>
-  <li><a href="#extension-challenge" id="toc-extension-challenge" class="nav-link" data-scroll-target="#extension-challenge">Extension challenge</a></li>
+  <li><a href="#myths-about-innovators" id="toc-myths-about-innovators" class="nav-link active" data-scroll-target="#myths-about-innovators">Myths about innovators</a></li>
+  <li><a href="#what-innovators-actually-do" id="toc-what-innovators-actually-do" class="nav-link" data-scroll-target="#what-innovators-actually-do">What innovators actually do</a></li>
+  <li><a href="#problem-first-thinking" id="toc-problem-first-thinking" class="nav-link" data-scroll-target="#problem-first-thinking">Problem first thinking</a></li>
+  <li><a href="#constraints-breed-creativity" id="toc-constraints-breed-creativity" class="nav-link" data-scroll-target="#constraints-breed-creativity">Constraints breed creativity</a></li>
+  <li><a href="#innovation-cultures" id="toc-innovation-cultures" class="nav-link" data-scroll-target="#innovation-cultures">Innovation cultures</a></li>
+  <li><a href="#brainstorming-that-actually-works" id="toc-brainstorming-that-actually-works" class="nav-link" data-scroll-target="#brainstorming-that-actually-works">Brainstorming that actually works</a></li>
+  <li><a href="#now-off-to-learn-the-tools" id="toc-now-off-to-learn-the-tools" class="nav-link" data-scroll-target="#now-off-to-learn-the-tools">Now off to learn the tools</a></li>
+  <li><a href="#sources-and-further-reading" id="toc-sources-and-further-reading" class="nav-link" data-scroll-target="#sources-and-further-reading">Sources and further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -245,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercise 4: Irrigation alarm</h1>
+<h1 class="title">Start here: What makes an innovator?</h1>
 </div>
 
 
@@ -262,188 +229,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>Allow 25 minutes.</em></p>
-<section id="scenario" class="level3">
-<h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
-<p>A small farm wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You will build a device that colour-codes a Rainbow LED strip to show the soil status at a glance — red (dry), amber (moist), green (wet) — so the farmer knows immediately whether to water.</p>
-</section>
-<section id="what-you-will-build" class="level3">
-<h3 class="anchored" data-anchor-id="what-you-will-build">What you will build</h3>
-<ul>
-<li>Soil moisture sensor read continuously</li>
-<li>Raw numeric value shown on OLED</li>
-<li>Rainbow LED strip: <strong>red</strong> when dry, <strong>amber</strong> when moist, <strong>green</strong> when adequately wet</li>
-<li>Thresholds calibrated by you during the exercise</li>
-</ul>
-</section>
-<section id="hardware" class="level3">
-<h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
-<ol type="1">
-<li>Connect the <strong>soil moisture sensor</strong> to the Sensorbit port labelled <strong>P2</strong></li>
-<li>Connect the <strong>Rainbow LED strip</strong> to the Sensorbit port labelled <strong>P16</strong></li>
-</ol>
+<p>Brian Gitta had malaria several times as a student. Each diagnosis meant a needle, a blood smear, a wait — and sometimes the result was still wrong. Together with fellow software-engineering students at Makerere University, he asked a question most people never thought to ask: <em>does diagnosing malaria really require drawing blood?</em></p>
+<p>Their answer was <strong>Matibabu</strong>: a small device that clips onto a finger and uses a beam of light to detect changes that malaria causes in red blood cells. No needle, no lab technician, results in minutes. In 2018 the team won the Royal Academy of Engineering’s <strong>Africa Prize for Engineering Innovation</strong> — the first Ugandan team to do so.</p>
+<p>The Matibabu team were not doctors or professors. They had no special funding and little experience. What they did have: a problem they knew personally, cheap electronics, and the patience to keep trying until something worked.</p>
+<p>So if innovation doesn’t require genius, credentials, or money — what <em>does</em> it require?</p>
 <hr>
-</section>
-<section id="building-the-program" class="level3">
-<h3 class="anchored" data-anchor-id="building-the-program">Building the program</h3>
-<p>Start a new project (<code>irrigation-alarm</code>). Add the Elecfreaks extension.</p>
-<p><strong>Step 1 — Set up the Rainbow LED strip in <code>on start</code></strong></p>
-<p>The Rainbow LED strip is controlled using <strong>Neopixel</strong> blocks, which were added with the Elecfreaks extension.</p>
-<ol type="1">
-<li>From <strong>Variables</strong>, create a variable called <code>strip</code></li>
-<li>From <strong>Neopixel</strong>, drag the block <code>set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)</code></li>
-<li>Set <code>strip</code> to this block — this initialises the LED strip</li>
-</ol>
-<p>Also add the OLED initialiser: <code>initialize OLED width 128 height 64</code>.</p>
-<p><strong>Step 2 — Read the soil moisture sensor in <code>forever</code></strong></p>
-<p>The soil moisture sensor is an analog sensor. No special extension block is needed — you read it directly from a pin, just like the crash sensor in <a href="./exercise2.html">Exercise 2</a>, except the value is a number on a scale instead of 0 or 1.</p>
-<ol type="1">
-<li>Create a variable called <code>moisture</code></li>
-<li>From <strong>Advanced → Pins</strong>, drag an <code>analog read pin P2</code> block and set <code>moisture</code> to it</li>
-<li>From <strong>OLED</strong>, clear the OLED and display the value: label <code>"Soil: "</code> joined to <code>moisture</code></li>
-</ol>
+<section id="myths-about-innovators" class="level2">
+<h2 class="anchored" data-anchor-id="myths-about-innovators">Myths about innovators</h2>
+<p>A lot of what we hear about innovators is simply wrong. And the myths do damage: they convince capable people that innovation is someone else’s job.</p>
+<p><strong>The myth of the lone genius.</strong> Innovation is almost always teamwork. Matibabu was a team. Most famous “lone inventors” had collaborators that history forgot. Different perspectives are not a nice-to-have — they are where new ideas come from.</p>
+<p><strong>The myth of the single eureka moment.</strong> Ideas rarely arrive in a flash of insight. They start half-formed, get tested, fail, and get revised — often for months or years. What looks like sudden genius is usually long, patient trial and error.</p>
+<p><strong>The myth that innovation means inventing new technology.</strong> Most innovation is <em>recombination</em> — putting existing pieces together in a new context. Mobile money (M-Pesa in Kenya) invented no new technology: SMS already existed, shop agents already existed. The innovation was the combination. Everything you will build in this course uses off-the-shelf parts.</p>
+<p><strong>The myth of “I’m not the inventing type.”</strong> This is the most damaging myth, and the one this course aims to break. Technical skill is not the bottleneck — it can be hired, borrowed, or learned (this course takes two days). What is hard to find is someone who knows a real problem from the inside. A nurse who has watched a vaccine fridge fail, or a farmer who has lost a harvest to missed irrigation, knows things no engineer in a distant lab knows.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/exercise_irrigation_step1.png" class="img-fluid figure-img" style="width:85.0%"></p>
-<figcaption>Your program after Steps 1 and 2: <code>on start</code> initialises the LED strip and the OLED; <code>forever</code> reads the sensor and shows the raw value.</figcaption>
+<p><img src="figures/mpesa_kiosk.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>An M-Pesa agent’s shopfront in Kenya. No new technology — SMS plus shopkeepers — yet it brought banking to millions. <em>(Photo: Realt0n12, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:M-Pesa_Kenyan_Kiosk.JPG">Wikimedia Commons</a>)</em></figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The analog read returns a number between <strong>0 and 1023</strong>. <strong>Higher value = wetter.</strong> Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly — in open air the reading sits near <strong>0</strong>. Run the program and check your own readings before setting thresholds.</p>
-</div>
-</div>
-<p><strong>Step 3 — Discover your thresholds</strong></p>
-<p>Before adding colour logic, flash and test the raw readings:</p>
-<ol type="1">
-<li>Hold the sensor probes in the <strong>air</strong> — note the value</li>
-<li>Press your <strong>fingers firmly across both metal probes</strong> — this simulates wet, conductive soil — note the value</li>
-<li>Lightly touch the probes — note the intermediate value</li>
-</ol>
-<p>These three readings give you the range for your thresholds. Enter them in the table below (Documenter role) — they are saved in this browser and will still be here for the evening quiz:</p>
-<table class="table caption-top">
+<hr>
+</section>
+<section id="what-innovators-actually-do" class="level2">
+<h2 class="anchored" data-anchor-id="what-innovators-actually-do">What innovators actually do</h2>
+<p>So what do innovators do differently? Researchers Jeff Dyer, Hal Gregersen, and Clayton Christensen studied thousands of innovators and found five habits they share, which they called <strong>discovery skills</strong>. These are behaviours, not talents — which means anyone can practise them:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">Condition</th>
-<th data-quarto-table-cell-role="th">Raw value</th>
+<th>Skill</th>
+<th>What it looks like</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Air (dry)</td>
-<td><input type="number" class="persist form-control" id="ex4-air" min="0" max="1023"></td>
+<td><strong>Questioning</strong></td>
+<td>Asking “why?”, “why not?”, and “what if?” about things everyone else accepts. <em>Why does a malaria test need blood?</em></td>
 </tr>
 <tr class="even">
-<td>Light contact (moist)</td>
-<td><input type="number" class="persist form-control" id="ex4-light" min="0" max="1023"></td>
+<td><strong>Observing</strong></td>
+<td>Watching how people actually work and where things actually fail — in the ward, the field, the queue — rather than how procedures say they should.</td>
 </tr>
 <tr class="odd">
-<td>Firm contact (wet)</td>
-<td><input type="number" class="persist form-control" id="ex4-firm" min="0" max="1023"></td>
+<td><strong>Networking</strong></td>
+<td>Talking to people different from yourself: different professions, different backgrounds, to collect perspectives you don’t have.</td>
 </tr>
 <tr class="even">
-<td>Your dry/moist threshold</td>
-<td><input type="number" class="persist form-control" id="ex4-th-dry" min="0" max="1023"></td>
+<td><strong>Experimenting</strong></td>
+<td>Building small, cheap tests of an idea instead of debating it. Prototypes are more useful than opinions.</td>
 </tr>
 <tr class="odd">
-<td>Your moist/wet threshold</td>
-<td><input type="number" class="persist form-control" id="ex4-th-wet" min="0" max="1023"></td>
+<td><strong>Associating</strong></td>
+<td>Connecting ideas across fields that don’t usually meet. This is the heart of this course: we will combine medicine × agriculture × electronics.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Step 4 — Colour-coded response</strong></p>
-<p>Add an <code>if / else if / else</code> block after the moisture read:</p>
-<pre><code>if moisture &lt; [your dry/moist threshold]:
-    strip show colour red
-
-else if moisture &lt; [your moist/wet threshold]:
-    strip show colour orange
-
-else:
-    strip show colour green</code></pre>
-<p>Note the direction: <strong>low readings mean dry</strong>, so the <em>first</em> check catches values <em>below</em> your dry threshold.</p>
-<p>Use your observed values from Step 3 as the thresholds. Use the <strong>Neopixel</strong> blocks <code>strip show colour</code> for each branch.</p>
-<p><strong>Step 5 — Slow the loop down</strong></p>
-<p>At the very end of the <code>forever</code> block, add a <code>pause (ms)</code> block (from <strong>Basic</strong>) set to <strong>2000</strong>.</p>
-<p>Unlike the DHT11, the soil moisture sensor doesn’t <em>need</em> this — it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.</p>
-<p><strong>Step 6 — Download and test</strong></p>
-<p>Flash, then verify all three colours appear as you move between dry, light contact, and firm contact.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/exercise_irrigation_complete.png" class="img-fluid figure-img" style="width:55.0%"></p>
-<figcaption>The complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware — use the values <em>you</em> observed in Step 3.</figcaption>
-</figure>
-</div>
+<p>You will practise all five during this course: questioning and observing when you evaluate sensors against real use cases, networking when teams form at the mixer, experimenting in every lab exercise, and associating when your team builds something none of you could have built alone.</p>
+<hr>
+</section>
+<section id="problem-first-thinking" class="level2">
+<h2 class="anchored" data-anchor-id="problem-first-thinking">Problem first thinking</h2>
+<p>Here is the most common way innovation fails: someone gets attached to a <em>solution</em> — an app, a drone, a gadget — and then goes looking for a problem to justify it.</p>
+<p>Innovators work the other way around: <strong>start from the problem and stick with it</strong>. Solutions are replaceable — if the first one doesn’t work, the problem is still there and still worth solving.</p>
+<p>A practical tool for staying problem-first is the <strong>“How might we…?”</strong> question. It states the problem without committing to any particular solution:</p>
+<ul>
+<li><em>How might we know that a vaccine fridge failed during the night?</em></li>
+<li><em>How might we tell a farmer the soil is dry without them walking to the field?</em></li>
+<li><em>How might a patient who cannot speak call for help?</em></li>
+</ul>
+<p>Each of these can be solved in many different ways — and you will be able to prototype several of them by the end of day one.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>✓ Checkpoint
+<span class="screen-reader-only">Important</span>Your homework for this lecture
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Before the course starts, write down <strong>two problems you have personally seen</strong> — in a clinic, a farm, a lab, a market, a home — that a simple measuring or alerting device might address. Phrase each as a “How might we…?” question. Bring them to the course: they are your entry ticket to the project mixer, and the Canvas quiz will ask for them.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="constraints-breed-creativity" class="level2">
+<h2 class="anchored" data-anchor-id="constraints-breed-creativity">Constraints breed creativity</h2>
+<p>It is tempting to believe innovation happens where money is — in rich labs with expensive equipment. While this can be true, the opposite can also be the case. Tight limits force you to focus on what actually matters, and some well-known inventions came from exactly the settings this course is aimed at:</p>
 <ul>
-<li>OLED shows a numeric value that changes with contact</li>
-<li>Rainbow LED goes red in air, amber with light contact, green with firm contact (or similar — your thresholds may produce a different boundary)</li>
-<li>You have written down your threshold values</li>
+<li><strong>The Embrace Infant Warmer.</strong> A team of students was challenged to design an incubator at 1% of the usual cost. Instead of starting in the lab, they went and observed — and discovered the real problem: donated incubators sat unused in cities while babies died in villages, far from any electricity. Their answer was a tiny sleeping bag with a heat-storing wax insert, no continuous power needed.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/embrace_warmer.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Embrace co-founder Rahul Panicker holding the infant warmer — a sleeping bag with a heat-storing wax insert, no continuous power needed. <em>(Photo: Madhusudhan Atri / Embrace Innovations, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Rahul_Panicker_1.jpg">Wikimedia Commons</a>)</em></figcaption>
+</figure>
 </div>
+<ul>
+<li><strong>William Kamkwamba</strong> was fourteen when famine forced him out of school in Malawi. With a library book, scrap parts, and a bicycle dynamo, he built a windmill that powered lights and a radio in his family’s house. (“The Boy Who Harnessed the Wind” tells the story.)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/kamkwamba_windmill.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>William Kamkwamba’s original windmill in Malawi — note the bicycle wheel at the hub and the blades cut from scrap. <em>(Photo: Erik (HASH) Hersman, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:William_Kamkwambas_old_windmill.jpg">Wikimedia Commons</a>)</em></figcaption>
+</figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<ul>
+<li><strong>Zipline</strong> delivers blood to remote clinics in Rwanda and Ghana by drone, turning deliveries that took hours on bad roads into minutes by air. The constraint — terrain and distance — is precisely what made the solution valuable.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/zipline_drone.jpg" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>A Zipline fixed-wing delivery drone. Medical supplies are air-dropped to clinics by parachute. <em>(Photo: San Diego Air &amp; Space Museum Archives, public domain, via <a href="https://commons.wikimedia.org/wiki/File:052324fic001_Curatorial_Collection_Image_-_Drone,_Zipline_Platform_1_medical_drone_delivery_system;_Delivery_drone_provides_access_to_health_products_to_remotely_located_patients_by_air-dropping_medicine_by_parachute,_la_(53896710902).jpg">Wikimedia Commons</a>)</em></figcaption>
+</figure>
+</div>
+<p>What we are trying to tell you: you don’t need a well-funded lab to build something useful. Where equipment is scarce, a cheap microcontroller and a few sensors can solve real problems — often problems that nobody with a big budget is even looking at.</p>
+<hr>
+</section>
+<section id="innovation-cultures" class="level2">
+<h2 class="anchored" data-anchor-id="innovation-cultures">Innovation cultures</h2>
+<p>Good ideas die quickly in the wrong environment. How a team reacts to ideas matters as much as the ideas themselves.</p>
+<p>Harvard researcher <strong>Amy Edmondson</strong> studied medication errors in hospital teams, expecting the best teams to make the fewest errors. Instead, the best teams reported <em>more</em> errors. The reason: they didn’t actually make more mistakes — they felt <strong>safe enough to report them</strong>. In weaker teams, errors were hidden, and hidden errors don’t get fixed.</p>
+<p>That feeling — <em>I can suggest a half-formed idea, ask a basic question, or admit a mistake without being punished or embarrassed</em> — is called <strong>psychological safety</strong>, and it is one of the strongest predictors of a team that learns and innovates.</p>
+<p>You already know what the opposite sounds like. Every workplace has <strong>idea-killing phrases</strong>:</p>
+<blockquote class="blockquote">
+<p>“We’ve always done it this way.” · “That will never work here.” · “That’s not your job.” · “Be realistic.”</p>
+</blockquote>
+<p>And there are idea-growing responses you can choose instead:</p>
+<blockquote class="blockquote">
+<p>“Yes, and…” · “What would it take for that to work?” · “Tell me more.” · “Let’s test it.”</p>
+</blockquote>
+<p><strong>Think of a culture you know</strong>: a ward, a lab, a class, a team you have been part of. Was it safe to suggest something half-baked? What happened to the last unusual idea someone voiced there? This week, try to do better in your own team.</p>
+<hr>
+</section>
+<section id="brainstorming-that-actually-works" class="level2">
+<h2 class="anchored" data-anchor-id="brainstorming-that-actually-works">Brainstorming that actually works</h2>
+<p>During the course, you will form teams and come up with project ideas. Group brainstorming often goes wrong in predictable ways: the loudest person sets the direction, ideas get judged too early, and the group settles on the first acceptable idea. Four rules prevent most of it:</p>
+<ol type="1">
+<li><strong>Don’t judge yet.</strong> While collecting ideas, no evaluating — not even your own. Filtering comes later.</li>
+<li><strong>Go for quantity.</strong> You can filter a long list afterwards; you can’t filter ideas that were never said out loud.</li>
+<li><strong>Build on others.</strong> “Yes, and…” — add to other people’s ideas instead of shooting them down.</li>
+<li><strong>Write before you talk.</strong> Everyone writes their ideas down silently for a few minutes <em>before</em> the discussion starts (this is called <strong>brainwriting</strong>). It stops the first voice from steering the whole team, and it gets the quiet people’s ideas onto the table.</li>
+</ol>
+<p>Bring your two “How might we…?” problems and follow the four rules, and your team will end up with more project ideas than you have time to build — which is a good problem to have.</p>
+<hr>
+</section>
+<section id="now-off-to-learn-the-tools" class="level2">
+<h2 class="anchored" data-anchor-id="now-off-to-learn-the-tools">Now off to learn the tools</h2>
+<p>The short version of this lecture: what holds innovation back is rarely a lack of genius or money. It is that too few people notice problems and try something. The missing piece is knowing the tools — and that is what the next three lectures cover: what a microcontroller is, how to program one, and what the sensors in your kit can and cannot do.</p>
+<hr>
+</section>
+<section id="sources-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="sources-and-further-reading">Sources and further reading</h2>
+<p><strong>Stories and Examples</strong></p>
+<ul>
+<li><strong>Matibabu:</strong> Royal Academy of Engineering, <a href="https://raeng.org.uk/news/ugandan-innovation-wins-the-africa-prize-for-engineering-innovation">Ugandan innovation wins the Africa Prize for Engineering Innovation</a> (June 2018), and the <a href="https://africaprize.raeng.org.uk/2018-cohort/brian-gitta">Africa Prize profile of Brian Gitta</a></li>
+<li><strong>Embrace infant warmer:</strong> developed in Stanford’s <em>Design for Extreme Affordability</em> course (2007) — the brief was an incubator at 1% of the $20,000 standard. See <a href="https://stanfordmag.org/contents/baby-it-s-cold-outside">Stanford Magazine, “Baby, It’s Cold Outside”</a></li>
+<li><strong>William Kamkwamba:</strong> Kamkwamba, W. &amp; Mealer, B. (2009). <em>The Boy Who Harnessed the Wind.</em> William Morrow. Also a 2019 film, and his <a href="https://www.ted.com/talks/william_kamkwamba_how_i_harnessed_the_wind">TED talk</a></li>
+<li><strong>Zipline:</strong> medical drone delivery, operating in Rwanda since 2016 — <a href="https://www.flyzipline.com/">flyzipline.com</a></li>
+<li><strong>M-Pesa:</strong> Jack, W. &amp; Suri, T. (2011). <em>Mobile Money: The Economics of M-PESA.</em> <a href="https://www.nber.org/papers/w16721">NBER Working Paper 16721</a></li>
+</ul>
+<p><strong>Background on Innovation</strong></p>
+<ul>
+<li><strong>The five discovery skills:</strong> Dyer, J., Gregersen, H. &amp; Christensen, C. M. (2009). <a href="https://hbr.org/2009/12/the-innovators-dna">The Innovator’s DNA</a>. <em>Harvard Business Review</em>, December 2009. Expanded as a book: <em>The Innovator’s DNA</em> (Harvard Business Review Press, 2011)</li>
+<li><strong>Psychological safety and the hospital-error study:</strong> Edmondson, A. C. (1996). Learning from mistakes is easier said than done. <em>Journal of Applied Behavioral Science</em>, 32(1), 5–28. Accessible book-length treatment: Edmondson, A. C. (2018). <em>The Fearless Organization.</em> Wiley</li>
+<li><strong>Brainstorming rules:</strong> Osborn, A. F. (1953). <em>Applied Imagination.</em> Scribner — the origin of “defer judgment” and “go for quantity”. On brainwriting: Paulus, P. B. &amp; Yang, H.-C. (2000). Idea generation in groups. <em>Organizational Behavior and Human Decision Processes</em>, 82(1), 76–87</li>
+</ul>
+<p><strong>Image credits</strong></p>
+<p>All photographs in this lecture are from <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>: the M-Pesa shopfront (Realt0n12, CC BY-SA 3.0), the Embrace infant warmer (Madhusudhan Atri / Embrace Innovations, CC BY-SA 3.0), William Kamkwamba’s windmill (Erik (HASH) Hersman, CC BY 2.0), and the Zipline drone (San Diego Air &amp; Space Museum Archives, public domain).</p>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>JavaScript equivalent
+<span class="screen-reader-only">Tip</span>Ready for the quiz?
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> moisture <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> strip <span class="op">=</span> neopixel<span class="op">.</span><span class="fu">create</span>(DigitalPin<span class="op">.</span><span class="at">P16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> NeoPixelMode<span class="op">.</span><span class="at">RGB</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">init</span>(<span class="dv">128</span><span class="op">,</span> <span class="dv">64</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    moisture <span class="op">=</span> pins<span class="op">.</span><span class="fu">analogReadPin</span>(AnalogReadWritePin<span class="op">.</span><span class="at">P2</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (moisture <span class="op">&lt;</span> <span class="dv">90</span>) {</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Red</span>))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (moisture <span class="op">&lt;</span> <span class="dv">450</span>) {</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Orange</span>))</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Green</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">clear</span>()</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Soil:"</span> <span class="op">+</span> moisture)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">2000</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Replace 90 and 450 with the threshold values you observed on your hardware.</p>
+<p>Complete the <strong>Innovator quiz on Canvas</strong> — it includes submitting your two “How might we…?” problems. Then continue with <a href="./lecture1.html">Lecture 1: Microcontrollers, Sensors, and Actuators</a>.</p>
 </div>
 </div>
-</div>
-<hr>
-</section>
-<section id="discussion-calibration-and-drift" class="level3">
-<h3 class="anchored" data-anchor-id="discussion-calibration-and-drift">Discussion — calibration and drift</h3>
-<p>The raw reading is a number between 0 and 1023. You just set your thresholds based on 60 seconds of testing.</p>
-<p><strong>Question for your team:</strong> A farmer leaves this sensor buried in soil for three months. The probe tips corrode (as described in Lecture 3). What happens to the readings? Would your thresholds still be valid? What would you need to do to make this device reliable for long-term use?</p>
-<hr>
-</section>
-<section id="extension-challenge" class="level3">
-<h3 class="anchored" data-anchor-id="extension-challenge">Extension challenge</h3>
-<p><strong>Graduated brightness.</strong> Instead of showing every LED the same colour, make the number of lit LEDs correspond to the moisture level — 0 LEDs for bone dry, all 8 for saturated. This gives the farmer more nuance than three categories. Use the <strong>Neopixel</strong> <code>strip set pixel color at [n] to [colour]</code> block inside a loop.</p>
-<hr>
-<p>Finished before ~15:25? Pick <strong>one</strong> of the optional <a href="./bonus_exercises.html">bonus exercises</a>. Otherwise, continue to the <strong><a href="./mini_challenge.html">★ Mini challenge</a></strong>.</p>
 
 
 </section>
