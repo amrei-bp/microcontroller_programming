@@ -1,0 +1,160 @@
+---
+title: "Exercise 4: Irrigation alarm"
+---
+
+*Allow 25 minutes.*
+
+### Scenario
+
+A small farm wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You will build a device that colour-codes a Rainbow LED strip to show the soil status at a glance — red (dry), amber (moist), green (wet) — so the farmer knows immediately whether to water.
+
+### What you will build
+
+- Soil moisture sensor read continuously
+- Raw numeric value shown on OLED
+- Rainbow LED strip: **red** when dry, **amber** when moist, **green** when adequately wet
+- Thresholds calibrated by you during the exercise
+
+### Hardware
+
+1. Connect the **soil moisture sensor** to the Sensorbit port labelled **P2**
+2. Connect the **Rainbow LED strip** to the Sensorbit port labelled **P16**
+
+---
+
+### Building the program
+
+Start a new project (`irrigation-alarm`). Add the Elecfreaks extension.
+
+**Step 1 — Set up the Rainbow LED strip in `on start`**
+
+The Rainbow LED strip is controlled using **Neopixel** blocks, which were added with the Elecfreaks extension.
+
+1. From **Variables**, create a variable called `strip`
+2. From **Neopixel**, drag the block `set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)`
+3. Set `strip` to this block — this initialises the LED strip
+
+Also add the OLED initialiser: `initialize OLED width 128 height 64`.
+
+**Step 2 — Read the soil moisture sensor in `forever`**
+
+The soil moisture sensor is an analog sensor. No special extension block is needed — you read it directly from a pin, just like the crash sensor in [Exercise 2](exercise2.qmd), except the value is a number on a scale instead of 0 or 1.
+
+1. Create a variable called `moisture`
+2. From **Advanced → Pins**, drag an `analog read pin P2` block and set `moisture` to it
+3. From **OLED**, clear the OLED and display the value: label `"Soil: "` joined to `moisture`
+
+![Your program after Steps 1 and 2: `on start` initialises the LED strip and the OLED; `forever` reads the sensor and shows the raw value.](figures/exercise_irrigation_step1.png){fig-align="center" width="85%"}
+
+::: {.callout-tip}
+The analog read returns a number between **0 and 1023**. **Higher value = wetter.** Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly — in open air the reading sits near **0**. Run the program and check your own readings before setting thresholds.
+:::
+
+**Step 3 — Discover your thresholds**
+
+Before adding colour logic, flash and test the raw readings:
+
+1. Hold the sensor probes in the **air** — note the value
+2. Press your **fingers firmly across both metal probes** — this simulates wet, conductive soil — note the value
+3. Lightly touch the probes — note the intermediate value
+
+These three readings give you the range for your thresholds. Enter them in the table below (Documenter role) — they are saved in this browser and will still be here for the evening quiz:
+
+```{=html}
+<table class="table" style="max-width: 26rem;">
+  <thead><tr><th>Condition</th><th>Raw value</th></tr></thead>
+  <tbody>
+    <tr><td>Air (dry)</td>
+        <td><input type="number" class="persist form-control" id="ex4-air" min="0" max="1023"></td></tr>
+    <tr><td>Light contact (moist)</td>
+        <td><input type="number" class="persist form-control" id="ex4-light" min="0" max="1023"></td></tr>
+    <tr><td>Firm contact (wet)</td>
+        <td><input type="number" class="persist form-control" id="ex4-firm" min="0" max="1023"></td></tr>
+    <tr><td>Your dry/moist threshold</td>
+        <td><input type="number" class="persist form-control" id="ex4-th-dry" min="0" max="1023"></td></tr>
+    <tr><td>Your moist/wet threshold</td>
+        <td><input type="number" class="persist form-control" id="ex4-th-wet" min="0" max="1023"></td></tr>
+  </tbody>
+</table>
+```
+
+**Step 4 — Colour-coded response**
+
+Add an `if / else if / else` block after the moisture read:
+
+```
+if moisture < [your dry/moist threshold]:
+    strip show colour red
+
+else if moisture < [your moist/wet threshold]:
+    strip show colour orange
+
+else:
+    strip show colour green
+```
+
+Note the direction: **low readings mean dry**, so the *first* check catches values *below* your dry threshold.
+
+Use your observed values from Step 3 as the thresholds. Use the **Neopixel** blocks `strip show colour` for each branch.
+
+**Step 5 — Slow the loop down**
+
+At the very end of the `forever` block, add a `pause (ms)` block (from **Basic**) set to **2000**.
+
+Unlike the DHT11, the soil moisture sensor doesn't *need* this — it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.
+
+**Step 6 — Download and test**
+
+Flash, then verify all three colours appear as you move between dry, light contact, and firm contact.
+
+![The complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware — use the values *you* observed in Step 3.](figures/exercise_irrigation_complete.png){fig-align="center" width="55%"}
+
+::: {.callout-important}
+## ✓ Checkpoint
+- OLED shows a numeric value that changes with contact
+- Rainbow LED goes red in air, amber with light contact, green with firm contact (or similar — your thresholds may produce a different boundary)
+- You have written down your threshold values
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+let moisture = 0
+let strip = neopixel.create(DigitalPin.P16, 8, NeoPixelMode.RGB)
+OLED.init(128, 64)
+basic.forever(function () {
+    moisture = pins.analogReadPin(AnalogReadWritePin.P2)
+    if (moisture < 90) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    } else if (moisture < 450) {
+        strip.showColor(neopixel.colors(NeoPixelColors.Orange))
+    } else {
+        strip.showColor(neopixel.colors(NeoPixelColors.Green))
+    }
+    OLED.clear()
+    OLED.writeStringNewLine("Soil:" + moisture)
+    basic.pause(2000)
+})
+```
+
+Replace 90 and 450 with the threshold values you observed on your hardware.
+:::
+
+---
+
+### Discussion — calibration and drift
+
+The raw reading is a number between 0 and 1023. You just set your thresholds based on 60 seconds of testing.
+
+**Question for your team:** A farmer leaves this sensor buried in soil for three months. The probe tips corrode (as described in Lecture 3). What happens to the readings? Would your thresholds still be valid? What would you need to do to make this device reliable for long-term use?
+
+---
+
+### Extension challenge
+
+**Graduated brightness.** Instead of showing every LED the same colour, make the number of lit LEDs correspond to the moisture level — 0 LEDs for bone dry, all 8 for saturated. This gives the farmer more nuance than three categories. Use the **Neopixel** `strip set pixel color at [n] to [colour]` block inside a loop.
+
+---
+
+Finished before ~15:25? Pick **one** of the optional [bonus exercises](bonus_exercises.qmd). Otherwise, continue to the **[★ Mini challenge](mini_challenge.qmd)**.

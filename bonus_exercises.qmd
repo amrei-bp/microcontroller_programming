@@ -1,0 +1,270 @@
+---
+title: "Bonus Exercises"
+---
+
+::: {.callout-note}
+These two exercises are **optional**. During the lab on 16 June, only start one if your team finishes [Exercise 4](exercise4.qmd) before ~15:25 — pick **one**, don't try both, and switch to the [mini challenge](mini_challenge.qmd) in good time. They also work as standalone references for project day: the PIR and MQ3 are both strong candidates for project ideas.
+:::
+
+---
+
+## Exercise 5 (optional): Motion-triggered alert {#ex5}
+
+### Scenario
+
+A clinic wants to monitor a hand-hygiene station at the ward entrance. When someone approaches, the device should alert them to use the hand sanitiser before entering. When nobody is present, the device should be ready and silent.
+
+### What you will build
+
+- PIR sensor monitors for movement continuously
+- Motion detected → LED matrix shows an alert icon + tone plays + OLED shows `"Sanitise!"`
+- No motion → OLED shows `"Ready"`, LED matrix is clear
+
+### Hardware
+
+Connect the **PIR sensor** to the Sensorbit port labelled **P8**.
+
+::: {.callout-tip}
+The PIR needs **30–60 seconds to settle** after power-on. Ignore its output until then — early readings are not your fault and not a wiring error.
+:::
+
+---
+
+### Building the program
+
+Start a new project (`motion-alert`). Add the Elecfreaks extension.
+
+**Step 1 — Initialise the OLED in `on start`**
+
+Same as before: `initialize OLED width 128 height 64`.
+
+**Step 2 — Read the PIR sensor**
+
+The PIR is a simple digital sensor, read exactly like the crash sensor in [Exercise 2](exercise2.qmd): it outputs **1** when motion is detected and **0** when it is not.
+
+1. In `forever`, from **Variables**, create a variable called `motion`
+2. From the toolbox **Advanced → Pins**, drag a `digital read pin P8` block
+3. Set `motion` to the result of that pin read
+
+**Step 3 — Respond with a conditional**
+
+1. From **Logic**, add an `if / then / else` block
+2. Condition: `motion = 1`
+3. In the `if` branch (motion detected):
+   - From **Basic**, `show icon` — pick an arrow, exclamation, or similar
+   - From **OLED**, `clear OLED display`, then `show string "Sanitise!"`
+   - From **Music**, `play tone Middle A for 1 beat` (or any tone you like)
+4. In the `else` branch (no motion):
+   - From **Basic**, `clear screen`
+   - From **OLED**, `clear OLED display`, then `show string "Ready"`
+
+**Step 4 — Download and test**
+
+![The complete motion alert. Any icon works in the `if` branch — pick one your team likes.](figures/exercise_p5_optional.png){fig-align="center" width="55%"}
+
+Flash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to `"Ready"` within a few seconds.
+
+::: {.callout-tip}
+The PIR detects **movement** of warm bodies — not presence. A person standing still directly in front of it will not trigger it after a few seconds. This is by design (it avoids false positives from warm but stationary objects), but it matters for your application.
+:::
+
+::: {.callout-tip collapse="true"}
+## Why does the OLED flicker?
+Your `forever` loop clears and rewrites the OLED on every single pass — many times per second — even when nothing has changed. Each clear-and-rewrite is visible as a flicker.
+
+The fix is to **only redraw the screen when the state actually changes**: keep a second variable (e.g. `lastMotion`) holding the previous reading, and only clear and rewrite the OLED when `motion` differs from `lastMotion`. At the end of the loop, set `lastMotion` to `motion`.
+
+This previous-vs-current pattern is the same one the extension challenge below uses to count entries — solve one and you have solved both.
+:::
+
+::: {.callout-important}
+## ✓ Checkpoint
+- LED matrix shows an icon when you wave in front of the PIR
+- OLED switches between `"Ready"` and `"Sanitise!"`
+- A tone plays on detection
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+let motion = 0
+OLED.init(128, 64)
+
+basic.forever(function () {
+    motion = pins.digitalReadPin(DigitalPin.P8)
+    if (motion == 1) {
+        basic.showIcon(IconNames.Target)
+        OLED.clear()
+        OLED.writeStringNewLine("Sanitise!")
+        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    } else {
+        basic.clearScreen()
+        OLED.clear()
+        OLED.writeStringNewLine("Ready")
+    }
+})
+```
+:::
+
+---
+
+### Discussion — limitations of a PIR for this application
+
+Think through these questions as a team:
+
+1. Someone approaches the station, uses the sanitiser, then stands at the entrance talking to a colleague for 30 seconds. Does the device behave as intended?
+2. A window is open and sunlight moves across the floor near the sensor. Could this trigger the alert?
+3. Can the PIR tell the difference between a person and a large dog walking past?
+
+**Note one limitation that would matter in a real deployment.** This will appear in the Canvas quiz.
+
+---
+
+### Extension challenge
+
+**Count entries.** Every time the PIR detects a new motion event — a transition from 0 to 1, not just a sustained 1 — increment a variable called `entries`. Display the count on the OLED alongside the status text. Reset the count when **Button A** is pressed.
+
+::: {.callout-tip collapse="true"}
+## Hint
+You need to track the *previous* state of the PIR as well as the *current* state. Only increment `entries` when the previous reading was 0 and the current reading is 1 — this counts the moment of arrival, not every frame of the `forever` loop during which someone is present.
+
+Add an `on button A pressed` block in the workspace (separate from `forever`) that sets `entries` back to 0 — the same event-plus-polling combination as the latching call button in [Exercise 2](exercise2.qmd).
+:::
+
+---
+
+## Exercise 6 (optional): Sanitiser-use detector {#ex6}
+
+### Scenario
+
+A clinic asks every visitor to sanitise their hands at the entrance. But did they actually do it? Alcohol-based hand sanitiser releases alcohol vapour as it evaporates — and the MQ3 sensor can detect it. You will build a device that confirms sanitiser was actually used.
+
+### What you will build
+
+- MQ3 alcohol sensor read continuously
+- Raw value shown on the OLED
+- When alcohol vapour is detected: LED matrix shows a tick, OLED shows `"Sanitised!"`
+
+::: {.callout-warning}
+## The MQ3 gets warm — that is normal
+The MQ3 contains a heating element and becomes noticeably warm during use. This is by design, not a fault.
+:::
+
+::: {.callout-note}
+## No hand sanitiser available?
+Any alcohol source works: an alcohol swab, surface disinfectant, or ethanol from the lab. Hold it a few centimetres from the sensor's metal mesh. If you have no alcohol source at all, you can still build the program and observe the baseline behaviour and warm-up effect.
+:::
+
+### Hardware
+
+Connect the **MQ3 sensor** to the Sensorbit port labelled **P2**. Remember: G to G, V to V, S to S. (The MQ3 is analog, and only some pins can read analog signals — P1 and P2 are the easiest choices on the Sensorbit.)
+
+---
+
+### Building the program
+
+Start a new project (`sanitiser-check`). Add the Elecfreaks extension.
+
+**Step 1 — Handle the warm-up in `on start`**
+
+Lecture 3 told you the MQ3 needs about **60 seconds of warm-up** before its readings mean anything. Your program should say so, instead of showing garbage values:
+
+1. Initialise the OLED: `initialize OLED width 128 height 64`
+2. From **OLED**, `show string "Warming up..."` on the OLED
+3. From **Basic**, add `pause (ms)` set to **60000**
+4. Clear the OLED and show `"Ready"`
+
+**Step 2 — Read the MQ3 in `forever`**
+
+The MQ3 is an analog sensor — no special extension block needed.
+
+1. Create a variable called `alcohol`
+2. From **Advanced → Pins**, set `alcohol` to `analog read pin P2`
+3. Clear the OLED and display the value: `"Air: "` joined to `alcohol`
+4. Add a `pause (ms)` of **500** at the end of the loop so the display is readable
+
+**Step 3 — Discover your threshold**
+
+Flash the program and wait out the warm-up. Then (Documenter: record these below):
+
+1. Note the **baseline** reading in normal air
+2. Apply sanitiser to your hands (or open your alcohol source) and hold them near the sensor — note the **peak** reading
+3. Move away and watch how long the value takes to fall back
+
+Pick a threshold roughly halfway between baseline and peak.
+
+```{=html}
+<table class="table" style="max-width: 26rem;">
+  <thead><tr><th>Observation</th><th>Raw value</th></tr></thead>
+  <tbody>
+    <tr><td>Baseline (normal air)</td>
+        <td><input type="number" class="persist form-control" id="ex6-baseline" min="0" max="1023"></td></tr>
+    <tr><td>Peak (alcohol vapour)</td>
+        <td><input type="number" class="persist form-control" id="ex6-peak" min="0" max="1023"></td></tr>
+    <tr><td>Your threshold</td>
+        <td><input type="number" class="persist form-control" id="ex6-threshold" min="0" max="1023"></td></tr>
+  </tbody>
+</table>
+```
+
+**Step 4 — Detect sanitiser use**
+
+Add an `if / then / else` after the read:
+
+```
+if alcohol > [your threshold]:
+    show tick icon on LED matrix
+    OLED shows "Sanitised!"
+else:
+    clear LED matrix
+```
+
+**Step 5 — Download and test**
+
+![The complete sanitiser detector: warm-up handling in `on start`, detection in `forever`. The threshold (500) is an example — use a value roughly halfway between *your* baseline and peak.](figures/exercise_p6_optional.png){fig-align="center" width="90%"}
+
+Flash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.
+
+::: {.callout-important}
+## ✓ Checkpoint
+- OLED shows `"Warming up..."` for the first minute, then live readings
+- The reading rises clearly when alcohol vapour is present
+- The tick appears above your threshold and clears below it
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+let alcohol = 0
+OLED.init(128, 64)
+OLED.writeStringNewLine("Warming up...")
+basic.pause(60000)
+OLED.clear()
+OLED.writeStringNewLine("Ready")
+
+basic.forever(function () {
+    alcohol = pins.analogReadPin(AnalogReadWritePin.P2)
+    OLED.clear()
+    OLED.writeStringNewLine("Air: " + alcohol)
+    if (alcohol > 500) {
+        basic.showIcon(IconNames.Yes)
+        OLED.writeStringNewLine("Sanitised!")
+    } else {
+        basic.clearScreen()
+    }
+    basic.pause(500)
+})
+```
+
+Replace 500 with the threshold you observed on your hardware.
+:::
+
+---
+
+### Discussion — what is this device actually measuring?
+
+1. During the 60-second warm-up, what did the readings look like? What would happen in a real deployment if the device lost power and restarted — and nobody knew about the warm-up?
+2. The MQ3 responds to other volatile compounds too — cleaning chemicals, solvents, even some perfumes. Could this device produce false "Sanitised!" confirmations? Does that matter for this application?
+3. The reading is relative, not calibrated. Can this device tell *how much* sanitiser was used, or only that *some* alcohol vapour was present?

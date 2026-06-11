@@ -1,0 +1,43 @@
+---
+title: "★ Mini challenge"
+---
+
+*Allow the remaining time — aim to start 15 minutes before the end of the session.*
+
+Choose one scenario and build as much as you can before the end of the exercise time. You do not need to finish — the goal is to sketch the logic, start implementing, and identify where you get stuck.
+
+| | Scenario | Suggested sensors | Suggested outputs |
+|-|----------|-------------------|-------------------|
+| A | **Pharmacy cold-store monitor** | DHT11 | OLED shows temperature and humidity; Rainbow LED red if either is out of range |
+| B | **Entry counter for a clinic** | PIR | OLED shows entry count; sound on each new entry; Button A resets count |
+| C | **Plant health station** | DHT11 + soil moisture | OLED shows both readings; Rainbow LED summarises overall status |
+| D | **Presence-gated display** | PIR + crash sensor | OLED shows readings only while someone is present; crash sensor silences the alarm for 60 seconds |
+| ★ | **Free choice** | Any from the kit | Any combination of outputs |
+
+::: {.callout-tip}
+Scenarios B and D use the **PIR sensor**. If your team did not do [bonus Exercise 5](bonus_exercises.qmd#ex5), skim its hardware and Step 2 first — the PIR is wired and read exactly like the crash sensor, on port P8.
+:::
+
+For your chosen scenario:
+
+1. **Agree the behaviour** — what is the trigger? What is the response?
+2. **Sketch the logic** — write pseudocode or draw a simple flowchart on paper before touching the keyboard
+3. **Build what you can** — start with the first sensor working, then add the second
+4. **Note your sticking point** — what is the first thing that didn't work, and why?
+
+Bring your answers to the mixer session that follows — they are the seed of your project idea for tomorrow.
+
+---
+
+## Before you leave
+
+1. **Save your code.** In MakeCode, click the save icon (floppy disk) to download the `.hex` files for each project. You can also copy the project URL from the browser address bar — this lets you reopen it later.
+2. **Disconnect carefully.** Unplug the USB cable before removing the micro:bit from the Sensorbit.
+3. **Return sensors to the foam tray.** Each sensor has its own slot.
+
+---
+
+::: {.callout-tip}
+## Ready for the quiz?
+Complete the **Lab quiz on Canvas** this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter's notes are the answers.
+:::

@@ -1,0 +1,94 @@
+---
+title: "Exercise 1: Push the button"
+---
+
+*Allow 10 minutes.*
+
+### Scenario
+
+Before wiring anything, you will build a complete working device using only what is already on the micro:bit: two buttons, a temperature sensor, an accelerometer, and the LED matrix. Within ten minutes, your team has a pocket thermometer.
+
+### What you will build
+
+- Press **button A** → a heart icon appears
+- Press **button B** → the current temperature is shown
+- **Shake** the micro:bit → the display clears
+
+No wiring. No extension blocks. Everything is built in.
+
+---
+
+### Building the program
+
+Keep working in your `lab-session` project from the [setup](exercise_setup.qmd).
+
+**Step 1 — React to button A**
+
+1. From **Input**, drag an `on button A pressed` block onto the workspace. Notice it has the same shape as `on start` and `forever`: a container with a smooth top edge and no notch, so it cannot snap inside or underneath another block — it always starts its own stack on the workspace. This is an **event block**: the blocks you place inside it run only when that event happens.
+2. From **Basic**, put a `show icon` block inside it and pick the heart.
+
+**Step 2 — Show the temperature on button B**
+
+1. From **Input**, drag another `on button A pressed` block onto the workspace, and **change it to button B**.
+2. From **Basic**, put a `show number` block inside it
+3. From **Input**, find the `temperature (°C)` block — notice its **oval shape**. Oval blocks are **reporter blocks**: they return a value and must be plugged into a slot, not placed on their own line. Plug it into the `show number` slot.
+
+**Step 3 — Clear on shake**
+
+1. From **Input**, drag an `on shake` block onto the workspace
+2. From **Basic**, put `clear screen` inside it
+
+**Step 4 — Download and test**
+
+Your workspace should now look like this — four separate stacks, each starting with its own container block:
+
+![The complete Exercise 1 program. The `on start` block still shows `Ready` from the setup test. Note how the oval `temperature (°C)` block sits inside the `show number` slot.](figures/exercise_buttons.png){fig-align="center" width="50%"}
+
+Flash "ready", press A, press B, shake. All three should respond.
+
+::: {.callout-tip}
+Notice that this program has **no `forever` loop at all**. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken. Remember this — the next exercise uses the opposite approach.
+:::
+
+::: {.callout-important}
+## ✓ Checkpoint
+- Button A shows the heart
+- Button B shows a temperature
+- Shaking clears the display (best seen after pressing A)
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+input.onButtonPressed(Button.A, function () {
+    basic.showIcon(IconNames.Heart)
+})
+input.onButtonPressed(Button.B, function () {
+    basic.showNumber(input.temperature())
+})
+input.onGesture(Gesture.Shake, function () {
+    basic.clearScreen()
+})
+basic.showString("Ready")
+
+```
+:::
+
+---
+
+### Discussion — your first sensor limitation
+
+Compare the temperature your micro:bit shows with a room thermometer, or with another team's micro:bit.
+
+**Question for your team:** The built-in sensor measures the temperature of the **processor chip**, not the air. The chip warms up as it works. What does this mean for the reading? Is this "thermometer" fit for measuring a patient's room? Note your observation — the gap between what a sensor *actually measures* and what you *want to know* is a theme that will return all day.
+
+---
+
+### Extension challenge (if you finish early)
+
+Add an `on button A+B pressed` event that scrolls your team's name across the display.
+
+---
+
+Next: **[Exercise 2: Emergency call button](exercise2.qmd)**.

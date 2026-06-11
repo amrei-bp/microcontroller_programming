@@ -1,0 +1,138 @@
+---
+title: "Exercise 3: Environmental monitor"
+---
+
+*Allow 30 minutes.*
+
+### Scenario
+
+A rural health clinic stores vaccines in a refrigerated cabinet. The cold chain requires temperatures between 2°C and 8°C. You are building a micro:bit device that sits near the cabinet and displays the current temperature and humidity continuously, so a health worker can check conditions at a glance — and so the device itself can raise an alarm if the temperature rises too high.
+
+### What you will build
+
+- Every 2 seconds: read temperature and humidity from the DHT11 sensor
+- Display both values on the OLED screen
+- If temperature exceeds your alarm threshold: LED matrix shows a warning icon
+
+### Hardware
+
+1. Connect the **DHT11** sensor to the Sensorbit port labelled **P1**
+2. Plug the **OLED screen** into the Sensorbit's **IIC** socket
+
+::: {.callout-tip}
+The DHT11 connector is keyed — it only fits one way. Do not force it.
+:::
+
+---
+
+### Building the program
+
+Start a new project (`environment-monitor`). Add the Elecfreaks extension — extensions are per-project, so you need it again here.
+
+**Step 1 — Initialise the OLED in `on start`**
+
+The OLED must be initialised once before you can write to it.
+
+1. In the **OLED** category, find the block labelled something like `initialize OLED width 128 height 64`
+2. Drag it into the `on start` block on the workspace
+
+**Step 2 — Store the DHT11 readings in variables**
+
+The DHT11 block in the SmartHome category is a **reporter block** — the same oval shape as the built-in `temperature (°C)` block you used in [Exercise 1](exercise1.qmd). It returns a value and must be plugged into a value slot. There is no separate "query" step: the block reads the sensor and returns the measurement in one go. It has two dropdowns: one to select the pin, one to select the measurement (temperature or humidity).
+
+1. From **Variables**, click **Make a Variable** and create one called `temperature`
+2. Create a second variable called `humidity`
+3. In the `forever` block, add a `set temperature to` block (from **Variables**). From **SmartHome**, find the `DHT11 sensor [pin] temperature(°C) value` block, set the pin to **P1**, and plug it into the value slot of `set temperature to`.
+4. Below that, add `set humidity to` and plug in a second `DHT11 sensor P1 humidity(0~100) value` block — same block, different measurement selected in the dropdown.
+
+**Step 3 — Display on the OLED**
+
+1. From **OLED**, add a `clear OLED display` block — this wipes the screen before writing new values
+2. To show the temperature: from **OLED**, add the `show string` (or `show number`) OLED block. Use the **Text → join** block (in **Advanced → Text**) to combine the label `"Temp: "`, the `temperature` variable, and the unit `" C"` into one line.
+3. Repeat for humidity: `"Hum: "` + `humidity` + `" %"`
+
+::: {.callout-tip}
+If the `join` block is unfamiliar, a simpler approach is to put `temperature` on its own line with just `show number` and `humidity` on the next. Labels can go on separate lines above each number.
+:::
+
+**Step 4 — Add a temperature alarm**
+
+1. From **Logic**, add an `if / then / else` block, placed **before** the `clear OLED display`
+2. Set the condition: `temperature > 8` (8°C is the cold-chain upper limit for vaccines)
+3. In the `if` branch: from **Basic**, add `show icon` and pick the warning or exclamation symbol
+4. In the `else` branch: from **Basic**, add `clear screen`
+
+**Step 5 — Wait 2 seconds**
+
+At the very end of the `forever` block:
+
+1. From **Basic**, add `pause (ms)` set to **2000**
+
+This is essential — the DHT11 can only be read once every two seconds. Without the pause, you will get read errors.
+
+**Step 6 — Download and test**
+
+![The complete environmental monitor. Note the alarm `if/else` sits *before* the OLED display blocks, and the `pause 2000` comes last.](figures/exercise_temp.png){fig-align="center" width="55%"}
+
+Download and flash the program. Then:
+
+- Check the OLED shows values
+- Breathe gently on the DHT11 — temperature and humidity should increase slightly
+- Try warming the sensor in your hand — the temperature should rise above your alarm threshold and the LED matrix warning icon should appear
+
+::: {.callout-important}
+## ✓ Checkpoint
+- OLED shows temperature and humidity
+- Values change (even slightly) when you breathe on the DHT11
+- LED matrix shows the warning icon when temperature exceeds your threshold; clears when it drops below
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+let humidity = 0
+let temperature = 0
+OLED.init(128, 64)
+basic.forever(function () {
+    temperature = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_temperature_C)
+    humidity = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_humidity)
+    if (temperature > 8) {
+        basic.showIcon(IconNames.No)
+    } else {
+        basic.clearScreen()
+    }
+    OLED.clear()
+    OLED.writeStringNewLine("Temp:" + temperature + " °C")
+    OLED.writeStringNewLine("Hum:" + humidity + " %")
+    basic.pause(2000)
+})
+```
+
+Exact function names depend on the smarthome extension version — if the above does not compile, check the block names shown in the MakeCode toolbox.
+:::
+
+---
+
+### Discussion — accuracy and fitness for purpose
+
+The DHT11 has an accuracy of **±2°C**. Your alarm fires at **8°C**.
+
+::: {.callout-tip collapse="true"}
+## Think about this before looking at the hint
+If the true temperature is 7°C and the sensor is reading at its worst-case high end (+2°C error), what does your program see? What might it wrongly conclude?
+
+The reverse: if the true temperature has risen to 9°C and the sensor is reading at its worst-case low end (−2°C error), does the alarm fire?
+:::
+
+**Question for your team:** Is this device safe to use for vaccine cold-chain monitoring? What would a more reliable design require? Note your answer — it will appear in the Canvas quiz.
+
+---
+
+### Extension challenge (if you finish early)
+
+Add a humidity alarm alongside the temperature alarm. WHO guidelines recommend vaccine storage below 80% relative humidity. Extend your `if / else if / else` block to show a different icon — or write `"HUMID!"` to the OLED — when humidity exceeds 80.
+
+---
+
+Next: **[Exercise 4: Irrigation alarm](exercise4.qmd)**.

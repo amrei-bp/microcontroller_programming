@@ -1,0 +1,112 @@
+---
+title: "Lab: Setup & Overview"
+---
+
+::: {.callout-note}
+**16 June, 14:00–16:00** · You will work in your team of 4–5 throughout. You have one micro:bit and one Smart Health Kit per team. Take turns at the keyboard — every team member should understand each step before you move on.
+:::
+
+---
+
+## What you will build
+
+Four core exercises, building in complexity — each one introduces one new cluster of ideas and rehearses everything before it. Two optional exercises for teams that move fast.
+
+| | Exercise | Sensor | Output | Context |
+|-|----------|--------|--------|---------|
+| 1 | [Push the button](exercise1.qmd) | Built-in (buttons, temperature) | LED matrix | Your first complete device |
+| 2 | [Emergency call button](exercise2.qmd) | Crash sensor | LED matrix + sound | Patient bed call button |
+| 3 | [Environmental monitor](exercise3.qmd) | DHT11 (temp + humidity) | OLED display | Vaccine cold-chain monitoring |
+| 4 | [Irrigation alarm](exercise4.qmd) | Soil moisture | Rainbow LED | Automated plant watering |
+| 5 | *(Optional)* [Motion-triggered alert](bonus_exercises.qmd#ex5) | PIR | LED matrix + OLED + sound | Clinic entry detection |
+| 6 | *(Optional)* [Sanitiser-use detector](bonus_exercises.qmd#ex6) | MQ3 alcohol | OLED + LED matrix | Hand-hygiene monitoring |
+| ★ | [Mini challenge](mini_challenge.qmd) | Your choice | Your choice | Your application |
+
+---
+
+## Learning objectives
+
+By the end of this lab you will be able to:
+
+- Use **event blocks** (`on button A pressed`) and the **`forever` loop**, and explain when each is the right tool
+- Connect a sensor to the micro:bit using the Sensorbit (G to G, V to V, S to S)
+- Read digital and analog sensor values in MakeCode and store them in variables
+- Display a reading on the OLED screen
+- Use `if / else if / else` to make decisions based on a sensor value
+- Drive an output — display, sound, LED strip — in response to a sensor
+- Describe at least one limitation you personally observed
+
+---
+
+## Team roles
+
+With 4–5 people sharing one device, assign roles at the start of each exercise and rotate them.
+
+| Role | What they do |
+|------|-------------|
+| **Driver** | Operates the keyboard in MakeCode |
+| **Navigator** | Reads the instructions aloud and tells the driver what to do |
+| **Hardware lead** | Connects and handles sensors and cables |
+| **Checker** | Watches the device output and spots when something is wrong |
+| **Documenter** | Notes down observed values, thresholds, and quirks for the Canvas quiz |
+
+---
+
+## Setup {#setup}
+
+*Allow 15 minutes. Do not rush this — a broken setup wastes more time than a careful one.*
+
+### Step 1 — Connect the hardware
+
+1. Slot the micro:bit into the Sensorbit edge connector — the USB port faces **up**, the LED matrix faces **out**
+2. Press it firmly until it seats fully — a loose connection causes intermittent failures
+3. Connect the micro:bit to your laptop with the USB cable
+4. The micro:bit lights up and shows a startup animation — this confirms it has power
+
+::: {.callout-important}
+## The wiring rule: G to G, V to V, S to S
+Every sensor in this lab connects with a three-wire cable. The Sensorbit's pin rows are labelled **G** (ground), **V** (3.3 V power), and **S** (signal) — and so are the pins on each sensor. Connect G to G, V to V, S to S, every time. By convention the wires are black (G), red (V), and yellow or another colour (S), but **trust the printed labels, not the colours**.
+
+A sensor plugged in backwards won't work — this is the most common hardware problem in this lab. If a sensor seems dead, check the wiring before anything else. (The OLED is the exception: it plugs into the dedicated, keyed **IIC** socket.)
+:::
+
+### Step 2 — Open MakeCode
+
+1. Open a browser and go to [**makecode.microbit.org**](https://makecode.microbit.org)
+2. Click **New Project**
+3. Name it `lab-session` and click **Create**
+4. You will see the familiar three-panel interface: simulator (left), toolbox (middle), workspace (right)
+
+### Step 3 — Flash a test program
+
+This confirms your USB connection is working before you add any complexity.
+
+1. In the toolbox, find the **Basic** category
+2. Drag a **show string** block into the `on start` block already on the workspace
+3. Type `Ready` in the text field
+4. Click the **Download** button (bottom left of the workspace)
+5. A `.hex` file is saved to your computer — drag it onto the **MICROBIT** drive that appeared in Finder or File Explorer
+6. The orange LED on the micro:bit flashes while it writes — wait for it to stop
+7. `Ready` should scroll across the LED matrix
+
+![Your workspace after Step 3: the `show string "Ready"` block sits inside `on start`.](figures/exercise_flash_ready.png){fig-align="center" width="55%"}
+
+::: {.callout-important}
+## ✓ Checkpoint
+`Ready` scrolls across the LED matrix. If it does not, check the [Troubleshooting & FAQ](troubleshooting.qmd) page or ask a teacher before going further.
+:::
+
+### Step 4 — Add the Elecfreaks extension
+
+1. In the toolbox, scroll to the bottom and click **Extensions**
+2. In the search box type `smarthome` and press Enter
+3. Select the **smarthome** package from Elecfreaks
+4. Close the extensions panel — you will now see new categories at the bottom of the toolbox, including **SmartHome**, **OLED**, and **Neopixel**
+
+::: {.callout-tip}
+You need to add the extension once per project. If you start a new project later today you will need to add it again.
+:::
+
+---
+
+Setup complete? Continue to **[Exercise 1: Push the button](exercise1.qmd)**.

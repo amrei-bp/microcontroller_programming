@@ -1,0 +1,123 @@
+---
+title: "Exercise 2: Emergency call button"
+---
+
+*Allow 15 minutes.*
+
+### Scenario
+
+A bedridden patient needs a way to call for help. A call button at the bedside should produce an unmissable alert — visible and audible — the moment it is pressed. This is your first **external** sensor: one cable, three wires, and the wiring rule from the [setup](exercise_setup.qmd).
+
+### What you will build
+
+- Crash sensor pressed → heart icon + tone
+- Crash sensor released → display clears
+
+### Hardware
+
+Connect the **crash sensor** to the Sensorbit port labelled **P1**. Remember: G to G, V to V, S to S.
+
+::: {.callout-tip}
+You will not find a P0 port on the Sensorbit — P0 is wired to the board's built-in buzzer and headphone jack. The GVS ports start at P1.
+:::
+
+---
+
+### Building the program
+
+Start a new project (**New Project** in MakeCode, name it `call-button`). No extension needed for this one.
+
+**Step 1 — See the raw signal first**
+
+Before making the device react, look at what the sensor actually sends.
+
+1. From **Basic**, drag `show number` into the `forever` block
+2. From **Advanced → Pins**, plug a `digital read pin P1` block into it
+3. Download and flash
+
+![Step 1: showing the raw pin value on the LED matrix. The `digital read pin P1` reporter sits inside `show number`.](figures/exercise_emegency_step1.png){fig-align="center" width="60%"}
+
+Watch the LED matrix while the Hardware lead presses and releases the crash sensor's lever. The display shows the pin's value: **0 or 1**.
+
+**Documenter:** write down which value means *pressed* and which means *released* on your hardware.
+
+```{=html}
+<table class="table" style="max-width: 22rem;">
+  <thead><tr><th>State</th><th>Value shown</th></tr></thead>
+  <tbody>
+    <tr><td>Lever pressed</td>
+        <td><label><input type="radio" class="persist" name="ex2-pressed" value="0"> 0</label>
+            &nbsp;&nbsp;&nbsp;<label><input type="radio" class="persist" name="ex2-pressed" value="1"> 1</label></td></tr>
+    <tr><td>Lever released</td>
+        <td><label><input type="radio" class="persist" name="ex2-released" value="0"> 0</label>
+            &nbsp;&nbsp;&nbsp;<label><input type="radio" class="persist" name="ex2-released" value="1"> 1</label></td></tr>
+  </tbody>
+</table>
+```
+
+::: {.callout-note}
+What you enter here is saved **in this browser, on this laptop** — it will still be here this evening when your team answers the Canvas quiz. It is not submitted anywhere, so make sure the Documenter also keeps their own notes.
+:::
+
+**Step 2 — React with a conditional**
+
+1. From **Logic**, add an `if / then / else` block to the `forever` loop, **replacing** the `show number`
+2. Condition: from **Logic**, a comparison block `0 = 0`; plug `digital read pin P1` into the left side and your observed **pressed** value on the right
+3. In the `if` branch: from **Basic**, `show icon` (heart); from **Music**, `play tone Middle A for 1 beat`
+4. In the `else` branch: from **Basic**, `clear screen`
+
+![The complete call button program. This example checks for `0` — use the **pressed** value *you* observed in Step 1.](figures/exercise_emergency_complete.png){fig-align="center" width="70%"}
+
+**Step 3 — Download and test**
+
+Flash. Press the lever — icon and tone. Release — the display clears.
+
+::: {.callout-tip}
+## Two patterns, compared
+[Exercise 1](exercise1.qmd) used **events** — code that waits for something to happen. This exercise uses **polling** — a `forever` loop that checks the pin many times per second and reacts to what it finds. Events only exist for the micro:bit's built-in inputs; external sensors must be polled. You now know both fundamental patterns of microcontroller programming.
+:::
+
+::: {.callout-important}
+## ✓ Checkpoint
+- The LED matrix and tone respond to the lever, reliably, every press
+- The Documenter has noted which raw value means "pressed"
+:::
+
+::: {.callout-note collapse="true"}
+## JavaScript equivalent
+
+```javascript
+basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P1) == 0) {
+        basic.showIcon(IconNames.Heart)
+        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    } else {
+        basic.clearScreen()
+    }
+})
+```
+
+Replace `0` with the *pressed* value you observed in Step 1.
+:::
+
+---
+
+### Discussion — what makes a call button trustworthy?
+
+The alert stops the moment the patient releases the lever. **Question for your team:** Is that the right behaviour for an emergency call button? What should happen if a patient presses it once and then can't keep holding it? Note your answer.
+
+---
+
+### Extension challenge (if you finish early)
+
+**Make the alarm latch.** Create a variable `alarm`. When the crash sensor is pressed, set `alarm` to 1. While `alarm` is 1, keep the icon and tone going — even after the lever is released. Add an `on button A pressed` event that sets `alarm` back to 0: the nurse's "cancel" button. This combines both patterns you have learned: polling for the sensor, an event for the cancel.
+
+::: {.callout-tip collapse="true"}
+## Stuck? One possible solution
+
+![The latching alarm: the `if` only *sets* the alarm, the `while` loop keeps it sounding, and the button event cancels it.](figures/exercise_emergency_extension.png){fig-align="center" width="70%"}
+:::
+
+---
+
+Next: **[Exercise 3: Environmental monitor](exercise3.qmd)**.

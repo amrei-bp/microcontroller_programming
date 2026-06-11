@@ -37,8 +37,20 @@ website:
             href: lecture3.qmd
       - section: "Exercises"
         contents:
-          - text: "Basic sensor exercises"
-            href: lab_exercise.qmd
+          - text: "Setup & overview"
+            href: exercise_setup.qmd
+          - text: "1. Push the button"
+            href: exercise1.qmd
+          - text: "2. Emergency call button"
+            href: exercise2.qmd
+          - text: "3. Environmental monitor"
+            href: exercise3.qmd
+          - text: "4. Irrigation alarm"
+            href: exercise4.qmd
+          - text: "★ Mini challenge"
+            href: mini_challenge.qmd
+          - text: "Bonus exercises"
+            href: bonus_exercises.qmd
           - text: "Troubleshooting & FAQ"
             href: troubleshooting.qmd
 
