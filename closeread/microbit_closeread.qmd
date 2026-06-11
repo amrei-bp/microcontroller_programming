@@ -7,7 +7,7 @@ format:
       layout: overlay-left
     cr-style:
       section-background-color: "#ffffff"
-      narrative-background-color-overlay: "rgba(0,0,0,0.6)"
+      narrative-background-color-overlay: "rgba(0,0,0,0.9)"
       narrative-text-color-overlay: "#ffffff"
       narrative-font-size: "1.1rem"
       narrative-border-radius: "6px"
