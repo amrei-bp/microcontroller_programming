@@ -92,6 +92,24 @@ Your `forever` loop is clearing and rewriting the display on every pass. Either 
 - Direct sunlight, a draft from a window, or a heat source near the sensor can cause false triggers.
 - It detects **movement**, not presence — a person standing still stops triggering it after a few seconds.
 
+### Which ports are safe for my own project?
+
+Not every numbered port on the Sensorbit is free to use — several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.
+
+| Ports | Status |
+|-------|--------|
+| **P1, P2, P8, P12, P13–P16** | ✅ Safe for sensors and actuators |
+| P3, P4, P6, P7, P9, P10 | ❌ Shared with the **LED matrix** — nonsense readings whenever the display is in use |
+| P5, P11 | ❌ Wired to **buttons A and B** |
+| P0 | ❌ No GVS port — wired to the Sensorbit's buzzer and headphone jack |
+
+Two more rules for project day:
+
+- **Analog sensors** (soil moisture, MQ3, UV — anything read with `analog read pin`) must go on **P1 or P2**. The other analog-capable pins are all shared with the LED matrix.
+- **P16** is the conventional home of the Rainbow LED strip — keep it free if your project uses one.
+
+If a sensor "worked yesterday on a different pin" and now reads nonsense, check this table before suspecting the sensor.
+
 ### The soil moisture readings drift or differ from yesterday
 
 This sensor is relative, not calibrated — readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.
