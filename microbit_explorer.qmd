@@ -13,3 +13,47 @@ Scroll through the diagram below to explore every component on the BBC micro:bit
   </iframe>
 </div>
 ```
+
+## The components at a glance
+
+The numbers below match the numbered labels on the images above.
+
+### Front
+
+1. **Buttons A and B** — physical inputs you can press, separately or together
+2. **LED display** — 25 red LEDs for text, numbers, and icons; doubles as a light sensor
+3. **Pins 0, 1, 2** — general-purpose input/output pins for connecting sensors and actuators
+4. **3V pin** — supplies power to connected components
+5. **GND pin** — ground; completes the circuit
+6. **Touch logo** — capacitive touch sensor; reacts to a finger without pressing
+7. **Microphone LED** — lights up whenever the microphone is active
+
+### Back
+
+```{=html}
+<ol>
+  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
+  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
+  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
+  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
+  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
+  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
+</ol>
+<ol start="9">
+  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
+  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
+  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
+  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
+  <li><strong>Red power LED</strong> — on whenever the board has power</li>
+  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
+  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
+</ol>
+```
+
+::: {.callout-note}
+Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit **V1**, which our **V2** boards replace with numbers 14 and 15.
+:::
+
+---
+
+*Board images: micro:bit Educational Foundation, [micro:bit features overview](https://microbit.org/get-started/features/overview/).*
