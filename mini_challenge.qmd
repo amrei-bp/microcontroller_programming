@@ -38,6 +38,6 @@ Bring your answers to the mixer session that follows — they are the seed of yo
 ---
 
 ::: {.callout-tip}
-## Ready for the quiz?
-Complete the **Lab quiz on Canvas** this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter's notes are the answers.
+## Ready for the quizzes?
+Complete the **exercise quizzes and the lab wrap-up quiz on Canvas** this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter's notes are the answers.
 :::

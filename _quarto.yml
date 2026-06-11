@@ -7,26 +7,12 @@ website:
   title: "Microcontrollers for Health & Agriculture"
   navbar:
     background: primary
-    tools:
-      - icon: github
-        menu:
-          - text: Source Code
-            href: https://github.com/amrei-bp/microcontroller_programming
-          - text: Report an Issue
-            href: https://github.com/amrei-bp/microcontroller_programming/issues
-  search:
-    location: navbar
-    type: textbox
-
-  sidebar:
-    style: "docked"
-    search: true
     logo: figures/logo/SLUBI_logo.png
-    contents:
+    left:
       - text: "About the course"
         href: index.qmd
-      - section: "Pre-course lectures"
-        contents:
+      - text: "Pre-course lectures"
+        menu:
           - text: "1. Microcontrollers, Sensors & Actuators"
             href: lecture1.qmd
           - text: "↳ Explore the micro:bit"
@@ -35,8 +21,8 @@ website:
             href: lecture2.qmd
           - text: "3. The Elecfreaks Smart Health Kit"
             href: lecture3.qmd
-      - section: "Exercises"
-        contents:
+      - text: "Exercises"
+        menu:
           - text: "Setup & overview"
             href: exercise_setup.qmd
           - text: "1. Push the button"
@@ -51,8 +37,18 @@ website:
             href: mini_challenge.qmd
           - text: "Bonus exercises"
             href: bonus_exercises.qmd
-          - text: "Troubleshooting & FAQ"
-            href: troubleshooting.qmd
+      - text: "Troubleshooting"
+        href: troubleshooting.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/amrei-bp/microcontroller_programming
+          - text: Report an Issue
+            href: https://github.com/amrei-bp/microcontroller_programming/issues
+  search:
+    location: navbar
+    type: textbox
 
 format:
   html:
