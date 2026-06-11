@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/mini_challenge.html</loc>
-    <lastmod>2026-06-11T10:21:46.674Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise3.html</loc>
-    <lastmod>2026-06-11T10:21:46.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/index.html</loc>
-    <lastmod>2026-06-11T10:21:46.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise2.html</loc>
-    <lastmod>2026-06-11T10:21:46.650Z</lastmod>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise_setup.html</loc>
+    <lastmod>2026-06-11T13:49:38.135Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/microcontroller_programming/exercise4.html</loc>
-    <lastmod>2026-06-11T10:21:46.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise_setup.html</loc>
-    <lastmod>2026-06-11T10:21:46.650Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/troubleshooting.html</loc>
-    <lastmod>2026-06-11T10:21:46.674Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/lecture3.html</loc>
-    <lastmod>2026-06-11T10:21:46.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/bonus_exercises.html</loc>
-    <lastmod>2026-06-11T10:21:46.649Z</lastmod>
-  </url>
-  <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/closeread/microbit_closeread.html</loc>
-    <lastmod>2026-06-11T10:21:46.649Z</lastmod>
+    <lastmod>2026-06-11T13:49:38.135Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/microcontroller_programming/microbit_explorer.html</loc>
-    <lastmod>2026-06-11T10:21:46.674Z</lastmod>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/microcontroller_programming/lecture1.html</loc>
-    <lastmod>2026-06-11T10:21:46.673Z</lastmod>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
   </url>
   <url>
-    <loc>https://amrei-bp.github.io/microcontroller_programming/lecture2.html</loc>
-    <lastmod>2026-06-11T10:21:46.673Z</lastmod>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/lecture3.html</loc>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/microcontroller_programming/exercise1.html</loc>
-    <lastmod>2026-06-11T10:21:46.649Z</lastmod>
+    <lastmod>2026-06-11T13:49:38.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/troubleshooting.html</loc>
+    <lastmod>2026-06-11T13:49:38.159Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise3.html</loc>
+    <lastmod>2026-06-11T13:49:38.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/bonus_exercises.html</loc>
+    <lastmod>2026-06-11T13:49:38.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/exercise2.html</loc>
+    <lastmod>2026-06-11T13:49:38.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/mini_challenge.html</loc>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/lecture2.html</loc>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/closeread/microbit_closeread.html</loc>
+    <lastmod>2026-06-11T13:49:38.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/microcontroller_programming/index.html</loc>
+    <lastmod>2026-06-11T13:49:38.158Z</lastmod>
   </url>
 </urlset>
