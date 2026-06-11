@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Interactive: Explore the micro:bit – Microcontrollers for Health &amp; Agriculture</title>
+<title>Lab: Setup &amp; Overview – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise_setup.html">Setup &amp; overview</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link active">
+  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">↳ Explore the micro:bit</span></a>
   </div>
 </li>
@@ -188,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercise_setup.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Setup &amp; overview</span></a>
   </div>
 </li>
@@ -246,10 +246,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-components-at-a-glance" id="toc-the-components-at-a-glance" class="nav-link active" data-scroll-target="#the-components-at-a-glance">The components at a glance</a>
+  <li><a href="#what-you-will-build" id="toc-what-you-will-build" class="nav-link active" data-scroll-target="#what-you-will-build">What you will build</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#team-roles" id="toc-team-roles" class="nav-link" data-scroll-target="#team-roles">Team roles</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-  <li><a href="#front" id="toc-front" class="nav-link" data-scroll-target="#front">Front</a></li>
-  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
+  <li><a href="#step-1-connect-the-hardware" id="toc-step-1-connect-the-hardware" class="nav-link" data-scroll-target="#step-1-connect-the-hardware">Step 1 — Connect the hardware</a></li>
+  <li><a href="#step-2-open-makecode" id="toc-step-2-open-makecode" class="nav-link" data-scroll-target="#step-2-open-makecode">Step 2 — Open MakeCode</a></li>
+  <li><a href="#step-3-flash-a-test-program" id="toc-step-3-flash-a-test-program" class="nav-link" data-scroll-target="#step-3-flash-a-test-program">Step 3 — Flash a test program</a></li>
+  <li><a href="#step-4-add-the-elecfreaks-extension" id="toc-step-4-add-the-elecfreaks-extension" class="nav-link" data-scroll-target="#step-4-add-the-elecfreaks-extension">Step 4 — Add the Elecfreaks extension</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -257,9 +262,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise_setup.html">Setup &amp; overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Interactive: Explore the micro:bit</h1>
+<h1 class="title">Lab: Setup &amp; Overview</h1>
 </div>
 
 
@@ -276,45 +281,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.</p>
-<div style="width: 100%; height: 85vh; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
-  <iframe src="closeread/microbit_closeread.html" style="width: 100%; height: 100%; border: none;" allowfullscreen="">
-  </iframe>
-</div>
-<section id="the-components-at-a-glance" class="level2">
-<h2 class="anchored" data-anchor-id="the-components-at-a-glance">The components at a glance</h2>
-<p>The numbers below match the numbered labels on the images above.</p>
-<section id="front" class="level3">
-<h3 class="anchored" data-anchor-id="front">Front</h3>
-<ol type="1">
-<li><strong>Buttons A and B</strong> — physical inputs you can press, separately or together</li>
-<li><strong>LED display</strong> — 25 red LEDs for text, numbers, and icons; doubles as a light sensor</li>
-<li><strong>Pins 0, 1, 2</strong> — general-purpose input/output pins for connecting sensors and actuators</li>
-<li><strong>3V pin</strong> — supplies power to connected components</li>
-<li><strong>GND pin</strong> — ground; completes the circuit</li>
-<li><strong>Touch logo</strong> — capacitive touch sensor; reacts to a finger without pressing</li>
-<li><strong>Microphone LED</strong> — lights up whenever the microphone is active</li>
-</ol>
-</section>
-<section id="back" class="level3">
-<h3 class="anchored" data-anchor-id="back">Back</h3>
-<ol>
-  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
-  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
-  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
-  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
-  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
-  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
-</ol>
-<ol start="9">
-  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
-  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
-  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
-  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
-  <li><strong>Red power LED</strong> — on whenever the board has power</li>
-  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
-  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
-</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -325,11 +291,220 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit <strong>V1</strong>, which our <strong>V2</strong> boards replace with numbers 14 and 15.</p>
+<p><strong>16 June, 14:00–16:00</strong> · You will work in your team of 4–5 throughout. You have one micro:bit and one Smart Health Kit per team. Take turns at the keyboard — every team member should understand each step before you move on.</p>
 </div>
 </div>
 <hr>
-<p><em>Board images: micro:bit Educational Foundation, <a href="https://microbit.org/get-started/features/overview/">micro:bit features overview</a>.</em></p>
+<section id="what-you-will-build" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-build">What you will build</h2>
+<p>Four core exercises, building in complexity — each one introduces one new cluster of ideas and rehearses everything before it. Two optional exercises for teams that move fast.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Exercise</th>
+<th>Sensor</th>
+<th>Output</th>
+<th>Context</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="./exercise1.html">Push the button</a></td>
+<td>Built-in (buttons, temperature)</td>
+<td>LED matrix</td>
+<td>Your first complete device</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="./exercise2.html">Emergency call button</a></td>
+<td>Crash sensor</td>
+<td>LED matrix + sound</td>
+<td>Patient bed call button</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><a href="./exercise3.html">Environmental monitor</a></td>
+<td>DHT11 (temp + humidity)</td>
+<td>OLED display</td>
+<td>Vaccine cold-chain monitoring</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><a href="./exercise4.html">Irrigation alarm</a></td>
+<td>Soil moisture</td>
+<td>Rainbow LED</td>
+<td>Automated plant watering</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><em>(Optional)</em> <a href="./bonus_exercises.html#ex5">Motion-triggered alert</a></td>
+<td>PIR</td>
+<td>LED matrix + OLED + sound</td>
+<td>Clinic entry detection</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><em>(Optional)</em> <a href="./bonus_exercises.html#ex6">Sanitiser-use detector</a></td>
+<td>MQ3 alcohol</td>
+<td>OLED + LED matrix</td>
+<td>Hand-hygiene monitoring</td>
+</tr>
+<tr class="odd">
+<td>★</td>
+<td><a href="./mini_challenge.html">Mini challenge</a></td>
+<td>Your choice</td>
+<td>Your choice</td>
+<td>Your application</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>By the end of this lab you will be able to:</p>
+<ul>
+<li>Use <strong>event blocks</strong> (<code>on button A pressed</code>) and the <strong><code>forever</code> loop</strong>, and explain when each is the right tool</li>
+<li>Connect a sensor to the micro:bit using the Sensorbit (G to G, V to V, S to S)</li>
+<li>Read digital and analog sensor values in MakeCode and store them in variables</li>
+<li>Display a reading on the OLED screen</li>
+<li>Use <code>if / else if / else</code> to make decisions based on a sensor value</li>
+<li>Drive an output — display, sound, LED strip — in response to a sensor</li>
+<li>Describe at least one limitation you personally observed</li>
+</ul>
+<hr>
+</section>
+<section id="team-roles" class="level2">
+<h2 class="anchored" data-anchor-id="team-roles">Team roles</h2>
+<p>With 4–5 people sharing one device, assign roles at the start of each exercise and rotate them.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>What they do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Driver</strong></td>
+<td>Operates the keyboard in MakeCode</td>
+</tr>
+<tr class="even">
+<td><strong>Navigator</strong></td>
+<td>Reads the instructions aloud and tells the driver what to do</td>
+</tr>
+<tr class="odd">
+<td><strong>Hardware lead</strong></td>
+<td>Connects and handles sensors and cables</td>
+</tr>
+<tr class="even">
+<td><strong>Checker</strong></td>
+<td>Watches the device output and spots when something is wrong</td>
+</tr>
+<tr class="odd">
+<td><strong>Documenter</strong></td>
+<td>Notes down observed values, thresholds, and quirks for the Canvas quiz</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p><em>Allow 15 minutes. Do not rush this — a broken setup wastes more time than a careful one.</em></p>
+<section id="step-1-connect-the-hardware" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-connect-the-hardware">Step 1 — Connect the hardware</h3>
+<ol type="1">
+<li>Slot the micro:bit into the Sensorbit edge connector — the USB port faces <strong>up</strong>, the LED matrix faces <strong>out</strong></li>
+<li>Press it firmly until it seats fully — a loose connection causes intermittent failures</li>
+<li>Connect the micro:bit to your laptop with the USB cable</li>
+<li>The micro:bit lights up and shows a startup animation — this confirms it has power</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The wiring rule: G to G, V to V, S to S
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every sensor in this lab connects with a three-wire cable. The Sensorbit’s pin rows are labelled <strong>G</strong> (ground), <strong>V</strong> (3.3 V power), and <strong>S</strong> (signal) — and so are the pins on each sensor. Connect G to G, V to V, S to S, every time. By convention the wires are black (G), red (V), and yellow or another colour (S), but <strong>trust the printed labels, not the colours</strong>.</p>
+<p>A sensor plugged in backwards won’t work — this is the most common hardware problem in this lab. If a sensor seems dead, check the wiring before anything else. (The OLED is the exception: it plugs into the dedicated, keyed <strong>IIC</strong> socket.)</p>
+</div>
+</div>
+</section>
+<section id="step-2-open-makecode" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-open-makecode">Step 2 — Open MakeCode</h3>
+<ol type="1">
+<li>Open a browser and go to <a href="https://makecode.microbit.org"><strong>makecode.microbit.org</strong></a></li>
+<li>Click <strong>New Project</strong></li>
+<li>Name it <code>lab-session</code> and click <strong>Create</strong></li>
+<li>You will see the familiar three-panel interface: simulator (left), toolbox (middle), workspace (right)</li>
+</ol>
+</section>
+<section id="step-3-flash-a-test-program" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-flash-a-test-program">Step 3 — Flash a test program</h3>
+<p>This confirms your USB connection is working before you add any complexity.</p>
+<ol type="1">
+<li>In the toolbox, find the <strong>Basic</strong> category</li>
+<li>Drag a <strong>show string</strong> block into the <code>on start</code> block already on the workspace</li>
+<li>Type <code>Ready</code> in the text field</li>
+<li>Click the <strong>Download</strong> button (bottom left of the workspace)</li>
+<li>A <code>.hex</code> file is saved to your computer — drag it onto the <strong>MICROBIT</strong> drive that appeared in Finder or File Explorer</li>
+<li>The orange LED on the micro:bit flashes while it writes — wait for it to stop</li>
+<li><code>Ready</code> should scroll across the LED matrix</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_flash_ready.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>Your workspace after Step 3: the <code>show string "Ready"</code> block sits inside <code>on start</code>.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>✓ Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Ready</code> scrolls across the LED matrix. If it does not, check the <a href="./troubleshooting.html">Troubleshooting &amp; FAQ</a> page or ask a teacher before going further.</p>
+</div>
+</div>
+</section>
+<section id="step-4-add-the-elecfreaks-extension" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-add-the-elecfreaks-extension">Step 4 — Add the Elecfreaks extension</h3>
+<ol type="1">
+<li>In the toolbox, scroll to the bottom and click <strong>Extensions</strong></li>
+<li>In the search box type <code>smarthome</code> and press Enter</li>
+<li>Select the <strong>smarthome</strong> package from Elecfreaks</li>
+<li>Close the extensions panel — you will now see new categories at the bottom of the toolbox, including <strong>SmartHome</strong>, <strong>OLED</strong>, and <strong>Neopixel</strong></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You need to add the extension once per project. If you start a new project later today you will need to add it again.</p>
+</div>
+</div>
+<hr>
+<p>Setup complete? Continue to <strong><a href="./exercise1.html">Exercise 1: Push the button</a></strong>.</p>
 
 
 </section>

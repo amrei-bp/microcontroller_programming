@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Interactive: Explore the micro:bit – Microcontrollers for Health &amp; Agriculture</title>
+<title>Exercise 4: Irrigation alarm – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise4.html">4. Irrigation alarm</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link active">
+  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">↳ Explore the micro:bit</span></a>
   </div>
 </li>
@@ -212,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise4.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercise4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">4. Irrigation alarm</span></a>
   </div>
 </li>
@@ -246,20 +281,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-components-at-a-glance" id="toc-the-components-at-a-glance" class="nav-link active" data-scroll-target="#the-components-at-a-glance">The components at a glance</a>
-  <ul class="collapse">
-  <li><a href="#front" id="toc-front" class="nav-link" data-scroll-target="#front">Front</a></li>
-  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
-  </ul></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#what-you-will-build" id="toc-what-you-will-build" class="nav-link" data-scroll-target="#what-you-will-build">What you will build</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#building-the-program" id="toc-building-the-program" class="nav-link" data-scroll-target="#building-the-program">Building the program</a></li>
+  <li><a href="#discussion-calibration-and-drift" id="toc-discussion-calibration-and-drift" class="nav-link" data-scroll-target="#discussion-calibration-and-drift">Discussion — calibration and drift</a></li>
+  <li><a href="#extension-challenge" id="toc-extension-challenge" class="nav-link" data-scroll-target="#extension-challenge">Extension challenge</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise4.html">4. Irrigation alarm</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Interactive: Explore the micro:bit</h1>
+<h1 class="title">Exercise 4: Irrigation alarm</h1>
 </div>
 
 
@@ -276,63 +312,190 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.</p>
-<div style="width: 100%; height: 85vh; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
-  <iframe src="closeread/microbit_closeread.html" style="width: 100%; height: 100%; border: none;" allowfullscreen="">
-  </iframe>
-</div>
-<section id="the-components-at-a-glance" class="level2">
-<h2 class="anchored" data-anchor-id="the-components-at-a-glance">The components at a glance</h2>
-<p>The numbers below match the numbered labels on the images above.</p>
-<section id="front" class="level3">
-<h3 class="anchored" data-anchor-id="front">Front</h3>
-<ol type="1">
-<li><strong>Buttons A and B</strong> — physical inputs you can press, separately or together</li>
-<li><strong>LED display</strong> — 25 red LEDs for text, numbers, and icons; doubles as a light sensor</li>
-<li><strong>Pins 0, 1, 2</strong> — general-purpose input/output pins for connecting sensors and actuators</li>
-<li><strong>3V pin</strong> — supplies power to connected components</li>
-<li><strong>GND pin</strong> — ground; completes the circuit</li>
-<li><strong>Touch logo</strong> — capacitive touch sensor; reacts to a finger without pressing</li>
-<li><strong>Microphone LED</strong> — lights up whenever the microphone is active</li>
-</ol>
+<p><em>Allow 25 minutes.</em></p>
+<section id="scenario" class="level3">
+<h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
+<p>A small farm wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You will build a device that colour-codes a Rainbow LED strip to show the soil status at a glance — red (dry), amber (moist), green (wet) — so the farmer knows immediately whether to water.</p>
 </section>
-<section id="back" class="level3">
-<h3 class="anchored" data-anchor-id="back">Back</h3>
-<ol>
-  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
-  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
-  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
-  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
-  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
-  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
+<section id="what-you-will-build" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-will-build">What you will build</h3>
+<ul>
+<li>Soil moisture sensor read continuously</li>
+<li>Raw numeric value shown on OLED</li>
+<li>Rainbow LED strip: <strong>red</strong> when dry, <strong>amber</strong> when moist, <strong>green</strong> when adequately wet</li>
+<li>Thresholds calibrated by you during the exercise</li>
+</ul>
+</section>
+<section id="hardware" class="level3">
+<h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
+<ol type="1">
+<li>Connect the <strong>soil moisture sensor</strong> to the Sensorbit port labelled <strong>P2</strong></li>
+<li>Connect the <strong>Rainbow LED strip</strong> to the Sensorbit port labelled <strong>P16</strong></li>
 </ol>
-<ol start="9">
-  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
-  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
-  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
-  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
-  <li><strong>Red power LED</strong> — on whenever the board has power</li>
-  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
-  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
+<hr>
+</section>
+<section id="building-the-program" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-program">Building the program</h3>
+<p>Start a new project (<code>irrigation-alarm</code>). Add the Elecfreaks extension.</p>
+<p><strong>Step 1 — Set up the Rainbow LED strip in <code>on start</code></strong></p>
+<p>The Rainbow LED strip is controlled using <strong>Neopixel</strong> blocks, which were added with the Elecfreaks extension.</p>
+<ol type="1">
+<li>From <strong>Variables</strong>, create a variable called <code>strip</code></li>
+<li>From <strong>Neopixel</strong>, drag the block <code>set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)</code></li>
+<li>Set <code>strip</code> to this block — this initialises the LED strip</li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>Also add the OLED initialiser: <code>initialize OLED width 128 height 64</code>.</p>
+<p><strong>Step 2 — Read the soil moisture sensor in <code>forever</code></strong></p>
+<p>The soil moisture sensor is an analog sensor. No special extension block is needed — you read it directly from a pin, just like the crash sensor in <a href="./exercise2.html">Exercise 2</a>, except the value is a number on a scale instead of 0 or 1.</p>
+<ol type="1">
+<li>Create a variable called <code>moisture</code></li>
+<li>From <strong>Advanced → Pins</strong>, drag an <code>analog read pin P2</code> block and set <code>moisture</code> to it</li>
+<li>From <strong>OLED</strong>, clear the OLED and display the value: label <code>"Soil: "</code> joined to <code>moisture</code></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_irrigation_step1.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Your program after Steps 1 and 2: <code>on start</code> initialises the LED strip and the OLED; <code>forever</code> reads the sensor and shows the raw value.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit <strong>V1</strong>, which our <strong>V2</strong> boards replace with numbers 14 and 15.</p>
+<p>The analog read returns a number between <strong>0 and 1023</strong>. <strong>Higher value = wetter.</strong> Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly — in open air the reading sits near <strong>0</strong>. Run the program and check your own readings before setting thresholds.</p>
+</div>
+</div>
+<p><strong>Step 3 — Discover your thresholds</strong></p>
+<p>Before adding colour logic, flash and test the raw readings:</p>
+<ol type="1">
+<li>Hold the sensor probes in the <strong>air</strong> — note the value</li>
+<li>Press your <strong>fingers firmly across both metal probes</strong> — this simulates wet, conductive soil — note the value</li>
+<li>Lightly touch the probes — note the intermediate value</li>
+</ol>
+<p>These three readings give you the range for your thresholds. Enter them in the table below (Documenter role) — they are saved in this browser and will still be here for the evening quiz:</p>
+<table class="table caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Condition</th>
+<th data-quarto-table-cell-role="th">Raw value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Air (dry)</td>
+<td><input type="number" class="persist form-control" id="ex4-air" min="0" max="1023"></td>
+</tr>
+<tr class="even">
+<td>Light contact (moist)</td>
+<td><input type="number" class="persist form-control" id="ex4-light" min="0" max="1023"></td>
+</tr>
+<tr class="odd">
+<td>Firm contact (wet)</td>
+<td><input type="number" class="persist form-control" id="ex4-firm" min="0" max="1023"></td>
+</tr>
+<tr class="even">
+<td>Your dry/moist threshold</td>
+<td><input type="number" class="persist form-control" id="ex4-th-dry" min="0" max="1023"></td>
+</tr>
+<tr class="odd">
+<td>Your moist/wet threshold</td>
+<td><input type="number" class="persist form-control" id="ex4-th-wet" min="0" max="1023"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 — Colour-coded response</strong></p>
+<p>Add an <code>if / else if / else</code> block after the moisture read:</p>
+<pre><code>if moisture &lt; [your dry/moist threshold]:
+    strip show colour red
+
+else if moisture &lt; [your moist/wet threshold]:
+    strip show colour orange
+
+else:
+    strip show colour green</code></pre>
+<p>Note the direction: <strong>low readings mean dry</strong>, so the <em>first</em> check catches values <em>below</em> your dry threshold.</p>
+<p>Use your observed values from Step 3 as the thresholds. Use the <strong>Neopixel</strong> blocks <code>strip show colour</code> for each branch.</p>
+<p><strong>Step 5 — Slow the loop down</strong></p>
+<p>At the very end of the <code>forever</code> block, add a <code>pause (ms)</code> block (from <strong>Basic</strong>) set to <strong>2000</strong>.</p>
+<p>Unlike the DHT11, the soil moisture sensor doesn’t <em>need</em> this — it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.</p>
+<p><strong>Step 6 — Download and test</strong></p>
+<p>Flash, then verify all three colours appear as you move between dry, light contact, and firm contact.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_irrigation_complete.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>The complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware — use the values <em>you</em> observed in Step 3.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>✓ Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>OLED shows a numeric value that changes with contact</li>
+<li>Rainbow LED goes red in air, amber with light contact, green with firm contact (or similar — your thresholds may produce a different boundary)</li>
+<li>You have written down your threshold values</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>JavaScript equivalent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> moisture <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> strip <span class="op">=</span> neopixel<span class="op">.</span><span class="fu">create</span>(DigitalPin<span class="op">.</span><span class="at">P16</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> NeoPixelMode<span class="op">.</span><span class="at">RGB</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">init</span>(<span class="dv">128</span><span class="op">,</span> <span class="dv">64</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    moisture <span class="op">=</span> pins<span class="op">.</span><span class="fu">analogReadPin</span>(AnalogReadWritePin<span class="op">.</span><span class="at">P2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (moisture <span class="op">&lt;</span> <span class="dv">90</span>) {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Red</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (moisture <span class="op">&lt;</span> <span class="dv">450</span>) {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Orange</span>))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        strip<span class="op">.</span><span class="fu">showColor</span>(neopixel<span class="op">.</span><span class="fu">colors</span>(NeoPixelColors<span class="op">.</span><span class="at">Green</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Soil:"</span> <span class="op">+</span> moisture)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">2000</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace 90 and 450 with the threshold values you observed on your hardware.</p>
+</div>
 </div>
 </div>
 <hr>
-<p><em>Board images: micro:bit Educational Foundation, <a href="https://microbit.org/get-started/features/overview/">micro:bit features overview</a>.</em></p>
-
-
 </section>
+<section id="discussion-calibration-and-drift" class="level3">
+<h3 class="anchored" data-anchor-id="discussion-calibration-and-drift">Discussion — calibration and drift</h3>
+<p>The raw reading is a number between 0 and 1023. You just set your thresholds based on 60 seconds of testing.</p>
+<p><strong>Question for your team:</strong> A farmer leaves this sensor buried in soil for three months. The probe tips corrode (as described in Lecture 3). What happens to the readings? Would your thresholds still be valid? What would you need to do to make this device reliable for long-term use?</p>
+<hr>
+</section>
+<section id="extension-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="extension-challenge">Extension challenge</h3>
+<p><strong>Graduated brightness.</strong> Instead of showing every LED the same colour, make the number of lit LEDs correspond to the moisture level — 0 LEDs for bone dry, all 8 for saturated. This gives the farmer more nuance than three categories. Use the <strong>Neopixel</strong> <code>strip set pixel color at [n] to [colour]</code> block inside a loop.</p>
+<hr>
+<p>Finished before ~15:25? Pick <strong>one</strong> of the optional <a href="./bonus_exercises.html">bonus exercises</a>. Otherwise, continue to the <strong><a href="./mini_challenge.html">★ Mini challenge</a></strong>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

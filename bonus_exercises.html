@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lecture 3: The Elecfreaks Smart Health Kit – Microcontrollers for Health &amp; Agriculture</title>
+<title>Bonus Exercises – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./lecture3.html">3. The Elecfreaks Smart Health Kit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./bonus_exercises.html">Bonus exercises</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture3.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lecture3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. The Elecfreaks Smart Health Kit</span></a>
   </div>
 </li>
@@ -224,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bonus_exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="./bonus_exercises.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Bonus exercises</span></a>
   </div>
 </li>
@@ -246,46 +281,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#the-smart-health-kit" id="toc-the-smart-health-kit" class="nav-link" data-scroll-target="#the-smart-health-kit">1. The Smart Health Kit</a></li>
-  <li><a href="#the-sensorbit" id="toc-the-sensorbit" class="nav-link" data-scroll-target="#the-sensorbit">2. The Sensorbit</a>
+  <li><a href="#ex5" id="toc-ex5" class="nav-link active" data-scroll-target="#ex5">Exercise 5 (optional): Motion-triggered alert</a>
   <ul class="collapse">
-  <li><a href="#wiring-g-v-and-s" id="toc-wiring-g-v-and-s" class="nav-link" data-scroll-target="#wiring-g-v-and-s">Wiring: G, V, and S</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#what-you-will-build" id="toc-what-you-will-build" class="nav-link" data-scroll-target="#what-you-will-build">What you will build</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#building-the-program" id="toc-building-the-program" class="nav-link" data-scroll-target="#building-the-program">Building the program</a></li>
+  <li><a href="#discussion-limitations-of-a-pir-for-this-application" id="toc-discussion-limitations-of-a-pir-for-this-application" class="nav-link" data-scroll-target="#discussion-limitations-of-a-pir-for-this-application">Discussion — limitations of a PIR for this application</a></li>
+  <li><a href="#extension-challenge" id="toc-extension-challenge" class="nav-link" data-scroll-target="#extension-challenge">Extension challenge</a></li>
   </ul></li>
-  <li><a href="#adding-the-elecfreaks-extension-in-makecode" id="toc-adding-the-elecfreaks-extension-in-makecode" class="nav-link" data-scroll-target="#adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</a></li>
-  <li><a href="#environmental-sensors" id="toc-environmental-sensors" class="nav-link" data-scroll-target="#environmental-sensors">4. Environmental sensors</a>
+  <li><a href="#ex6" id="toc-ex6" class="nav-link" data-scroll-target="#ex6">Exercise 6 (optional): Sanitiser-use detector</a>
   <ul class="collapse">
-  <li><a href="#dht11-temperature-and-humidity" id="toc-dht11-temperature-and-humidity" class="nav-link" data-scroll-target="#dht11-temperature-and-humidity">DHT11 — Temperature and humidity</a></li>
-  <li><a href="#soil-moisture-sensor" id="toc-soil-moisture-sensor" class="nav-link" data-scroll-target="#soil-moisture-sensor">Soil moisture sensor</a></li>
-  <li><a href="#mq3-alcohol-sensor" id="toc-mq3-alcohol-sensor" class="nav-link" data-scroll-target="#mq3-alcohol-sensor">MQ3 — Alcohol sensor</a></li>
-  <li><a href="#analog-uv-sensor" id="toc-analog-uv-sensor" class="nav-link" data-scroll-target="#analog-uv-sensor">Analog UV sensor</a></li>
+  <li><a href="#scenario-1" id="toc-scenario-1" class="nav-link" data-scroll-target="#scenario-1">Scenario</a></li>
+  <li><a href="#what-you-will-build-1" id="toc-what-you-will-build-1" class="nav-link" data-scroll-target="#what-you-will-build-1">What you will build</a></li>
+  <li><a href="#hardware-1" id="toc-hardware-1" class="nav-link" data-scroll-target="#hardware-1">Hardware</a></li>
+  <li><a href="#building-the-program-1" id="toc-building-the-program-1" class="nav-link" data-scroll-target="#building-the-program-1">Building the program</a></li>
+  <li><a href="#discussion-what-is-this-device-actually-measuring" id="toc-discussion-what-is-this-device-actually-measuring" class="nav-link" data-scroll-target="#discussion-what-is-this-device-actually-measuring">Discussion — what is this device actually measuring?</a></li>
   </ul></li>
-  <li><a href="#presence-and-interaction-sensors" id="toc-presence-and-interaction-sensors" class="nav-link" data-scroll-target="#presence-and-interaction-sensors">5. Presence and interaction sensors</a>
-  <ul class="collapse">
-  <li><a href="#pir-sensor-passive-infrared" id="toc-pir-sensor-passive-infrared" class="nav-link" data-scroll-target="#pir-sensor-passive-infrared">PIR sensor — Passive Infrared</a></li>
-  <li><a href="#crash-sensor-brick" id="toc-crash-sensor-brick" class="nav-link" data-scroll-target="#crash-sensor-brick">Crash sensor brick</a></li>
-  </ul></li>
-  <li><a href="#output-components" id="toc-output-components" class="nav-link" data-scroll-target="#output-components">6. Output components</a>
-  <ul class="collapse">
-  <li><a href="#oled-screen" id="toc-oled-screen" class="nav-link" data-scroll-target="#oled-screen">OLED screen</a></li>
-  <li><a href="#rainbow-led" id="toc-rainbow-led" class="nav-link" data-scroll-target="#rainbow-led">Rainbow LED</a></li>
-  </ul></li>
-  <li><a href="#actuators" id="toc-actuators" class="nav-link" data-scroll-target="#actuators">7. Actuators</a>
-  <ul class="collapse">
-  <li><a href="#servo-motor" id="toc-servo-motor" class="nav-link" data-scroll-target="#servo-motor">180° Servo motor</a></li>
-  <li><a href="#dc-motor-with-fan" id="toc-dc-motor-with-fan" class="nav-link" data-scroll-target="#dc-motor-with-fan">DC motor with fan</a></li>
-  </ul></li>
-  <li><a href="#choosing-the-right-component-for-your-use-case" id="toc-choosing-the-right-component-for-your-use-case" class="nav-link" data-scroll-target="#choosing-the-right-component-for-your-use-case">8. Choosing the right component for your use case</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./lecture3.html">3. The Elecfreaks Smart Health Kit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./bonus_exercises.html">Bonus exercises</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Lecture 3: The Elecfreaks Smart Health Kit</h1>
+<h1 class="title">Bonus Exercises</h1>
 </div>
 
 
@@ -312,177 +333,206 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is a pre-course lecture. Watch the recorded video, then complete the <strong>Lecture 3 quiz on Canvas</strong> before the course starts.</p>
+<p>These two exercises are <strong>optional</strong>. During the lab on 16 June, only start one if your team finishes <a href="./exercise4.html">Exercise 4</a> before ~15:25 — pick <strong>one</strong>, don’t try both, and switch to the <a href="./mini_challenge.html">mini challenge</a> in good time. They also work as standalone references for project day: the PIR and MQ3 are both strong candidates for project ideas.</p>
 </div>
 </div>
 <hr>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
-<p>By the end of this lecture you should be able to:</p>
+<section id="ex5" class="level2">
+<h2 class="anchored" data-anchor-id="ex5">Exercise 5 (optional): Motion-triggered alert</h2>
+<section id="scenario" class="level3">
+<h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
+<p>A clinic wants to monitor a hand-hygiene station at the ward entrance. When someone approaches, the device should alert them to use the hand sanitiser before entering. When nobody is present, the device should be ready and silent.</p>
+</section>
+<section id="what-you-will-build" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-will-build">What you will build</h3>
 <ul>
-<li>Explain what the Sensorbit does and how it connects to the micro:bit</li>
-<li>Identify each component in the Elecfreaks Smart Health Kit</li>
-<li>Describe what each sensor measures and what signal type it produces</li>
-<li>Give at least one medical and one agricultural use case for each component</li>
-<li>Describe at least one limitation of each sensor</li>
-<li>Explain how to add the Elecfreaks extension in MakeCode</li>
+<li>PIR sensor monitors for movement continuously</li>
+<li>Motion detected → LED matrix shows an alert icon + tone plays + OLED shows <code>"Sanitise!"</code></li>
+<li>No motion → OLED shows <code>"Ready"</code>, LED matrix is clear</li>
 </ul>
-<hr>
 </section>
-<section id="the-smart-health-kit" class="level2">
-<h2 class="anchored" data-anchor-id="the-smart-health-kit">1. The Smart Health Kit</h2>
-<p>The Elecfreaks Smart Health Kit is a collection of sensors and actuators designed to explore health and environmental monitoring with the BBC micro:bit. Although it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.</p>
-<p>The kit does <strong>not</strong> include a micro:bit — that is your core controller, and you bring it to the kit.</p>
-<p>The kit contains:</p>
-<ul>
-<li>The <strong>Sensorbit</strong> — the interface board</li>
-<li><strong>DHT11</strong> — temperature and humidity sensor</li>
-<li><strong>Soil moisture sensor</strong></li>
-<li><strong>MQ3 alcohol sensor</strong></li>
-<li><strong>Analog UV sensor</strong></li>
-<li><strong>PIR sensor</strong></li>
-<li><strong>Crash sensor brick</strong></li>
-<li><strong>OLED screen</strong></li>
-<li><strong>Rainbow LED</strong></li>
-<li><strong>180° servo motor</strong></li>
-<li><strong>DC motor with fan</strong></li>
-</ul>
-<p>We will go through each of these in this lecture.</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/Kit_open.jpeg" class="img-fluid figure-img"></p>
-<figcaption>The kit as it arrives — the guide booklet sits on top of the foam tray</figcaption>
-</figure>
+<section id="hardware" class="level3">
+<h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
+<p>Connect the <strong>PIR sensor</strong> to the Sensorbit port labelled <strong>P8</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/kit_components.jpeg" class="img-fluid figure-img"></p>
-<figcaption>All components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.</figcaption>
-</figure>
-</div>
-</div>
+<div class="callout-body-container callout-body">
+<p>The PIR needs <strong>30–60 seconds to settle</strong> after power-on. Ignore its output until then — early readings are not your fault and not a wiring error.</p>
 </div>
 </div>
 <hr>
 </section>
-<section id="the-sensorbit" class="level2">
-<h2 class="anchored" data-anchor-id="the-sensorbit">2. The Sensorbit</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/sensor_bit.png" class="img-fluid figure-img" style="width:42.0%"></p>
-<figcaption>The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.</figcaption>
-</figure>
-</div>
-<p>The <strong>Sensorbit</strong> is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.</p>
-<p>Without the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.</p>
-<p>It also provides stable <strong>3.3 V power</strong> to the connected sensors, sourced from the micro:bit’s own power supply.</p>
-<p><strong>One important point:</strong> when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.</p>
-<section id="wiring-g-v-and-s" class="level3">
-<h3 class="anchored" data-anchor-id="wiring-g-v-and-s">Wiring: G, V, and S</h3>
-<p>Most components in the kit connect to the Sensorbit with a <strong>three-wire cable</strong>. The three wires are not interchangeable — each one has a job:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 17%">
-<col style="width: 14%">
-<col style="width: 54%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Pin</th>
-<th>Name</th>
-<th>Job</th>
-<th>Usual wire colour</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>G</strong></td>
-<td>Ground</td>
-<td>Completes the circuit</td>
-<td>Black</td>
-</tr>
-<tr class="even">
-<td><strong>V</strong></td>
-<td>Voltage</td>
-<td>Supplies 3.3 V power to the sensor</td>
-<td>Red</td>
-</tr>
-<tr class="odd">
-<td><strong>S</strong></td>
-<td>Signal</td>
-<td>Carries the measurement to the micro:bit</td>
-<td>Yellow (or another colour)</td>
-</tr>
-</tbody>
-</table>
-<p>On the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are labelled <strong>G</strong>, <strong>V</strong>, and <strong>S</strong> on the board itself. The sensors carry the same labels next to their pins.</p>
-<p><strong>The rule:</strong> G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually isn’t damaged, but it will not work, and a reversed cable is the single most common hardware problem in the lab. <strong>Match the labels printed on the boards, not just the wire colours</strong> — colours are a convention, the labels are the truth.</p>
-<p>If a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.</p>
-<p>The OLED screen is the exception — it has <strong>four</strong> pins and plugs into the Sensorbit’s dedicated <strong>IIC</strong> socket, which is keyed so it only fits one way.</p>
-<p>One detail that surprises people: there is <strong>no P0 port</strong> on the Sensorbit. P0 is wired to the board’s built-in buzzer and headphone jack — when your program plays a tone, that buzzer is what sounds. The GVS ports start at P1.</p>
-<hr>
-</section>
-</section>
-<section id="adding-the-elecfreaks-extension-in-makecode" class="level2">
-<h2 class="anchored" data-anchor-id="adding-the-elecfreaks-extension-in-makecode">3. Adding the Elecfreaks extension in MakeCode</h2>
-<p>The Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors — particularly the OLED screen — require a dedicated software library.</p>
-<p>To add the Elecfreaks extension:</p>
+<section id="building-the-program" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-program">Building the program</h3>
+<p>Start a new project (<code>motion-alert</code>). Add the Elecfreaks extension.</p>
+<p><strong>Step 1 — Initialise the OLED in <code>on start</code></strong></p>
+<p>Same as before: <code>initialize OLED width 128 height 64</code>.</p>
+<p><strong>Step 2 — Read the PIR sensor</strong></p>
+<p>The PIR is a simple digital sensor, read exactly like the crash sensor in <a href="./exercise2.html">Exercise 2</a>: it outputs <strong>1</strong> when motion is detected and <strong>0</strong> when it is not.</p>
 <ol type="1">
-<li>Open your project in MakeCode</li>
-<li>Click <strong>Extensions</strong> at the bottom of the toolbox (middle panel)</li>
-<li>In the search box, type <code>smarthome</code></li>
-<li>Select the <strong>smarthome</strong> package from Elecfreaks</li>
-<li>New block categories will appear in your toolbox</li>
+<li>In <code>forever</code>, from <strong>Variables</strong>, create a variable called <code>motion</code></li>
+<li>From the toolbox <strong>Advanced → Pins</strong>, drag a <code>digital read pin P8</code> block</li>
+<li>Set <code>motion</code> to the result of that pin read</li>
 </ol>
-<p>Once installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.</p>
-<hr>
-</section>
-<section id="environmental-sensors" class="level2">
-<h2 class="anchored" data-anchor-id="environmental-sensors">4. Environmental sensors</h2>
-<p>These sensors measure conditions in the surrounding environment.</p>
-<section id="dht11-temperature-and-humidity" class="level3">
-<h3 class="anchored" data-anchor-id="dht11-temperature-and-humidity">DHT11 — Temperature and humidity</h3>
+<p><strong>Step 3 — Respond with a conditional</strong></p>
+<ol type="1">
+<li>From <strong>Logic</strong>, add an <code>if / then / else</code> block</li>
+<li>Condition: <code>motion = 1</code></li>
+<li>In the <code>if</code> branch (motion detected):
+<ul>
+<li>From <strong>Basic</strong>, <code>show icon</code> — pick an arrow, exclamation, or similar</li>
+<li>From <strong>OLED</strong>, <code>clear OLED display</code>, then <code>show string "Sanitise!"</code></li>
+<li>From <strong>Music</strong>, <code>play tone Middle A for 1 beat</code> (or any tone you like)</li>
+</ul></li>
+<li>In the <code>else</code> branch (no motion):
+<ul>
+<li>From <strong>Basic</strong>, <code>clear screen</code></li>
+<li>From <strong>OLED</strong>, <code>clear OLED display</code>, then <code>show string "Ready"</code></li>
+</ul></li>
+</ol>
+<p><strong>Step 4 — Download and test</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/DHT11_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+<p><img src="figures/exercise_p5_optional.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>The complete motion alert. Any icon works in the <code>if</code> branch — pick one your team likes.</figcaption>
 </figure>
 </div>
-<p>The DHT11 measures both <strong>air temperature</strong> (0–50°C, ±2°C accuracy) and <strong>relative humidity</strong> (20–90% RH, ±5% accuracy) in a single, small package. It communicates using a simple digital protocol over a single data wire.</p>
-<p><strong>Medical use:</strong> Monitoring ward temperature and humidity, which affect patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.</p>
-<p><strong>Agricultural use:</strong> Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth; the DHT11 can trigger an alert when conditions become dangerous.</p>
-<p><strong>Limitations:</strong> - Can only be read once every <strong>two seconds</strong> — reading it faster produces errors - Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics - Range stops at 50°C, which limits use in very hot outdoor environments</p>
+<p>Flash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to <code>"Ready"</code> within a few seconds.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The PIR detects <strong>movement</strong> of warm bodies — not presence. A person standing still directly in front of it will not trigger it after a few seconds. This is by design (it avoids false positives from warm but stationary objects), but it matters for your application.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why does the OLED flicker?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your <code>forever</code> loop clears and rewrites the OLED on every single pass — many times per second — even when nothing has changed. Each clear-and-rewrite is visible as a flicker.</p>
+<p>The fix is to <strong>only redraw the screen when the state actually changes</strong>: keep a second variable (e.g.&nbsp;<code>lastMotion</code>) holding the previous reading, and only clear and rewrite the OLED when <code>motion</code> differs from <code>lastMotion</code>. At the end of the loop, set <code>lastMotion</code> to <code>motion</code>.</p>
+<p>This previous-vs-current pattern is the same one the extension challenge below uses to count entries — solve one and you have solved both.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>✓ Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>LED matrix shows an icon when you wave in front of the PIR</li>
+<li>OLED switches between <code>"Ready"</code> and <code>"Sanitise!"</code></li>
+<li>A tone plays on detection</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>JavaScript equivalent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> motion <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">init</span>(<span class="dv">128</span><span class="op">,</span> <span class="dv">64</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    motion <span class="op">=</span> pins<span class="op">.</span><span class="fu">digitalReadPin</span>(DigitalPin<span class="op">.</span><span class="at">P8</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (motion <span class="op">==</span> <span class="dv">1</span>) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">showIcon</span>(IconNames<span class="op">.</span><span class="at">Target</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Sanitise!"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        music<span class="op">.</span><span class="fu">play</span>(music<span class="op">.</span><span class="fu">tonePlayable</span>(<span class="dv">440</span><span class="op">,</span> music<span class="op">.</span><span class="fu">beat</span>(BeatFraction<span class="op">.</span><span class="at">Whole</span>))<span class="op">,</span> music<span class="op">.</span><span class="at">PlaybackMode</span><span class="op">.</span><span class="at">UntilDone</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">clearScreen</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Ready"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 <hr>
 </section>
-<section id="soil-moisture-sensor" class="level3">
-<h3 class="anchored" data-anchor-id="soil-moisture-sensor">Soil moisture sensor</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/soil_moisture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:22.0%"></p>
-</figure>
-</div>
-<p>The soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an <strong>analog signal</strong> — a number that varies continuously with moisture level.</p>
-<p><strong>Medical use:</strong> Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.</p>
-<p><strong>Agricultural use:</strong> The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold — saving water and preventing crop stress.</p>
-<p><strong>Limitations:</strong> - The probe tips corrode over time when left in soil, causing readings to drift - The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage — you need to test your specific soil type to set meaningful thresholds - Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings</p>
+<section id="discussion-limitations-of-a-pir-for-this-application" class="level3">
+<h3 class="anchored" data-anchor-id="discussion-limitations-of-a-pir-for-this-application">Discussion — limitations of a PIR for this application</h3>
+<p>Think through these questions as a team:</p>
+<ol type="1">
+<li>Someone approaches the station, uses the sanitiser, then stands at the entrance talking to a colleague for 30 seconds. Does the device behave as intended?</li>
+<li>A window is open and sunlight moves across the floor near the sensor. Could this trigger the alert?</li>
+<li>Can the PIR tell the difference between a person and a large dog walking past?</li>
+</ol>
+<p><strong>Note one limitation that would matter in a real deployment.</strong> This will appear in the Canvas quiz.</p>
 <hr>
 </section>
-<section id="mq3-alcohol-sensor" class="level3">
-<h3 class="anchored" data-anchor-id="mq3-alcohol-sensor">MQ3 — Alcohol sensor</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/mq3_alcohol_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
-</figure>
+<section id="extension-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="extension-challenge">Extension challenge</h3>
+<p><strong>Count entries.</strong> Every time the PIR detects a new motion event — a transition from 0 to 1, not just a sustained 1 — increment a variable called <code>entries</code>. Display the count on the OLED alongside the status text. Reset the count when <strong>Button A</strong> is pressed.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>The MQ3 detects <strong>alcohol vapour</strong> in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an <strong>analog signal</strong>.</p>
-<p><strong>Medical use:</strong> Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.</p>
-<p><strong>Agricultural use:</strong> Monitoring fermentation in biogas digesters or alcohol-based crop processing.</p>
-<p><strong>Limitations:</strong> - Requires a <strong>warm-up time of approximately 60 seconds</strong> after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the <em>presence</em> of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You need to track the <em>previous</em> state of the PIR as well as the <em>current</em> state. Only increment <code>entries</code> when the previous reading was 0 and the current reading is 1 — this counts the moment of arrival, not every frame of the <code>forever</code> loop during which someone is present.</p>
+<p>Add an <code>on button A pressed</code> block in the workspace (separate from <code>forever</code>) that sets <code>entries</code> back to 0 — the same event-plus-polling combination as the latching call button in <a href="./exercise2.html">Exercise 2</a>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="ex6" class="level2">
+<h2 class="anchored" data-anchor-id="ex6">Exercise 6 (optional): Sanitiser-use detector</h2>
+<section id="scenario-1" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-1">Scenario</h3>
+<p>A clinic asks every visitor to sanitise their hands at the entrance. But did they actually do it? Alcohol-based hand sanitiser releases alcohol vapour as it evaporates — and the MQ3 sensor can detect it. You will build a device that confirms sanitiser was actually used.</p>
+</section>
+<section id="what-you-will-build-1" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-will-build-1">What you will build</h3>
+<ul>
+<li>MQ3 alcohol sensor read continuously</li>
+<li>Raw value shown on the OLED</li>
+<li>When alcohol vapour is detected: LED matrix shows a tick, OLED shows <code>"Sanitised!"</code></li>
+</ul>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -493,185 +543,156 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Don’t be alarmed, and don’t enclose the sensor in anything that traps heat.</p>
+<p>The MQ3 contains a heating element and becomes noticeably warm during use. This is by design, not a fault.</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="analog-uv-sensor" class="level3">
-<h3 class="anchored" data-anchor-id="analog-uv-sensor">Analog UV sensor</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/uv_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:24.0%"></p>
-</figure>
-</div>
-<p>The UV sensor measures <strong>ultraviolet light intensity</strong> and produces an <strong>analog signal</strong>. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).</p>
-<p><strong>Medical use:</strong> Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.</p>
-<p><strong>Agricultural use:</strong> Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.</p>
-<p><strong>Limitations:</strong> - The raw output requires calibration to convert to a standard UV index - Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun - Does not distinguish between UVA and UVB</p>
-<hr>
-</section>
-</section>
-<section id="presence-and-interaction-sensors" class="level2">
-<h2 class="anchored" data-anchor-id="presence-and-interaction-sensors">5. Presence and interaction sensors</h2>
-<p>These sensors detect events or physical interactions rather than measuring continuous quantities.</p>
-<section id="pir-sensor-passive-infrared" class="level3">
-<h3 class="anchored" data-anchor-id="pir-sensor-passive-infrared">PIR sensor — Passive Infrared</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/pir_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
-</figure>
-</div>
-<p>The PIR sensor detects <strong>movement of warm bodies</strong> — people, animals, or anything emitting infrared radiation at body temperature. It produces a <strong>digital signal</strong>: 1 (motion detected) or 0 (no motion). It is “passive” because it does not emit anything — it only listens.</p>
-<p><strong>Medical use:</strong> Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.</p>
-<p><strong>Agricultural use:</strong> Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.</p>
-<p><strong>Limitations:</strong> - Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals - Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m) — placement matters - Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor</p>
-<hr>
-</section>
-<section id="crash-sensor-brick" class="level3">
-<h3 class="anchored" data-anchor-id="crash-sensor-brick">Crash sensor brick</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/crash_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
-</figure>
-</div>
-<p>The crash sensor is a simple <strong>push button with a lever</strong>, designed to detect physical contact or impact. It produces a <strong>digital signal</strong>: pressed or not pressed.</p>
-<p><strong>Medical use:</strong> Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).</p>
-<p><strong>Agricultural use:</strong> Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.</p>
-<p><strong>Limitations:</strong> - Requires direct physical contact — it cannot detect proximity - The lever can be damaged by repeated heavy impact - Produces a single on/off signal with no information about force or duration</p>
-<hr>
-</section>
-</section>
-<section id="output-components" class="level2">
-<h2 class="anchored" data-anchor-id="output-components">6. Output components</h2>
-<p>These components display information or produce effects that a person can see.</p>
-<section id="oled-screen" class="level3">
-<h3 class="anchored" data-anchor-id="oled-screen">OLED screen</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/oled.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
-</figure>
-</div>
-<p>The OLED (Organic Light-Emitting Diode) screen is a small display that can show <strong>text and simple graphics</strong>. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.</p>
-<p>Unlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.</p>
-<p><strong>Use cases:</strong> Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.</p>
-<p><strong>Limitations:</strong> - Small physical size limits how much can be displayed at once - Not visible in direct bright sunlight - Requires the extension library; it cannot be used with the standard MakeCode blocks alone</p>
-<hr>
-</section>
-<section id="rainbow-led" class="level3">
-<h3 class="anchored" data-anchor-id="rainbow-led">Rainbow LED</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/rainbow_led.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
-</figure>
-</div>
-<p>The Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the <strong>Neopixel</strong> blocks.</p>
-<p><strong>Use cases:</strong> Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.</p>
-<p><strong>Limitations:</strong> - Draws more current than a single LED — running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply - Not suitable for precise phototherapy — the LEDs are not medically calibrated</p>
-<hr>
-</section>
-</section>
-<section id="actuators" class="level2">
-<h2 class="anchored" data-anchor-id="actuators">7. Actuators</h2>
-<p>These components produce physical actions in response to signals from the micro:bit.</p>
-<section id="servo-motor" class="level3">
-<h3 class="anchored" data-anchor-id="servo-motor">180° Servo motor</h3>
-<p>The servo motor rotates to a <strong>specific angle</strong> between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.</p>
-<p><strong>Medical use:</strong> Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).</p>
-<p><strong>Agricultural use:</strong> Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.</p>
-<p><strong>Limitations:</strong> - Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead - Can only exert limited force (torque) — not suitable for heavy mechanical loads - Draws significant current when under load, which can cause the micro:bit to reset if not powered externally</p>
-<hr>
-</section>
-<section id="dc-motor-with-fan" class="level3">
-<h3 class="anchored" data-anchor-id="dc-motor-with-fan">DC motor with fan</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/motor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
-</figure>
-</div>
-<p>The DC motor spins continuously in one direction when powered. In the kit it is attached to a fan blade, making it immediately useful for airflow. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.</p>
-<p><strong>Medical use:</strong> Ventilation in an enclosed monitoring device. Cooling a prototype that generates heat. Air circulation in a patient room monitor.</p>
-<p><strong>Agricultural use:</strong> Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.</p>
-<p><strong>Limitations:</strong> - The fan draws significant current — almost always requires external battery power - Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control - The motor produces electrical noise that can interfere with sensitive analog sensors — good circuit design keeps motor and sensor wiring separate</p>
-<hr>
-</section>
-</section>
-<section id="choosing-the-right-component-for-your-use-case" class="level2">
-<h2 class="anchored" data-anchor-id="choosing-the-right-component-for-your-use-case">8. Choosing the right component for your use case</h2>
-<p>Having a kit full of sensors does not mean every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.</p>
-<p>Ask these questions about any sensor you are considering:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 40%">
-<col style="width: 60%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Question</th>
-<th>Why it matters</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Does it measure the right thing?</td>
-<td>A soil moisture sensor cannot measure air humidity</td>
-</tr>
-<tr class="even">
-<td>Is the range appropriate?</td>
-<td>The DHT11 stops at 50°C — unsuitable for sterilisation monitoring</td>
-</tr>
-<tr class="odd">
-<td>Is the accuracy good enough?</td>
-<td>±2°C is fine for storage monitoring, not for clinical thermometry</td>
-</tr>
-<tr class="even">
-<td>How fast does it need to update?</td>
-<td>The DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm</td>
-</tr>
-<tr class="odd">
-<td>Does it need warm-up time?</td>
-<td>The MQ3 needs 60 seconds — is that acceptable in your design?</td>
-</tr>
-<tr class="even">
-<td>How much power does it draw?</td>
-<td>Motors and servos need external power in sustained use</td>
-</tr>
-<tr class="odd">
-<td>Will it degrade over time?</td>
-<td>The soil moisture sensor corrodes — plan for maintenance</td>
-</tr>
-</tbody>
-</table>
-<p>This kind of systematic evaluation is part of what separates a prototype from a reliable device.</p>
-<hr>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<ul>
-<li>The <strong>Sensorbit</strong> connects sensors to the micro:bit and provides labelled, powered ports</li>
-<li>The <strong>Elecfreaks extension</strong> must be added in MakeCode for some components (especially the OLED)</li>
-<li><strong>Environmental sensors:</strong> DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV</li>
-<li><strong>Presence sensors:</strong> PIR (motion), crash sensor (contact)</li>
-<li><strong>Output displays:</strong> OLED screen, Rainbow LED</li>
-<li><strong>Actuators:</strong> servo motor (angle), DC motor with fan (continuous rotation)</li>
-<li>Every sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing</li>
-</ul>
-<hr>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Ready for the quiz?
+<span class="screen-reader-only">Note</span>No hand sanitiser available?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Complete the <strong>Lecture 3 quiz on Canvas</strong> before the course starts on 16 June.</p>
+<p>Any alcohol source works: an alcohol swab, surface disinfectant, or ethanol from the lab. Hold it a few centimetres from the sensor’s metal mesh. If you have no alcohol source at all, you can still build the program and observe the baseline behaviour and warm-up effect.</p>
 </div>
 </div>
+</section>
+<section id="hardware-1" class="level3">
+<h3 class="anchored" data-anchor-id="hardware-1">Hardware</h3>
+<p>Connect the <strong>MQ3 sensor</strong> to the Sensorbit port labelled <strong>P2</strong>. Remember: G to G, V to V, S to S. (The MQ3 is analog, and only some pins can read analog signals — P1 and P2 are the easiest choices on the Sensorbit.)</p>
+<hr>
+</section>
+<section id="building-the-program-1" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-program-1">Building the program</h3>
+<p>Start a new project (<code>sanitiser-check</code>). Add the Elecfreaks extension.</p>
+<p><strong>Step 1 — Handle the warm-up in <code>on start</code></strong></p>
+<p>Lecture 3 told you the MQ3 needs about <strong>60 seconds of warm-up</strong> before its readings mean anything. Your program should say so, instead of showing garbage values:</p>
+<ol type="1">
+<li>Initialise the OLED: <code>initialize OLED width 128 height 64</code></li>
+<li>From <strong>OLED</strong>, <code>show string "Warming up..."</code> on the OLED</li>
+<li>From <strong>Basic</strong>, add <code>pause (ms)</code> set to <strong>60000</strong></li>
+<li>Clear the OLED and show <code>"Ready"</code></li>
+</ol>
+<p><strong>Step 2 — Read the MQ3 in <code>forever</code></strong></p>
+<p>The MQ3 is an analog sensor — no special extension block needed.</p>
+<ol type="1">
+<li>Create a variable called <code>alcohol</code></li>
+<li>From <strong>Advanced → Pins</strong>, set <code>alcohol</code> to <code>analog read pin P2</code></li>
+<li>Clear the OLED and display the value: <code>"Air: "</code> joined to <code>alcohol</code></li>
+<li>Add a <code>pause (ms)</code> of <strong>500</strong> at the end of the loop so the display is readable</li>
+</ol>
+<p><strong>Step 3 — Discover your threshold</strong></p>
+<p>Flash the program and wait out the warm-up. Then (Documenter: record these below):</p>
+<ol type="1">
+<li>Note the <strong>baseline</strong> reading in normal air</li>
+<li>Apply sanitiser to your hands (or open your alcohol source) and hold them near the sensor — note the <strong>peak</strong> reading</li>
+<li>Move away and watch how long the value takes to fall back</li>
+</ol>
+<p>Pick a threshold roughly halfway between baseline and peak.</p>
+<table class="table caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Observation</th>
+<th data-quarto-table-cell-role="th">Raw value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline (normal air)</td>
+<td><input type="number" class="persist form-control" id="ex6-baseline" min="0" max="1023"></td>
+</tr>
+<tr class="even">
+<td>Peak (alcohol vapour)</td>
+<td><input type="number" class="persist form-control" id="ex6-peak" min="0" max="1023"></td>
+</tr>
+<tr class="odd">
+<td>Your threshold</td>
+<td><input type="number" class="persist form-control" id="ex6-threshold" min="0" max="1023"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 — Detect sanitiser use</strong></p>
+<p>Add an <code>if / then / else</code> after the read:</p>
+<pre><code>if alcohol &gt; [your threshold]:
+    show tick icon on LED matrix
+    OLED shows "Sanitised!"
+else:
+    clear LED matrix</code></pre>
+<p><strong>Step 5 — Download and test</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_p6_optional.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>The complete sanitiser detector: warm-up handling in <code>on start</code>, detection in <code>forever</code>. The threshold (500) is an example — use a value roughly halfway between <em>your</em> baseline and peak.</figcaption>
+</figure>
+</div>
+<p>Flash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>✓ Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>OLED shows <code>"Warming up..."</code> for the first minute, then live readings</li>
+<li>The reading rises clearly when alcohol vapour is present</li>
+<li>The tick appears above your threshold and clears below it</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>JavaScript equivalent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> alcohol <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">init</span>(<span class="dv">128</span><span class="op">,</span> <span class="dv">64</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Warming up..."</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">60000</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Ready"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    alcohol <span class="op">=</span> pins<span class="op">.</span><span class="fu">analogReadPin</span>(AnalogReadWritePin<span class="op">.</span><span class="at">P2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Air: "</span> <span class="op">+</span> alcohol)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (alcohol <span class="op">&gt;</span> <span class="dv">500</span>) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">showIcon</span>(IconNames<span class="op">.</span><span class="at">Yes</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Sanitised!"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">clearScreen</span>()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">500</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace 500 with the threshold you observed on your hardware.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="discussion-what-is-this-device-actually-measuring" class="level3">
+<h3 class="anchored" data-anchor-id="discussion-what-is-this-device-actually-measuring">Discussion — what is this device actually measuring?</h3>
+<ol type="1">
+<li>During the 60-second warm-up, what did the readings look like? What would happen in a real deployment if the device lost power and restarted — and nobody knew about the warm-up?</li>
+<li>The MQ3 responds to other volatile compounds too — cleaning chemicals, solvents, even some perfumes. Could this device produce false “Sanitised!” confirmations? Does that matter for this application?</li>
+<li>The reading is relative, not calibrated. Can this device tell <em>how much</em> sanitiser was used, or only that <em>some</em> alcohol vapour was present?</li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

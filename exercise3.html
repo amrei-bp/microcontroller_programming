@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Interactive: Explore the micro:bit – Microcontrollers for Health &amp; Agriculture</title>
+<title>Exercise 3: Environmental monitor – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -110,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise3.html">3. Environmental monitor</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link active">
+  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">↳ Explore the micro:bit</span></a>
   </div>
 </li>
@@ -206,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercise3.html" class="sidebar-item-text sidebar-link">
+  <a href="./exercise3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3. Environmental monitor</span></a>
   </div>
 </li>
@@ -246,20 +281,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-components-at-a-glance" id="toc-the-components-at-a-glance" class="nav-link active" data-scroll-target="#the-components-at-a-glance">The components at a glance</a>
-  <ul class="collapse">
-  <li><a href="#front" id="toc-front" class="nav-link" data-scroll-target="#front">Front</a></li>
-  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
-  </ul></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#what-you-will-build" id="toc-what-you-will-build" class="nav-link" data-scroll-target="#what-you-will-build">What you will build</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#building-the-program" id="toc-building-the-program" class="nav-link" data-scroll-target="#building-the-program">Building the program</a></li>
+  <li><a href="#discussion-accuracy-and-fitness-for-purpose" id="toc-discussion-accuracy-and-fitness-for-purpose" class="nav-link" data-scroll-target="#discussion-accuracy-and-fitness-for-purpose">Discussion — accuracy and fitness for purpose</a></li>
+  <li><a href="#extension-challenge-if-you-finish-early" id="toc-extension-challenge-if-you-finish-early" class="nav-link" data-scroll-target="#extension-challenge-if-you-finish-early">Extension challenge (if you finish early)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./exercise3.html">3. Environmental monitor</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Interactive: Explore the micro:bit</h1>
+<h1 class="title">Exercise 3: Environmental monitor</h1>
 </div>
 
 
@@ -276,63 +312,183 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.</p>
-<div style="width: 100%; height: 85vh; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
-  <iframe src="closeread/microbit_closeread.html" style="width: 100%; height: 100%; border: none;" allowfullscreen="">
-  </iframe>
-</div>
-<section id="the-components-at-a-glance" class="level2">
-<h2 class="anchored" data-anchor-id="the-components-at-a-glance">The components at a glance</h2>
-<p>The numbers below match the numbered labels on the images above.</p>
-<section id="front" class="level3">
-<h3 class="anchored" data-anchor-id="front">Front</h3>
-<ol type="1">
-<li><strong>Buttons A and B</strong> — physical inputs you can press, separately or together</li>
-<li><strong>LED display</strong> — 25 red LEDs for text, numbers, and icons; doubles as a light sensor</li>
-<li><strong>Pins 0, 1, 2</strong> — general-purpose input/output pins for connecting sensors and actuators</li>
-<li><strong>3V pin</strong> — supplies power to connected components</li>
-<li><strong>GND pin</strong> — ground; completes the circuit</li>
-<li><strong>Touch logo</strong> — capacitive touch sensor; reacts to a finger without pressing</li>
-<li><strong>Microphone LED</strong> — lights up whenever the microphone is active</li>
-</ol>
+<p><em>Allow 30 minutes.</em></p>
+<section id="scenario" class="level3">
+<h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
+<p>A rural health clinic stores vaccines in a refrigerated cabinet. The cold chain requires temperatures between 2°C and 8°C. You are building a micro:bit device that sits near the cabinet and displays the current temperature and humidity continuously, so a health worker can check conditions at a glance — and so the device itself can raise an alarm if the temperature rises too high.</p>
 </section>
-<section id="back" class="level3">
-<h3 class="anchored" data-anchor-id="back">Back</h3>
-<ol>
-  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
-  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
-  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
-  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
-  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
-  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
+<section id="what-you-will-build" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-will-build">What you will build</h3>
+<ul>
+<li>Every 2 seconds: read temperature and humidity from the DHT11 sensor</li>
+<li>Display both values on the OLED screen</li>
+<li>If temperature exceeds your alarm threshold: LED matrix shows a warning icon</li>
+</ul>
+</section>
+<section id="hardware" class="level3">
+<h3 class="anchored" data-anchor-id="hardware">Hardware</h3>
+<ol type="1">
+<li>Connect the <strong>DHT11</strong> sensor to the Sensorbit port labelled <strong>P1</strong></li>
+<li>Plug the <strong>OLED screen</strong> into the Sensorbit’s <strong>IIC</strong> socket</li>
 </ol>
-<ol start="9">
-  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
-  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
-  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
-  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
-  <li><strong>Red power LED</strong> — on whenever the board has power</li>
-  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
-  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit <strong>V1</strong>, which our <strong>V2</strong> boards replace with numbers 14 and 15.</p>
+<p>The DHT11 connector is keyed — it only fits one way. Do not force it.</p>
 </div>
 </div>
 <hr>
-<p><em>Board images: micro:bit Educational Foundation, <a href="https://microbit.org/get-started/features/overview/">micro:bit features overview</a>.</em></p>
-
-
 </section>
+<section id="building-the-program" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-program">Building the program</h3>
+<p>Start a new project (<code>environment-monitor</code>). Add the Elecfreaks extension — extensions are per-project, so you need it again here.</p>
+<p><strong>Step 1 — Initialise the OLED in <code>on start</code></strong></p>
+<p>The OLED must be initialised once before you can write to it.</p>
+<ol type="1">
+<li>In the <strong>OLED</strong> category, find the block labelled something like <code>initialize OLED width 128 height 64</code></li>
+<li>Drag it into the <code>on start</code> block on the workspace</li>
+</ol>
+<p><strong>Step 2 — Store the DHT11 readings in variables</strong></p>
+<p>The DHT11 block in the SmartHome category is a <strong>reporter block</strong> — the same oval shape as the built-in <code>temperature (°C)</code> block you used in <a href="./exercise1.html">Exercise 1</a>. It returns a value and must be plugged into a value slot. There is no separate “query” step: the block reads the sensor and returns the measurement in one go. It has two dropdowns: one to select the pin, one to select the measurement (temperature or humidity).</p>
+<ol type="1">
+<li>From <strong>Variables</strong>, click <strong>Make a Variable</strong> and create one called <code>temperature</code></li>
+<li>Create a second variable called <code>humidity</code></li>
+<li>In the <code>forever</code> block, add a <code>set temperature to</code> block (from <strong>Variables</strong>). From <strong>SmartHome</strong>, find the <code>DHT11 sensor [pin] temperature(°C) value</code> block, set the pin to <strong>P1</strong>, and plug it into the value slot of <code>set temperature to</code>.</li>
+<li>Below that, add <code>set humidity to</code> and plug in a second <code>DHT11 sensor P1 humidity(0~100) value</code> block — same block, different measurement selected in the dropdown.</li>
+</ol>
+<p><strong>Step 3 — Display on the OLED</strong></p>
+<ol type="1">
+<li>From <strong>OLED</strong>, add a <code>clear OLED display</code> block — this wipes the screen before writing new values</li>
+<li>To show the temperature: from <strong>OLED</strong>, add the <code>show string</code> (or <code>show number</code>) OLED block. Use the <strong>Text → join</strong> block (in <strong>Advanced → Text</strong>) to combine the label <code>"Temp: "</code>, the <code>temperature</code> variable, and the unit <code>" C"</code> into one line.</li>
+<li>Repeat for humidity: <code>"Hum: "</code> + <code>humidity</code> + <code>" %"</code></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the <code>join</code> block is unfamiliar, a simpler approach is to put <code>temperature</code> on its own line with just <code>show number</code> and <code>humidity</code> on the next. Labels can go on separate lines above each number.</p>
+</div>
+</div>
+<p><strong>Step 4 — Add a temperature alarm</strong></p>
+<ol type="1">
+<li>From <strong>Logic</strong>, add an <code>if / then / else</code> block, placed <strong>before</strong> the <code>clear OLED display</code></li>
+<li>Set the condition: <code>temperature &gt; 8</code> (8°C is the cold-chain upper limit for vaccines)</li>
+<li>In the <code>if</code> branch: from <strong>Basic</strong>, add <code>show icon</code> and pick the warning or exclamation symbol</li>
+<li>In the <code>else</code> branch: from <strong>Basic</strong>, add <code>clear screen</code></li>
+</ol>
+<p><strong>Step 5 — Wait 2 seconds</strong></p>
+<p>At the very end of the <code>forever</code> block:</p>
+<ol type="1">
+<li>From <strong>Basic</strong>, add <code>pause (ms)</code> set to <strong>2000</strong></li>
+</ol>
+<p>This is essential — the DHT11 can only be read once every two seconds. Without the pause, you will get read errors.</p>
+<p><strong>Step 6 — Download and test</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/exercise_temp.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>The complete environmental monitor. Note the alarm <code>if/else</code> sits <em>before</em> the OLED display blocks, and the <code>pause 2000</code> comes last.</figcaption>
+</figure>
+</div>
+<p>Download and flash the program. Then:</p>
+<ul>
+<li>Check the OLED shows values</li>
+<li>Breathe gently on the DHT11 — temperature and humidity should increase slightly</li>
+<li>Try warming the sensor in your hand — the temperature should rise above your alarm threshold and the LED matrix warning icon should appear</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>✓ Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>OLED shows temperature and humidity</li>
+<li>Values change (even slightly) when you breathe on the DHT11</li>
+<li>LED matrix shows the warning icon when temperature exceeds your threshold; clears when it drops below</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>JavaScript equivalent
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> humidity <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> temperature <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>OLED<span class="op">.</span><span class="fu">init</span>(<span class="dv">128</span><span class="op">,</span> <span class="dv">64</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>basic<span class="op">.</span><span class="fu">forever</span>(<span class="kw">function</span> () {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    temperature <span class="op">=</span> smarthome<span class="op">.</span><span class="fu">dht11Sensor</span>(DigitalPin<span class="op">.</span><span class="at">P1</span><span class="op">,</span> smarthome<span class="op">.</span><span class="at">DHT11_state</span><span class="op">.</span><span class="at">DHT11_temperature_C</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    humidity <span class="op">=</span> smarthome<span class="op">.</span><span class="fu">dht11Sensor</span>(DigitalPin<span class="op">.</span><span class="at">P1</span><span class="op">,</span> smarthome<span class="op">.</span><span class="at">DHT11_state</span><span class="op">.</span><span class="at">DHT11_humidity</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (temperature <span class="op">&gt;</span> <span class="dv">8</span>) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">showIcon</span>(IconNames<span class="op">.</span><span class="at">No</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        basic<span class="op">.</span><span class="fu">clearScreen</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">clear</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Temp:"</span> <span class="op">+</span> temperature <span class="op">+</span> <span class="st">" °C"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    OLED<span class="op">.</span><span class="fu">writeStringNewLine</span>(<span class="st">"Hum:"</span> <span class="op">+</span> humidity <span class="op">+</span> <span class="st">" %"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    basic<span class="op">.</span><span class="fu">pause</span>(<span class="dv">2000</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Exact function names depend on the smarthome extension version — if the above does not compile, check the block names shown in the MakeCode toolbox.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="discussion-accuracy-and-fitness-for-purpose" class="level3">
+<h3 class="anchored" data-anchor-id="discussion-accuracy-and-fitness-for-purpose">Discussion — accuracy and fitness for purpose</h3>
+<p>The DHT11 has an accuracy of <strong>±2°C</strong>. Your alarm fires at <strong>8°C</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Think about this before looking at the hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If the true temperature is 7°C and the sensor is reading at its worst-case high end (+2°C error), what does your program see? What might it wrongly conclude?</p>
+<p>The reverse: if the true temperature has risen to 9°C and the sensor is reading at its worst-case low end (−2°C error), does the alarm fire?</p>
+</div>
+</div>
+</div>
+<p><strong>Question for your team:</strong> Is this device safe to use for vaccine cold-chain monitoring? What would a more reliable design require? Note your answer — it will appear in the Canvas quiz.</p>
+<hr>
+</section>
+<section id="extension-challenge-if-you-finish-early" class="level3">
+<h3 class="anchored" data-anchor-id="extension-challenge-if-you-finish-early">Extension challenge (if you finish early)</h3>
+<p>Add a humidity alarm alongside the temperature alarm. WHO guidelines recommend vaccine storage below 80% relative humidity. Extend your <code>if / else if / else</code> block to show a different icon — or write <code>"HUMID!"</code> to the OLED — when humidity exceeds 80.</p>
+<hr>
+<p>Next: <strong><a href="./exercise4.html">Exercise 4: Irrigation alarm</a></strong>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

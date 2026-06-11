@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Interactive: Explore the micro:bit – Microcontrollers for Health &amp; Agriculture</title>
+<title>★ Mini challenge – Microcontrollers for Health &amp; Agriculture</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./mini_challenge.html">★ Mini challenge</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -159,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link active">
+  <a href="./microbit_explorer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">↳ Explore the micro:bit</span></a>
   </div>
 </li>
@@ -218,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mini_challenge.html" class="sidebar-item-text sidebar-link">
+  <a href="./mini_challenge.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">★ Mini challenge</span></a>
   </div>
 </li>
@@ -246,20 +246,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-components-at-a-glance" id="toc-the-components-at-a-glance" class="nav-link active" data-scroll-target="#the-components-at-a-glance">The components at a glance</a>
-  <ul class="collapse">
-  <li><a href="#front" id="toc-front" class="nav-link" data-scroll-target="#front">Front</a></li>
-  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
-  </ul></li>
+  <li><a href="#before-you-leave" id="toc-before-you-leave" class="nav-link active" data-scroll-target="#before-you-leave">Before you leave</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./lecture1.html">Pre-course lectures</a></li><li class="breadcrumb-item"><a href="./microbit_explorer.html">↳ Explore the micro:bit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercise_setup.html">Exercises</a></li><li class="breadcrumb-item"><a href="./mini_challenge.html">★ Mini challenge</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Interactive: Explore the micro:bit</h1>
+<h1 class="title">★ Mini challenge</h1>
 </div>
 
 
@@ -276,63 +272,101 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Scroll through the diagram below to explore every component on the BBC micro:bit V2 — front and back. Each step zooms in on a different part and explains what it does.</p>
-<div style="width: 100%; height: 85vh; border-radius: 8px; overflow: hidden; margin-top: 1rem;">
-  <iframe src="closeread/microbit_closeread.html" style="width: 100%; height: 100%; border: none;" allowfullscreen="">
-  </iframe>
-</div>
-<section id="the-components-at-a-glance" class="level2">
-<h2 class="anchored" data-anchor-id="the-components-at-a-glance">The components at a glance</h2>
-<p>The numbers below match the numbered labels on the images above.</p>
-<section id="front" class="level3">
-<h3 class="anchored" data-anchor-id="front">Front</h3>
-<ol type="1">
-<li><strong>Buttons A and B</strong> — physical inputs you can press, separately or together</li>
-<li><strong>LED display</strong> — 25 red LEDs for text, numbers, and icons; doubles as a light sensor</li>
-<li><strong>Pins 0, 1, 2</strong> — general-purpose input/output pins for connecting sensors and actuators</li>
-<li><strong>3V pin</strong> — supplies power to connected components</li>
-<li><strong>GND pin</strong> — ground; completes the circuit</li>
-<li><strong>Touch logo</strong> — capacitive touch sensor; reacts to a finger without pressing</li>
-<li><strong>Microphone LED</strong> — lights up whenever the microphone is active</li>
-</ol>
-</section>
-<section id="back" class="level3">
-<h3 class="anchored" data-anchor-id="back">Back</h3>
-<ol>
-  <li><strong>Radio &amp; Bluetooth antenna</strong> — printed onto the board; wireless communication with phones and other micro:bits</li>
-  <li><strong>Processor &amp; temperature sensor</strong> — the nRF52833 chip that runs your program; also measures chip temperature</li>
-  <li><strong>Compass</strong> — detects magnetic fields and orientation</li>
-  <li><strong>Accelerometer</strong> — measures movement, tilt, and shake</li>
-  <li><strong>Pins</strong> — the full edge connector that slots into the Sensorbit</li>
-  <li><strong>Micro USB socket</strong> — power and program transfer from your laptop</li>
-</ol>
-<ol start="9">
-  <li><strong>Battery socket</strong> — accepts a 2× AAA battery pack for portable use</li>
-  <li><strong>USB interface chip</strong> — a second, smaller processor that handles the USB connection and file transfer</li>
-  <li><strong>Speaker</strong> — plays tones and sounds directly</li>
-  <li><strong>Microphone</strong> — measures sound level; detects claps and shouts</li>
-  <li><strong>Red power LED</strong> — on whenever the board has power</li>
-  <li><strong>Yellow USB LED</strong> — flashes while a program is being written to the board</li>
-  <li><strong>Reset &amp; power button</strong> — restarts your program; hold to power off</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
+<p><em>Allow the remaining time — aim to start 15 minutes before the end of the session.</em></p>
+<p>Choose one scenario and build as much as you can before the end of the exercise time. You do not need to finish — the goal is to sketch the logic, start implementing, and identify where you get stuck.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 20%">
+<col style="width: 38%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Scenario</th>
+<th>Suggested sensors</th>
+<th>Suggested outputs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td><strong>Pharmacy cold-store monitor</strong></td>
+<td>DHT11</td>
+<td>OLED shows temperature and humidity; Rainbow LED red if either is out of range</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td><strong>Entry counter for a clinic</strong></td>
+<td>PIR</td>
+<td>OLED shows entry count; sound on each new entry; Button A resets count</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td><strong>Plant health station</strong></td>
+<td>DHT11 + soil moisture</td>
+<td>OLED shows both readings; Rainbow LED summarises overall status</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td><strong>Presence-gated display</strong></td>
+<td>PIR + crash sensor</td>
+<td>OLED shows readings only while someone is present; crash sensor silences the alarm for 60 seconds</td>
+</tr>
+<tr class="odd">
+<td>★</td>
+<td><strong>Free choice</strong></td>
+<td>Any from the kit</td>
+<td>Any combination of outputs</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Numbers 7 and 8 are skipped on the back: in the official numbering they refer to features of the older micro:bit <strong>V1</strong>, which our <strong>V2</strong> boards replace with numbers 14 and 15.</p>
+<p>Scenarios B and D use the <strong>PIR sensor</strong>. If your team did not do <a href="./bonus_exercises.html#ex5">bonus Exercise 5</a>, skim its hardware and Step 2 first — the PIR is wired and read exactly like the crash sensor, on port P8.</p>
 </div>
 </div>
+<p>For your chosen scenario:</p>
+<ol type="1">
+<li><strong>Agree the behaviour</strong> — what is the trigger? What is the response?</li>
+<li><strong>Sketch the logic</strong> — write pseudocode or draw a simple flowchart on paper before touching the keyboard</li>
+<li><strong>Build what you can</strong> — start with the first sensor working, then add the second</li>
+<li><strong>Note your sticking point</strong> — what is the first thing that didn’t work, and why?</li>
+</ol>
+<p>Bring your answers to the mixer session that follows — they are the seed of your project idea for tomorrow.</p>
 <hr>
-<p><em>Board images: micro:bit Educational Foundation, <a href="https://microbit.org/get-started/features/overview/">micro:bit features overview</a>.</em></p>
+<section id="before-you-leave" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-leave">Before you leave</h2>
+<ol type="1">
+<li><strong>Save your code.</strong> In MakeCode, click the save icon (floppy disk) to download the <code>.hex</code> files for each project. You can also copy the project URL from the browser address bar — this lets you reopen it later.</li>
+<li><strong>Disconnect carefully.</strong> Unplug the USB cable before removing the micro:bit from the Sensorbit.</li>
+<li><strong>Return sensors to the foam tray.</strong> Each sensor has its own slot.</li>
+</ol>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ready for the quiz?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Complete the <strong>Lab quiz on Canvas</strong> this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter’s notes are the answers.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
