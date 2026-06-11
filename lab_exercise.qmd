@@ -668,6 +668,8 @@ The PIR is a simple digital sensor, read exactly like the crash sensor in Exerci
 
 **Step 4 — Download and test**
 
+![The complete motion alert. Any icon works in the `if` branch — pick one your team likes.](figures/exercise_p5_optional.png){fig-align="center" width="55%"}
+
 Flash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to `"Ready"` within a few seconds.
 
 ::: {.callout-tip}
@@ -827,6 +829,8 @@ else:
 ```
 
 **Step 5 — Download and test**
+
+![The complete sanitiser detector: warm-up handling in `on start`, detection in `forever`. The threshold (500) is an example — use a value roughly halfway between *your* baseline and peak.](figures/exercise_p6_optional.png){fig-align="center" width="90%"}
 
 Flash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.
 
