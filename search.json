@@ -403,7 +403,7 @@
     "href": "index.html#course-goals",
     "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
     "section": "Course goals",
-    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements."
+    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nUnderstand the sensors and hardware provided with the Backyard Brains Spiker:bit and Heart & Brain Spikerbox. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements."
   },
   {
     "objectID": "index.html#how-this-course-works",
@@ -411,19 +411,5 @@
     "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
     "section": "How this course works",
     "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room."
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Schedule",
-    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world."
-  },
-  {
-    "objectID": "index.html#teams",
-    "href": "index.html#teams",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Teams",
-    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2."
   }
 ]
