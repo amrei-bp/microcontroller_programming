@@ -363,7 +363,7 @@ The DHT11 block in the SmartHome category is a **reporter block** — the same o
 1. From **Variables**, click **Make a Variable** and create one called `temperature`
 2. Create a second variable called `humidity`
 3. In the `forever` block, add a `set temperature to` block (from **Variables**). From **SmartHome**, find the `DHT11 sensor [pin] temperature(°C) value` block, set the pin to **P1**, and plug it into the value slot of `set temperature to`.
-4. Below that, add `set humidity to` and plug in a second `DHT11 sensor P1 humidity(%) value` block — same block, different measurement selected in the dropdown.
+4. Below that, add `set humidity to` and plug in a second `DHT11 sensor P1 humidity(0~100) value` block — same block, different measurement selected in the dropdown.
 
 **Step 3 — Display on the OLED**
 
@@ -391,6 +391,8 @@ At the very end of the `forever` block:
 This is essential — the DHT11 can only be read once every two seconds. Without the pause, you will get read errors.
 
 **Step 6 — Download and test**
+
+![The complete environmental monitor. Note the alarm `if/else` sits *before* the OLED display blocks, and the `pause 2000` comes last.](figures/exercise_temp.png){fig-align="center" width="55%"}
 
 Download and flash the program. Then:
 
