@@ -6,3 +6,26 @@
   font-weight: 700;
   color: var(--bs-primary);
 }
+
+/* Chromeless view when the page is embedded in an iframe (e.g. Canvas).
+   The .embedded class is added by the script in _includes/persist-inputs.html. */
+.embedded #quarto-header,
+.embedded #quarto-sidebar,
+.embedded #quarto-margin-sidebar,
+.embedded #quarto-back-to-top,
+.embedded .quarto-secondary-nav,
+.embedded .quarto-page-breadcrumbs,
+.embedded .page-navigation {
+  display: none !important;
+}
+
+.embedded #quarto-content {
+  display: block !important;
+}
+
+.embedded main#quarto-document-content {
+  display: block !important;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
