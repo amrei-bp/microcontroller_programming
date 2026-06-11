@@ -17,9 +17,8 @@ By the end of this course you will be able to:
 3. Understand program flow, variables, loops, procedures, and querying peripherals with MakeCode.
 4. Understand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.
 5. Understand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.
-6. Understand the sensors and hardware provided with the Backyard Brains Spiker:bit and Heart & Brain Spikerbox. Evaluate their utility and limitations.
-7. Apply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.
-8. Create a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.
+6. Apply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.
+7. Create a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.
 
 ---
 
@@ -34,3 +33,56 @@ This course follows a **flipped, spaced-repetition** format:
 | **Third** | Lab and project | Apply the knowledge with real hardware |
 
 This means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.
+
+---
+
+## Schedule
+
+### Before 16 June — Pre-course preparation
+
+Watch the four pre-course lectures below — starting with the innovator lecture — and complete the Canvas quizzes for each.
+
+| Lecture | Topic |
+|---------|-------|
+| [Start here](innovator.qmd) | What makes an innovator? |
+| [Lecture 1](lecture1.qmd) | Microcontrollers, sensors, and actuators |
+| [Lecture 2](lecture2.qmd) | Programming with MakeCode |
+| [Lecture 3](lecture3.qmd) | The Elecfreaks Smart Health Kit |
+
+The innovator lecture comes with homework: **bring two problems you have personally seen** — phrased as "How might we…?" questions — to the course. They are the raw material for the project mixer.
+
+---
+
+### 16 June — Introductory day
+
+| Time | Activity |
+|------|----------|
+| 9:30 | Course start. Roll call. Meet the teachers. Student introductions. |
+| 10:00 | **Discussion:** Microcontroller architecture, sensors, and actuators |
+| 11:00 | **Discussion:** MakeCode programming |
+| 12:00 | Lunch break |
+| 13:00 | **Discussion:** The Elecfreaks Smart Health Kit |
+| 14:00 | **Lab:** Guided exercise with the Elecfreaks Smart Health Kit |
+| 16:00 | **Mixer:** Discuss project ideas and form teams. Tea and cookies. |
+| 17:00 | End of day |
+
+**Evening:** Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.
+
+---
+
+### 17 June — Project day
+
+| Time | Activity |
+|------|----------|
+| 9:30 | Questions about additional micro:bit kits |
+| 10:00 | Discuss and organise projects. Start work. |
+| 15:00 | **Shark tank:** Present projects to teachers and students |
+| 17:00 | Time to change the world. |
+
+---
+
+## Teams
+
+You will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.
+
+Each team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.

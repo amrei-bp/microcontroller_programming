@@ -13,6 +13,8 @@ website:
         href: index.qmd
       - text: "Pre-course lectures"
         menu:
+          - text: "Start here: What makes an innovator?"
+            href: innovator.qmd
           - text: "1. Microcontrollers, Sensors & Actuators"
             href: lecture1.qmd
           - text: "↳ Explore the micro:bit"
