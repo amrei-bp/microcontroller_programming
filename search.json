@@ -1,5 +1,110 @@
 [
   {
+    "objectID": "mini_challenge.html",
+    "href": "mini_challenge.html",
+    "title": "★ Mini challenge",
+    "section": "",
+    "text": "Allow the remaining time — aim to start 15 minutes before the end of the session.\nChoose one scenario and build as much as you can before the end of the exercise time. You do not need to finish — the goal is to sketch the logic, start implementing, and identify where you get stuck.\nFor your chosen scenario:\nBring your answers to the mixer session that follows — they are the seed of your project idea for tomorrow.",
+    "crumbs": [
+      "Exercises",
+      "★ Mini challenge"
+    ]
+  },
+  {
+    "objectID": "mini_challenge.html#before-you-leave",
+    "href": "mini_challenge.html#before-you-leave",
+    "title": "★ Mini challenge",
+    "section": "Before you leave",
+    "text": "Before you leave\n\nSave your code. In MakeCode, click the save icon (floppy disk) to download the .hex files for each project. You can also copy the project URL from the browser address bar — this lets you reopen it later.\nDisconnect carefully. Unplug the USB cable before removing the micro:bit from the Sensorbit.\nReturn sensors to the foam tray. Each sensor has its own slot.\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lab quiz on Canvas this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter’s notes are the answers.",
+    "crumbs": [
+      "Exercises",
+      "★ Mini challenge"
+    ]
+  },
+  {
+    "objectID": "exercise3.html",
+    "href": "exercise3.html",
+    "title": "Exercise 3: Environmental monitor",
+    "section": "",
+    "text": "Allow 30 minutes.\n\nScenario\nA rural health clinic stores vaccines in a refrigerated cabinet. The cold chain requires temperatures between 2°C and 8°C. You are building a micro:bit device that sits near the cabinet and displays the current temperature and humidity continuously, so a health worker can check conditions at a glance — and so the device itself can raise an alarm if the temperature rises too high.\n\n\nWhat you will build\n\nEvery 2 seconds: read temperature and humidity from the DHT11 sensor\nDisplay both values on the OLED screen\nIf temperature exceeds your alarm threshold: LED matrix shows a warning icon\n\n\n\nHardware\n\nConnect the DHT11 sensor to the Sensorbit port labelled P1\nPlug the OLED screen into the Sensorbit’s IIC socket\n\n\n\n\n\n\n\nTip\n\n\n\nThe DHT11 connector is keyed — it only fits one way. Do not force it.\n\n\n\n\n\nBuilding the program\nStart a new project (environment-monitor). Add the Elecfreaks extension — extensions are per-project, so you need it again here.\nStep 1 — Initialise the OLED in on start\nThe OLED must be initialised once before you can write to it.\n\nIn the OLED category, find the block labelled something like initialize OLED width 128 height 64\nDrag it into the on start block on the workspace\n\nStep 2 — Store the DHT11 readings in variables\nThe DHT11 block in the SmartHome category is a reporter block — the same oval shape as the built-in temperature (°C) block you used in Exercise 1. It returns a value and must be plugged into a value slot. There is no separate “query” step: the block reads the sensor and returns the measurement in one go. It has two dropdowns: one to select the pin, one to select the measurement (temperature or humidity).\n\nFrom Variables, click Make a Variable and create one called temperature\nCreate a second variable called humidity\nIn the forever block, add a set temperature to block (from Variables). From SmartHome, find the DHT11 sensor [pin] temperature(°C) value block, set the pin to P1, and plug it into the value slot of set temperature to.\nBelow that, add set humidity to and plug in a second DHT11 sensor P1 humidity(0~100) value block — same block, different measurement selected in the dropdown.\n\nStep 3 — Display on the OLED\n\nFrom OLED, add a clear OLED display block — this wipes the screen before writing new values\nTo show the temperature: from OLED, add the show string (or show number) OLED block. Use the Text → join block (in Advanced → Text) to combine the label \"Temp: \", the temperature variable, and the unit \" C\" into one line.\nRepeat for humidity: \"Hum: \" + humidity + \" %\"\n\n\n\n\n\n\n\nTip\n\n\n\nIf the join block is unfamiliar, a simpler approach is to put temperature on its own line with just show number and humidity on the next. Labels can go on separate lines above each number.\n\n\nStep 4 — Add a temperature alarm\n\nFrom Logic, add an if / then / else block, placed before the clear OLED display\nSet the condition: temperature &gt; 8 (8°C is the cold-chain upper limit for vaccines)\nIn the if branch: from Basic, add show icon and pick the warning or exclamation symbol\nIn the else branch: from Basic, add clear screen\n\nStep 5 — Wait 2 seconds\nAt the very end of the forever block:\n\nFrom Basic, add pause (ms) set to 2000\n\nThis is essential — the DHT11 can only be read once every two seconds. Without the pause, you will get read errors.\nStep 6 — Download and test\n\n\n\nThe complete environmental monitor. Note the alarm if/else sits before the OLED display blocks, and the pause 2000 comes last.\n\n\nDownload and flash the program. Then:\n\nCheck the OLED shows values\nBreathe gently on the DHT11 — temperature and humidity should increase slightly\nTry warming the sensor in your hand — the temperature should rise above your alarm threshold and the LED matrix warning icon should appear\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows temperature and humidity\nValues change (even slightly) when you breathe on the DHT11\nLED matrix shows the warning icon when temperature exceeds your threshold; clears when it drops below\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet humidity = 0\nlet temperature = 0\nOLED.init(128, 64)\nbasic.forever(function () {\n    temperature = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_temperature_C)\n    humidity = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_humidity)\n    if (temperature &gt; 8) {\n        basic.showIcon(IconNames.No)\n    } else {\n        basic.clearScreen()\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Temp:\" + temperature + \" °C\")\n    OLED.writeStringNewLine(\"Hum:\" + humidity + \" %\")\n    basic.pause(2000)\n})\nExact function names depend on the smarthome extension version — if the above does not compile, check the block names shown in the MakeCode toolbox.\n\n\n\n\n\n\nDiscussion — accuracy and fitness for purpose\nThe DHT11 has an accuracy of ±2°C. Your alarm fires at 8°C.\n\n\n\n\n\n\nTipThink about this before looking at the hint\n\n\n\n\n\nIf the true temperature is 7°C and the sensor is reading at its worst-case high end (+2°C error), what does your program see? What might it wrongly conclude?\nThe reverse: if the true temperature has risen to 9°C and the sensor is reading at its worst-case low end (−2°C error), does the alarm fire?\n\n\n\nQuestion for your team: Is this device safe to use for vaccine cold-chain monitoring? What would a more reliable design require? Note your answer — it will appear in the Canvas quiz.\n\n\n\nExtension challenge (if you finish early)\nAdd a humidity alarm alongside the temperature alarm. WHO guidelines recommend vaccine storage below 80% relative humidity. Extend your if / else if / else block to show a different icon — or write \"HUMID!\" to the OLED — when humidity exceeds 80.\n\nNext: Exercise 4: Irrigation alarm.",
+    "crumbs": [
+      "Exercises",
+      "3. Environmental monitor"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "",
+    "text": "Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.\nWe use the BBC micro:bit and the Elecfreaks Smart Health Kit as our hardware platform, and MakeCode as our programming environment.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#course-goals",
+    "href": "index.html#course-goals",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Course goals",
+    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#how-this-course-works",
+    "href": "index.html#how-this-course-works",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "How this course works",
+    "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Schedule",
+    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "index.html#teams",
+    "href": "index.html#teams",
+    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
+    "section": "Teams",
+    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.",
+    "crumbs": [
+      "About the course"
+    ]
+  },
+  {
+    "objectID": "exercise2.html",
+    "href": "exercise2.html",
+    "title": "Exercise 2: Emergency call button",
+    "section": "",
+    "text": "Allow 15 minutes.\n\nScenario\nA bedridden patient needs a way to call for help. A call button at the bedside should produce an unmissable alert — visible and audible — the moment it is pressed. This is your first external sensor: one cable, three wires, and the wiring rule from the setup.\n\n\nWhat you will build\n\nCrash sensor pressed → heart icon + tone\nCrash sensor released → display clears\n\n\n\nHardware\nConnect the crash sensor to the Sensorbit port labelled P1. Remember: G to G, V to V, S to S.\n\n\n\n\n\n\nTip\n\n\n\nYou will not find a P0 port on the Sensorbit — P0 is wired to the board’s built-in buzzer and headphone jack. The GVS ports start at P1.\n\n\n\n\n\nBuilding the program\nStart a new project (New Project in MakeCode, name it call-button). No extension needed for this one.\nStep 1 — See the raw signal first\nBefore making the device react, look at what the sensor actually sends.\n\nFrom Basic, drag show number into the forever block\nFrom Advanced → Pins, plug a digital read pin P1 block into it\nDownload and flash\n\n\n\n\nStep 1: showing the raw pin value on the LED matrix. The digital read pin P1 reporter sits inside show number.\n\n\nWatch the LED matrix while the Hardware lead presses and releases the crash sensor’s lever. The display shows the pin’s value: 0 or 1.\nDocumenter: write down which value means pressed and which means released on your hardware.\n\n\n\nState\nValue shown\n\n\n\n\nLever pressed\n 0     1\n\n\nLever released\n 0     1\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat you enter here is saved in this browser, on this laptop — it will still be here this evening when your team answers the Canvas quiz. It is not submitted anywhere, so make sure the Documenter also keeps their own notes.\n\n\nStep 2 — React with a conditional\n\nFrom Logic, add an if / then / else block to the forever loop, replacing the show number\nCondition: from Logic, a comparison block 0 = 0; plug digital read pin P1 into the left side and your observed pressed value on the right\nIn the if branch: from Basic, show icon (heart); from Music, play tone Middle A for 1 beat\nIn the else branch: from Basic, clear screen\n\n\n\n\nThe complete call button program. This example checks for 0 — use the pressed value you observed in Step 1.\n\n\nStep 3 — Download and test\nFlash. Press the lever — icon and tone. Release — the display clears.\n\n\n\n\n\n\nTipTwo patterns, compared\n\n\n\nExercise 1 used events — code that waits for something to happen. This exercise uses polling — a forever loop that checks the pin many times per second and reacts to what it finds. Events only exist for the micro:bit’s built-in inputs; external sensors must be polled. You now know both fundamental patterns of microcontroller programming.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nThe LED matrix and tone respond to the lever, reliably, every press\nThe Documenter has noted which raw value means “pressed”\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nbasic.forever(function () {\n    if (pins.digitalReadPin(DigitalPin.P1) == 0) {\n        basic.showIcon(IconNames.Heart)\n        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)\n    } else {\n        basic.clearScreen()\n    }\n})\nReplace 0 with the pressed value you observed in Step 1.\n\n\n\n\n\n\nDiscussion — what makes a call button trustworthy?\nThe alert stops the moment the patient releases the lever. Question for your team: Is that the right behaviour for an emergency call button? What should happen if a patient presses it once and then can’t keep holding it? Note your answer.\n\n\n\nExtension challenge (if you finish early)\nMake the alarm latch. Create a variable alarm. When the crash sensor is pressed, set alarm to 1. While alarm is 1, keep the icon and tone going — even after the lever is released. Add an on button A pressed event that sets alarm back to 0: the nurse’s “cancel” button. This combines both patterns you have learned: polling for the sensor, an event for the cancel.\n\n\n\n\n\n\nTipStuck? One possible solution\n\n\n\n\n\n\n\n\nThe latching alarm: the if only sets the alarm, the while loop keeps it sounding, and the button event cancels it.\n\n\n\n\n\n\nNext: Exercise 3: Environmental monitor.",
+    "crumbs": [
+      "Exercises",
+      "2. Emergency call button"
+    ]
+  },
+  {
+    "objectID": "exercise4.html",
+    "href": "exercise4.html",
+    "title": "Exercise 4: Irrigation alarm",
+    "section": "",
+    "text": "Allow 25 minutes.\n\nScenario\nA small farm wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You will build a device that colour-codes a Rainbow LED strip to show the soil status at a glance — red (dry), amber (moist), green (wet) — so the farmer knows immediately whether to water.\n\n\nWhat you will build\n\nSoil moisture sensor read continuously\nRaw numeric value shown on OLED\nRainbow LED strip: red when dry, amber when moist, green when adequately wet\nThresholds calibrated by you during the exercise\n\n\n\nHardware\n\nConnect the soil moisture sensor to the Sensorbit port labelled P2\nConnect the Rainbow LED strip to the Sensorbit port labelled P16\n\n\n\n\nBuilding the program\nStart a new project (irrigation-alarm). Add the Elecfreaks extension.\nStep 1 — Set up the Rainbow LED strip in on start\nThe Rainbow LED strip is controlled using Neopixel blocks, which were added with the Elecfreaks extension.\n\nFrom Variables, create a variable called strip\nFrom Neopixel, drag the block set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)\nSet strip to this block — this initialises the LED strip\n\nAlso add the OLED initialiser: initialize OLED width 128 height 64.\nStep 2 — Read the soil moisture sensor in forever\nThe soil moisture sensor is an analog sensor. No special extension block is needed — you read it directly from a pin, just like the crash sensor in Exercise 2, except the value is a number on a scale instead of 0 or 1.\n\nCreate a variable called moisture\nFrom Advanced → Pins, drag an analog read pin P2 block and set moisture to it\nFrom OLED, clear the OLED and display the value: label \"Soil: \" joined to moisture\n\n\n\n\nYour program after Steps 1 and 2: on start initialises the LED strip and the OLED; forever reads the sensor and shows the raw value.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe analog read returns a number between 0 and 1023. Higher value = wetter. Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly — in open air the reading sits near 0. Run the program and check your own readings before setting thresholds.\n\n\nStep 3 — Discover your thresholds\nBefore adding colour logic, flash and test the raw readings:\n\nHold the sensor probes in the air — note the value\nPress your fingers firmly across both metal probes — this simulates wet, conductive soil — note the value\nLightly touch the probes — note the intermediate value\n\nThese three readings give you the range for your thresholds. Enter them in the table below (Documenter role) — they are saved in this browser and will still be here for the evening quiz:\n\n\n\nCondition\nRaw value\n\n\n\n\nAir (dry)\n\n\n\nLight contact (moist)\n\n\n\nFirm contact (wet)\n\n\n\nYour dry/moist threshold\n\n\n\nYour moist/wet threshold\n\n\n\n\nStep 4 — Colour-coded response\nAdd an if / else if / else block after the moisture read:\nif moisture &lt; [your dry/moist threshold]:\n    strip show colour red\n\nelse if moisture &lt; [your moist/wet threshold]:\n    strip show colour orange\n\nelse:\n    strip show colour green\nNote the direction: low readings mean dry, so the first check catches values below your dry threshold.\nUse your observed values from Step 3 as the thresholds. Use the Neopixel blocks strip show colour for each branch.\nStep 5 — Slow the loop down\nAt the very end of the forever block, add a pause (ms) block (from Basic) set to 2000.\nUnlike the DHT11, the soil moisture sensor doesn’t need this — it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.\nStep 6 — Download and test\nFlash, then verify all three colours appear as you move between dry, light contact, and firm contact.\n\n\n\nThe complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware — use the values you observed in Step 3.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows a numeric value that changes with contact\nRainbow LED goes red in air, amber with light contact, green with firm contact (or similar — your thresholds may produce a different boundary)\nYou have written down your threshold values\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet moisture = 0\nlet strip = neopixel.create(DigitalPin.P16, 8, NeoPixelMode.RGB)\nOLED.init(128, 64)\nbasic.forever(function () {\n    moisture = pins.analogReadPin(AnalogReadWritePin.P2)\n    if (moisture &lt; 90) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Red))\n    } else if (moisture &lt; 450) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Orange))\n    } else {\n        strip.showColor(neopixel.colors(NeoPixelColors.Green))\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Soil:\" + moisture)\n    basic.pause(2000)\n})\nReplace 90 and 450 with the threshold values you observed on your hardware.\n\n\n\n\n\n\nDiscussion — calibration and drift\nThe raw reading is a number between 0 and 1023. You just set your thresholds based on 60 seconds of testing.\nQuestion for your team: A farmer leaves this sensor buried in soil for three months. The probe tips corrode (as described in Lecture 3). What happens to the readings? Would your thresholds still be valid? What would you need to do to make this device reliable for long-term use?\n\n\n\nExtension challenge\nGraduated brightness. Instead of showing every LED the same colour, make the number of lit LEDs correspond to the moisture level — 0 LEDs for bone dry, all 8 for saturated. This gives the farmer more nuance than three categories. Use the Neopixel strip set pixel color at [n] to [colour] block inside a loop.\n\nFinished before ~15:25? Pick one of the optional bonus exercises. Otherwise, continue to the ★ Mini challenge.",
+    "crumbs": [
+      "Exercises",
+      "4. Irrigation alarm"
+    ]
+  },
+  {
     "objectID": "exercise_setup.html",
     "href": "exercise_setup.html",
     "title": "Lab: Setup & Overview",
@@ -55,15 +160,231 @@
     ]
   },
   {
-    "objectID": "exercise4.html",
-    "href": "exercise4.html",
-    "title": "Exercise 4: Irrigation alarm",
+    "objectID": "troubleshooting.html",
+    "href": "troubleshooting.html",
+    "title": "Troubleshooting & FAQ",
     "section": "",
-    "text": "Allow 25 minutes.\n\nScenario\nA small farm wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You will build a device that colour-codes a Rainbow LED strip to show the soil status at a glance — red (dry), amber (moist), green (wet) — so the farmer knows immediately whether to water.\n\n\nWhat you will build\n\nSoil moisture sensor read continuously\nRaw numeric value shown on OLED\nRainbow LED strip: red when dry, amber when moist, green when adequately wet\nThresholds calibrated by you during the exercise\n\n\n\nHardware\n\nConnect the soil moisture sensor to the Sensorbit port labelled P2\nConnect the Rainbow LED strip to the Sensorbit port labelled P16\n\n\n\n\nBuilding the program\nStart a new project (irrigation-alarm). Add the Elecfreaks extension.\nStep 1 — Set up the Rainbow LED strip in on start\nThe Rainbow LED strip is controlled using Neopixel blocks, which were added with the Elecfreaks extension.\n\nFrom Variables, create a variable called strip\nFrom Neopixel, drag the block set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)\nSet strip to this block — this initialises the LED strip\n\nAlso add the OLED initialiser: initialize OLED width 128 height 64.\nStep 2 — Read the soil moisture sensor in forever\nThe soil moisture sensor is an analog sensor. No special extension block is needed — you read it directly from a pin, just like the crash sensor in Exercise 2, except the value is a number on a scale instead of 0 or 1.\n\nCreate a variable called moisture\nFrom Advanced → Pins, drag an analog read pin P2 block and set moisture to it\nFrom OLED, clear the OLED and display the value: label \"Soil: \" joined to moisture\n\n\n\n\nYour program after Steps 1 and 2: on start initialises the LED strip and the OLED; forever reads the sensor and shows the raw value.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe analog read returns a number between 0 and 1023. Higher value = wetter. Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly — in open air the reading sits near 0. Run the program and check your own readings before setting thresholds.\n\n\nStep 3 — Discover your thresholds\nBefore adding colour logic, flash and test the raw readings:\n\nHold the sensor probes in the air — note the value\nPress your fingers firmly across both metal probes — this simulates wet, conductive soil — note the value\nLightly touch the probes — note the intermediate value\n\nThese three readings give you the range for your thresholds. Enter them in the table below (Documenter role) — they are saved in this browser and will still be here for the evening quiz:\n\n\n\nCondition\nRaw value\n\n\n\n\nAir (dry)\n\n\n\nLight contact (moist)\n\n\n\nFirm contact (wet)\n\n\n\nYour dry/moist threshold\n\n\n\nYour moist/wet threshold\n\n\n\n\nStep 4 — Colour-coded response\nAdd an if / else if / else block after the moisture read:\nif moisture &lt; [your dry/moist threshold]:\n    strip show colour red\n\nelse if moisture &lt; [your moist/wet threshold]:\n    strip show colour orange\n\nelse:\n    strip show colour green\nNote the direction: low readings mean dry, so the first check catches values below your dry threshold.\nUse your observed values from Step 3 as the thresholds. Use the Neopixel blocks strip show colour for each branch.\nStep 5 — Slow the loop down\nAt the very end of the forever block, add a pause (ms) block (from Basic) set to 2000.\nUnlike the DHT11, the soil moisture sensor doesn’t need this — it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.\nStep 6 — Download and test\nFlash, then verify all three colours appear as you move between dry, light contact, and firm contact.\n\n\n\nThe complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware — use the values you observed in Step 3.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows a numeric value that changes with contact\nRainbow LED goes red in air, amber with light contact, green with firm contact (or similar — your thresholds may produce a different boundary)\nYou have written down your threshold values\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet moisture = 0\nlet strip = neopixel.create(DigitalPin.P16, 8, NeoPixelMode.RGB)\nOLED.init(128, 64)\nbasic.forever(function () {\n    moisture = pins.analogReadPin(AnalogReadWritePin.P2)\n    if (moisture &lt; 90) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Red))\n    } else if (moisture &lt; 450) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Orange))\n    } else {\n        strip.showColor(neopixel.colors(NeoPixelColors.Green))\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Soil:\" + moisture)\n    basic.pause(2000)\n})\nReplace 90 and 450 with the threshold values you observed on your hardware.\n\n\n\n\n\n\nDiscussion — calibration and drift\nThe raw reading is a number between 0 and 1023. You just set your thresholds based on 60 seconds of testing.\nQuestion for your team: A farmer leaves this sensor buried in soil for three months. The probe tips corrode (as described in Lecture 3). What happens to the readings? Would your thresholds still be valid? What would you need to do to make this device reliable for long-term use?\n\n\n\nExtension challenge\nGraduated brightness. Instead of showing every LED the same colour, make the number of lit LEDs correspond to the moisture level — 0 LEDs for bone dry, all 8 for saturated. This gives the farmer more nuance than three categories. Use the Neopixel strip set pixel color at [n] to [colour] block inside a loop.\n\nFinished before ~15:25? Pick one of the optional bonus exercises. Otherwise, continue to the ★ Mini challenge.",
+    "text": "Things go wrong in every hardware lab — that is normal, and almost everything here is fixable in under a minute. Work through the relevant section before calling a teacher; the habit of systematic troubleshooting is itself part of what this course teaches.",
     "crumbs": [
       "Exercises",
-      "4. Irrigation alarm"
+      "Troubleshooting & FAQ"
     ]
+  },
+  {
+    "objectID": "troubleshooting.html#connecting-and-flashing",
+    "href": "troubleshooting.html#connecting-and-flashing",
+    "title": "Troubleshooting & FAQ",
+    "section": "Connecting and flashing",
+    "text": "Connecting and flashing\n\nThe MICROBIT drive does not appear on my laptop\n\nTry a different USB cable — charge-only cables look identical to data cables but cannot transfer programs. This is the most common cause.\nTry a different USB port on the laptop.\nUnplug, wait five seconds, replug.\nIf the micro:bit shows an error number on its LED matrix, see below.\n\n\n\nCopying the .hex file fails, or the micro:bit shows an error number\n\nAn error code (e.g. 529, 528) scrolling on the LED matrix means the flash failed. Delete nothing — just download the .hex again from MakeCode and copy it again.\nMake sure you copied the .hex file to the MICROBIT drive, not to a folder on your laptop.\nIf the drive is named MAINTENANCE instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.\n\n\n\nFlashing is slow and tedious\nIn Chrome or Edge you can skip the drag-and-drop entirely: click the three dots next to the Download button → Connect device, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.",
+    "crumbs": [
+      "Exercises",
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#the-program-runs-but-misbehaves",
+    "href": "troubleshooting.html#the-program-runs-but-misbehaves",
+    "title": "Troubleshooting & FAQ",
+    "section": "The program runs but misbehaves",
+    "text": "The program runs but misbehaves\n\nNothing happens at all\n\nDid the orange LED finish flashing? Wait for it.\nAre your blocks inside on start or forever? Blocks floating loose on the workspace (greyed out) are not part of the program.\nPress the reset button on the back of the micro:bit to restart the program.\n\n\n\nIt works in the simulator but not on the device\nThe simulator only simulates the micro:bit’s built-in components. External sensors connected through the Sensorbit do not exist in the simulator — for those, only the real hardware tells the truth.\n\n\nThe micro:bit restarts itself when the motor or servo runs\nThe motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone. (See Lecture 3, Section 2.)",
+    "crumbs": [
+      "Exercises",
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#the-oled",
+    "href": "troubleshooting.html#the-oled",
+    "title": "Troubleshooting & FAQ",
+    "section": "The OLED",
+    "text": "The OLED\n\nThe OLED stays black\n\nIs it plugged into the IIC socket on the Sensorbit (not a numbered G/V/S port)?\nDid you add the initialize OLED width 128 height 64 block in on start? Nothing displays without it.\nDid you add the smarthome extension to this project? Extensions are per-project — a new project needs the extension added again.\n\n\n\nThe OLED flickers\nYour forever loop is clearing and rewriting the display on every pass. Either slow the loop down with a pause, or — better — only redraw when the value being shown has actually changed (compare with a variable holding the previous value).",
+    "crumbs": [
+      "Exercises",
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#sensors",
+    "href": "troubleshooting.html#sensors",
+    "title": "Troubleshooting & FAQ",
+    "section": "Sensors",
+    "text": "Sensors\n\nA sensor reads 0, a constant value, or nonsense\n\nCheck the wiring first — G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a “dead” sensor.\nCheck that the pin number in your program matches the port the sensor is physically plugged into.\n\n\n\nThe DHT11 gives no reading or wrong readings\n\nThe DHT11 can only be read once every two seconds. Make sure your forever loop ends with pause 2000.\nMake sure the DHT11 query block runs before the blocks that fetch temperature and humidity.\n\n\n\nThe MQ3 readings make no sense\n\nThe MQ3 needs about 60 seconds of warm-up after power-on. Readings during warm-up are meaningless.\nThe sensor getting warm is normal — it contains a heater.\nIt responds to other volatiles too: cleaning spray or disinfectant used nearby will raise the reading.\n\n\n\nThe PIR triggers when nobody moved (or doesn’t trigger when they did)\n\nThe PIR needs 30–60 seconds to settle after power-on; ignore its output until then.\nDirect sunlight, a draft from a window, or a heat source near the sensor can cause false triggers.\nIt detects movement, not presence — a person standing still stops triggering it after a few seconds.\n\n\n\nWhich ports are safe for my own project?\nNot every numbered port on the Sensorbit is free to use — several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.\n\n\n\n\n\n\n\nPorts\nStatus\n\n\n\n\nP1, P2, P8, P12, P13–P16\n✅ Safe for sensors and actuators\n\n\nP3, P4, P6, P7, P9, P10\n❌ Shared with the LED matrix — nonsense readings whenever the display is in use\n\n\nP5, P11\n❌ Wired to buttons A and B\n\n\nP0\n❌ No GVS port — wired to the Sensorbit’s buzzer and headphone jack\n\n\n\nTwo more rules for project day:\n\nAnalog sensors (soil moisture, MQ3, UV — anything read with analog read pin) must go on P1 or P2. The other analog-capable pins are all shared with the LED matrix.\nP16 is the conventional home of the Rainbow LED strip — keep it free if your project uses one.\n\nIf a sensor “worked yesterday on a different pin” and now reads nonsense, check this table before suspecting the sensor.\n\n\nThe soil moisture readings drift or differ from yesterday\nThis sensor is relative, not calibrated — readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.\n\n\nThe Rainbow LED shows nothing, or only some LEDs light\n\nCheck the wiring and that the pin in the Neopixel setup block matches the physical port.\nCheck that the number of LEDs in the setup block matches your strip — if it is set too low, the remaining LEDs stay dark.\nDid the set strip to ... block run in on start? Without it, the show-colour blocks have nothing to control.",
+    "crumbs": [
+      "Exercises",
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "troubleshooting.html#still-stuck",
+    "href": "troubleshooting.html#still-stuck",
+    "title": "Troubleshooting & FAQ",
+    "section": "Still stuck?",
+    "text": "Still stuck?\nAsk a teacher — but come with answers to these three questions, because they will ask:\n\nWhat did you expect to happen?\nWhat happened instead?\nWhat have you already checked?",
+    "crumbs": [
+      "Exercises",
+      "Troubleshooting & FAQ"
+    ]
+  },
+  {
+    "objectID": "lecture3.html",
+    "href": "lecture3.html",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "",
+    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 3 quiz on Canvas before the course starts.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#learning-objectives",
+    "href": "lecture3.html#learning-objectives",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what the Sensorbit does and how it connects to the micro:bit\nIdentify each component in the Elecfreaks Smart Health Kit\nDescribe what each sensor measures and what signal type it produces\nGive at least one medical and one agricultural use case for each component\nDescribe at least one limitation of each sensor\nExplain how to add the Elecfreaks extension in MakeCode",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#the-smart-health-kit",
+    "href": "lecture3.html#the-smart-health-kit",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "1. The Smart Health Kit",
+    "text": "1. The Smart Health Kit\nThe Elecfreaks Smart Health Kit is a collection of sensors and actuators designed to explore health and environmental monitoring with the BBC micro:bit. Although it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.\nThe kit does not include a micro:bit — that is your core controller, and you bring it to the kit.\nThe kit contains:\n\nThe Sensorbit — the interface board\nDHT11 — temperature and humidity sensor\nSoil moisture sensor\nMQ3 alcohol sensor\nAnalog UV sensor\nPIR sensor\nCrash sensor brick\nOLED screen\nRainbow LED\n180° servo motor\nDC motor with fan\n\nWe will go through each of these in this lecture.\n\n\n\n\n\n\nThe kit as it arrives — the guide booklet sits on top of the foam tray\n\n\n\n\n\n\n\nAll components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#the-sensorbit",
+    "href": "lecture3.html#the-sensorbit",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "2. The Sensorbit",
+    "text": "2. The Sensorbit\n\n\n\nThe Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.\n\n\nThe Sensorbit is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.\nWithout the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.\nIt also provides stable 3.3 V power to the connected sensors, sourced from the micro:bit’s own power supply.\nOne important point: when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.\n\nWiring: G, V, and S\nMost components in the kit connect to the Sensorbit with a three-wire cable. The three wires are not interchangeable — each one has a job:\n\n\n\n\n\n\n\n\n\nPin\nName\nJob\nUsual wire colour\n\n\n\n\nG\nGround\nCompletes the circuit\nBlack\n\n\nV\nVoltage\nSupplies 3.3 V power to the sensor\nRed\n\n\nS\nSignal\nCarries the measurement to the micro:bit\nYellow (or another colour)\n\n\n\nOn the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are labelled G, V, and S on the board itself. The sensors carry the same labels next to their pins.\nThe rule: G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually isn’t damaged, but it will not work, and a reversed cable is the single most common hardware problem in the lab. Match the labels printed on the boards, not just the wire colours — colours are a convention, the labels are the truth.\nIf a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.\nThe OLED screen is the exception — it has four pins and plugs into the Sensorbit’s dedicated IIC socket, which is keyed so it only fits one way.\nOne detail that surprises people: there is no P0 port on the Sensorbit. P0 is wired to the board’s built-in buzzer and headphone jack — when your program plays a tone, that buzzer is what sounds. The GVS ports start at P1.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
+    "href": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "3. Adding the Elecfreaks extension in MakeCode",
+    "text": "3. Adding the Elecfreaks extension in MakeCode\nThe Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors — particularly the OLED screen — require a dedicated software library.\nTo add the Elecfreaks extension:\n\nOpen your project in MakeCode\nClick Extensions at the bottom of the toolbox (middle panel)\nIn the search box, type smarthome\nSelect the smarthome package from Elecfreaks\nNew block categories will appear in your toolbox\n\nOnce installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#environmental-sensors",
+    "href": "lecture3.html#environmental-sensors",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "4. Environmental sensors",
+    "text": "4. Environmental sensors\nThese sensors measure conditions in the surrounding environment.\n\nDHT11 — Temperature and humidity\n\n\n\n\n\nThe DHT11 measures both air temperature (0–50°C, ±2°C accuracy) and relative humidity (20–90% RH, ±5% accuracy) in a single, small package. It communicates using a simple digital protocol over a single data wire.\nMedical use: Monitoring ward temperature and humidity, which affect patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.\nAgricultural use: Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth; the DHT11 can trigger an alert when conditions become dangerous.\nLimitations: - Can only be read once every two seconds — reading it faster produces errors - Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics - Range stops at 50°C, which limits use in very hot outdoor environments\n\n\n\nSoil moisture sensor\n\n\n\n\n\nThe soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an analog signal — a number that varies continuously with moisture level.\nMedical use: Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.\nAgricultural use: The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold — saving water and preventing crop stress.\nLimitations: - The probe tips corrode over time when left in soil, causing readings to drift - The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage — you need to test your specific soil type to set meaningful thresholds - Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings\n\n\n\nMQ3 — Alcohol sensor\n\n\n\n\n\nThe MQ3 detects alcohol vapour in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an analog signal.\nMedical use: Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.\nAgricultural use: Monitoring fermentation in biogas digesters or alcohol-based crop processing.\nLimitations: - Requires a warm-up time of approximately 60 seconds after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the presence of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs\n\n\n\n\n\n\nWarningThe MQ3 gets warm — that is normal\n\n\n\nThe MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Don’t be alarmed, and don’t enclose the sensor in anything that traps heat.\n\n\n\n\n\nAnalog UV sensor\n\n\n\n\n\nThe UV sensor measures ultraviolet light intensity and produces an analog signal. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).\nMedical use: Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.\nAgricultural use: Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.\nLimitations: - The raw output requires calibration to convert to a standard UV index - Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun - Does not distinguish between UVA and UVB",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#presence-and-interaction-sensors",
+    "href": "lecture3.html#presence-and-interaction-sensors",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "5. Presence and interaction sensors",
+    "text": "5. Presence and interaction sensors\nThese sensors detect events or physical interactions rather than measuring continuous quantities.\n\nPIR sensor — Passive Infrared\n\n\n\n\n\nThe PIR sensor detects movement of warm bodies — people, animals, or anything emitting infrared radiation at body temperature. It produces a digital signal: 1 (motion detected) or 0 (no motion). It is “passive” because it does not emit anything — it only listens.\nMedical use: Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.\nAgricultural use: Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.\nLimitations: - Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals - Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m) — placement matters - Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor\n\n\n\nCrash sensor brick\n\n\n\n\n\nThe crash sensor is a simple push button with a lever, designed to detect physical contact or impact. It produces a digital signal: pressed or not pressed.\nMedical use: Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).\nAgricultural use: Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.\nLimitations: - Requires direct physical contact — it cannot detect proximity - The lever can be damaged by repeated heavy impact - Produces a single on/off signal with no information about force or duration",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#output-components",
+    "href": "lecture3.html#output-components",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "6. Output components",
+    "text": "6. Output components\nThese components display information or produce effects that a person can see.\n\nOLED screen\n\n\n\n\n\nThe OLED (Organic Light-Emitting Diode) screen is a small display that can show text and simple graphics. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.\nUnlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.\nUse cases: Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.\nLimitations: - Small physical size limits how much can be displayed at once - Not visible in direct bright sunlight - Requires the extension library; it cannot be used with the standard MakeCode blocks alone\n\n\n\nRainbow LED\n\n\n\n\n\nThe Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the Neopixel blocks.\nUse cases: Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.\nLimitations: - Draws more current than a single LED — running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply - Not suitable for precise phototherapy — the LEDs are not medically calibrated",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#actuators",
+    "href": "lecture3.html#actuators",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "7. Actuators",
+    "text": "7. Actuators\nThese components produce physical actions in response to signals from the micro:bit.\n\n180° Servo motor\nThe servo motor rotates to a specific angle between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.\nMedical use: Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).\nAgricultural use: Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.\nLimitations: - Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead - Can only exert limited force (torque) — not suitable for heavy mechanical loads - Draws significant current when under load, which can cause the micro:bit to reset if not powered externally\n\n\n\nDC motor with fan\n\n\n\n\n\nThe DC motor spins continuously in one direction when powered. In the kit it is attached to a fan blade, making it immediately useful for airflow. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.\nMedical use: Ventilation in an enclosed monitoring device. Cooling a prototype that generates heat. Air circulation in a patient room monitor.\nAgricultural use: Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.\nLimitations: - The fan draws significant current — almost always requires external battery power - Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control - The motor produces electrical noise that can interfere with sensitive analog sensors — good circuit design keeps motor and sensor wiring separate",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#choosing-the-right-component-for-your-use-case",
+    "href": "lecture3.html#choosing-the-right-component-for-your-use-case",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "8. Choosing the right component for your use case",
+    "text": "8. Choosing the right component for your use case\nHaving a kit full of sensors does not mean every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.\nAsk these questions about any sensor you are considering:\n\n\n\n\n\n\n\nQuestion\nWhy it matters\n\n\n\n\nDoes it measure the right thing?\nA soil moisture sensor cannot measure air humidity\n\n\nIs the range appropriate?\nThe DHT11 stops at 50°C — unsuitable for sterilisation monitoring\n\n\nIs the accuracy good enough?\n±2°C is fine for storage monitoring, not for clinical thermometry\n\n\nHow fast does it need to update?\nThe DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm\n\n\nDoes it need warm-up time?\nThe MQ3 needs 60 seconds — is that acceptable in your design?\n\n\nHow much power does it draw?\nMotors and servos need external power in sustained use\n\n\nWill it degrade over time?\nThe soil moisture sensor corrodes — plan for maintenance\n\n\n\nThis kind of systematic evaluation is part of what separates a prototype from a reliable device.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "lecture3.html#summary",
+    "href": "lecture3.html#summary",
+    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
+    "section": "Summary",
+    "text": "Summary\n\nThe Sensorbit connects sensors to the micro:bit and provides labelled, powered ports\nThe Elecfreaks extension must be added in MakeCode for some components (especially the OLED)\nEnvironmental sensors: DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV\nPresence sensors: PIR (motion), crash sensor (contact)\nOutput displays: OLED screen, Rainbow LED\nActuators: servo motor (angle), DC motor with fan (continuous rotation)\nEvery sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lecture 3 quiz on Canvas before the course starts on 16 June.",
+    "crumbs": [
+      "Pre-course lectures",
+      "3. The Elecfreaks Smart Health Kit"
+    ]
+  },
+  {
+    "objectID": "bonus_exercises.html",
+    "href": "bonus_exercises.html",
+    "title": "Bonus Exercises",
+    "section": "",
+    "text": "Note\n\n\n\nThese two exercises are optional. During the lab on 16 June, only start one if your team finishes Exercise 4 before ~15:25 — pick one, don’t try both, and switch to the mini challenge in good time. They also work as standalone references for project day: the PIR and MQ3 are both strong candidates for project ideas.",
+    "crumbs": [
+      "Exercises",
+      "Bonus exercises"
+    ]
+  },
+  {
+    "objectID": "bonus_exercises.html#ex5",
+    "href": "bonus_exercises.html#ex5",
+    "title": "Bonus Exercises",
+    "section": "Exercise 5 (optional): Motion-triggered alert",
+    "text": "Exercise 5 (optional): Motion-triggered alert\n\nScenario\nA clinic wants to monitor a hand-hygiene station at the ward entrance. When someone approaches, the device should alert them to use the hand sanitiser before entering. When nobody is present, the device should be ready and silent.\n\n\nWhat you will build\n\nPIR sensor monitors for movement continuously\nMotion detected → LED matrix shows an alert icon + tone plays + OLED shows \"Sanitise!\"\nNo motion → OLED shows \"Ready\", LED matrix is clear\n\n\n\nHardware\nConnect the PIR sensor to the Sensorbit port labelled P8.\n\n\n\n\n\n\nTip\n\n\n\nThe PIR needs 30–60 seconds to settle after power-on. Ignore its output until then — early readings are not your fault and not a wiring error.\n\n\n\n\n\nBuilding the program\nStart a new project (motion-alert). Add the Elecfreaks extension.\nStep 1 — Initialise the OLED in on start\nSame as before: initialize OLED width 128 height 64.\nStep 2 — Read the PIR sensor\nThe PIR is a simple digital sensor, read exactly like the crash sensor in Exercise 2: it outputs 1 when motion is detected and 0 when it is not.\n\nIn forever, from Variables, create a variable called motion\nFrom the toolbox Advanced → Pins, drag a digital read pin P8 block\nSet motion to the result of that pin read\n\nStep 3 — Respond with a conditional\n\nFrom Logic, add an if / then / else block\nCondition: motion = 1\nIn the if branch (motion detected):\n\nFrom Basic, show icon — pick an arrow, exclamation, or similar\nFrom OLED, clear OLED display, then show string \"Sanitise!\"\nFrom Music, play tone Middle A for 1 beat (or any tone you like)\n\nIn the else branch (no motion):\n\nFrom Basic, clear screen\nFrom OLED, clear OLED display, then show string \"Ready\"\n\n\nStep 4 — Download and test\n\n\n\nThe complete motion alert. Any icon works in the if branch — pick one your team likes.\n\n\nFlash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to \"Ready\" within a few seconds.\n\n\n\n\n\n\nTip\n\n\n\nThe PIR detects movement of warm bodies — not presence. A person standing still directly in front of it will not trigger it after a few seconds. This is by design (it avoids false positives from warm but stationary objects), but it matters for your application.\n\n\n\n\n\n\n\n\nTipWhy does the OLED flicker?\n\n\n\n\n\nYour forever loop clears and rewrites the OLED on every single pass — many times per second — even when nothing has changed. Each clear-and-rewrite is visible as a flicker.\nThe fix is to only redraw the screen when the state actually changes: keep a second variable (e.g. lastMotion) holding the previous reading, and only clear and rewrite the OLED when motion differs from lastMotion. At the end of the loop, set lastMotion to motion.\nThis previous-vs-current pattern is the same one the extension challenge below uses to count entries — solve one and you have solved both.\n\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nLED matrix shows an icon when you wave in front of the PIR\nOLED switches between \"Ready\" and \"Sanitise!\"\nA tone plays on detection\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet motion = 0\nOLED.init(128, 64)\n\nbasic.forever(function () {\n    motion = pins.digitalReadPin(DigitalPin.P8)\n    if (motion == 1) {\n        basic.showIcon(IconNames.Target)\n        OLED.clear()\n        OLED.writeStringNewLine(\"Sanitise!\")\n        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)\n    } else {\n        basic.clearScreen()\n        OLED.clear()\n        OLED.writeStringNewLine(\"Ready\")\n    }\n})\n\n\n\n\n\n\nDiscussion — limitations of a PIR for this application\nThink through these questions as a team:\n\nSomeone approaches the station, uses the sanitiser, then stands at the entrance talking to a colleague for 30 seconds. Does the device behave as intended?\nA window is open and sunlight moves across the floor near the sensor. Could this trigger the alert?\nCan the PIR tell the difference between a person and a large dog walking past?\n\nNote one limitation that would matter in a real deployment. This will appear in the Canvas quiz.\n\n\n\nExtension challenge\nCount entries. Every time the PIR detects a new motion event — a transition from 0 to 1, not just a sustained 1 — increment a variable called entries. Display the count on the OLED alongside the status text. Reset the count when Button A is pressed.\n\n\n\n\n\n\nTipHint\n\n\n\n\n\nYou need to track the previous state of the PIR as well as the current state. Only increment entries when the previous reading was 0 and the current reading is 1 — this counts the moment of arrival, not every frame of the forever loop during which someone is present.\nAdd an on button A pressed block in the workspace (separate from forever) that sets entries back to 0 — the same event-plus-polling combination as the latching call button in Exercise 2.",
+    "crumbs": [
+      "Exercises",
+      "Bonus exercises"
+    ]
+  },
+  {
+    "objectID": "bonus_exercises.html#ex6",
+    "href": "bonus_exercises.html#ex6",
+    "title": "Bonus Exercises",
+    "section": "Exercise 6 (optional): Sanitiser-use detector",
+    "text": "Exercise 6 (optional): Sanitiser-use detector\n\nScenario\nA clinic asks every visitor to sanitise their hands at the entrance. But did they actually do it? Alcohol-based hand sanitiser releases alcohol vapour as it evaporates — and the MQ3 sensor can detect it. You will build a device that confirms sanitiser was actually used.\n\n\nWhat you will build\n\nMQ3 alcohol sensor read continuously\nRaw value shown on the OLED\nWhen alcohol vapour is detected: LED matrix shows a tick, OLED shows \"Sanitised!\"\n\n\n\n\n\n\n\nWarningThe MQ3 gets warm — that is normal\n\n\n\nThe MQ3 contains a heating element and becomes noticeably warm during use. This is by design, not a fault.\n\n\n\n\n\n\n\n\nNoteNo hand sanitiser available?\n\n\n\nAny alcohol source works: an alcohol swab, surface disinfectant, or ethanol from the lab. Hold it a few centimetres from the sensor’s metal mesh. If you have no alcohol source at all, you can still build the program and observe the baseline behaviour and warm-up effect.\n\n\n\n\nHardware\nConnect the MQ3 sensor to the Sensorbit port labelled P2. Remember: G to G, V to V, S to S. (The MQ3 is analog, and only some pins can read analog signals — P1 and P2 are the easiest choices on the Sensorbit.)\n\n\n\nBuilding the program\nStart a new project (sanitiser-check). Add the Elecfreaks extension.\nStep 1 — Handle the warm-up in on start\nLecture 3 told you the MQ3 needs about 60 seconds of warm-up before its readings mean anything. Your program should say so, instead of showing garbage values:\n\nInitialise the OLED: initialize OLED width 128 height 64\nFrom OLED, show string \"Warming up...\" on the OLED\nFrom Basic, add pause (ms) set to 60000\nClear the OLED and show \"Ready\"\n\nStep 2 — Read the MQ3 in forever\nThe MQ3 is an analog sensor — no special extension block needed.\n\nCreate a variable called alcohol\nFrom Advanced → Pins, set alcohol to analog read pin P2\nClear the OLED and display the value: \"Air: \" joined to alcohol\nAdd a pause (ms) of 500 at the end of the loop so the display is readable\n\nStep 3 — Discover your threshold\nFlash the program and wait out the warm-up. Then (Documenter: record these below):\n\nNote the baseline reading in normal air\nApply sanitiser to your hands (or open your alcohol source) and hold them near the sensor — note the peak reading\nMove away and watch how long the value takes to fall back\n\nPick a threshold roughly halfway between baseline and peak.\n\n\n\nObservation\nRaw value\n\n\n\n\nBaseline (normal air)\n\n\n\nPeak (alcohol vapour)\n\n\n\nYour threshold\n\n\n\n\nStep 4 — Detect sanitiser use\nAdd an if / then / else after the read:\nif alcohol &gt; [your threshold]:\n    show tick icon on LED matrix\n    OLED shows \"Sanitised!\"\nelse:\n    clear LED matrix\nStep 5 — Download and test\n\n\n\nThe complete sanitiser detector: warm-up handling in on start, detection in forever. The threshold (500) is an example — use a value roughly halfway between your baseline and peak.\n\n\nFlash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows \"Warming up...\" for the first minute, then live readings\nThe reading rises clearly when alcohol vapour is present\nThe tick appears above your threshold and clears below it\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet alcohol = 0\nOLED.init(128, 64)\nOLED.writeStringNewLine(\"Warming up...\")\nbasic.pause(60000)\nOLED.clear()\nOLED.writeStringNewLine(\"Ready\")\n\nbasic.forever(function () {\n    alcohol = pins.analogReadPin(AnalogReadWritePin.P2)\n    OLED.clear()\n    OLED.writeStringNewLine(\"Air: \" + alcohol)\n    if (alcohol &gt; 500) {\n        basic.showIcon(IconNames.Yes)\n        OLED.writeStringNewLine(\"Sanitised!\")\n    } else {\n        basic.clearScreen()\n    }\n    basic.pause(500)\n})\nReplace 500 with the threshold you observed on your hardware.\n\n\n\n\n\n\nDiscussion — what is this device actually measuring?\n\nDuring the 60-second warm-up, what did the readings look like? What would happen in a real deployment if the device lost power and restarted — and nobody knew about the warm-up?\nThe MQ3 responds to other volatile compounds too — cleaning chemicals, solvents, even some perfumes. Could this device produce false “Sanitised!” confirmations? Does that matter for this application?\nThe reading is relative, not calibrated. Can this device tell how much sanitiser was used, or only that some alcohol vapour was present?",
+    "crumbs": [
+      "Exercises",
+      "Bonus exercises"
+    ]
+  },
+  {
+    "objectID": "closeread/microbit_closeread.html",
+    "href": "closeread/microbit_closeread.html",
+    "title": "Microcontrollers for Health & Agriculture",
+    "section": "",
+    "text": "The BBC micro:bit V2 — front\nScroll down to explore the main components.\n\n\n\n\nThis is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.\n\n\n\n\nThe 5×5 LED matrix is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a light sensor — it can detect ambient brightness without any extra components.\n\n\n\n\nButton A is on the left side of the board. In MakeCode, pressing it triggers an on button A pressed event. You can programme any action in response — displaying a reading, toggling a light, or sending a radio message.\n\n\n\n\nButton B mirrors Button A on the right. You can programme A and B independently, or detect when both are pressed together for a third action.\n\n\n\n\nThe gold touch logo at the top is a capacitive touch sensor — unique to the V2. Your finger doesn’t need to press it: just touching it is enough.\n\n\n\n\nThe small dot to the right of the logo is the microphone activity LED. It lights up whenever the built-in microphone is recording — a privacy indicator so you always know when sound is being measured.\n\n\n\n\nThe gold band along the bottom is the edge connector. The three large holes — labelled 0, 1, and 2 — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. 3V supplies power to connected components; GND completes the circuit.\n\n\n\n\nThat covers the front. Now let’s flip it over.\n\n\n\n\nThe BBC micro:bit V2 — back\nMost of the processing and sensing happens here.\n\n\n\n\nHere is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.\n\n\n\n\nThe gold zig-zag trace in the top left is the Bluetooth and radio antenna — printed directly onto the board, no separate component needed. It handles both Bluetooth Low Energy (for phone connectivity) and the micro:bit’s own 2.4 GHz radio protocol (for micro:bit-to-micro:bit communication).\n\n\n\n\nThe micro USB port at the top centre is how you connect the micro:bit to your laptop to download programmes. It also powers the board from USB. When you drag a .hex file onto the MICROBIT drive, it enters through this port.\n\n\n\n\nThe square component in the centre is the speaker. It can play tones, melodies, and sound effects directly, with no extra wiring. In MakeCode, use the Music category.\n\n\n\n\nThe small component close to the speaker is the backside of the microphone — on the front you will see it as a little hole. It detects sound level and can recognise loud events such as claps or shouts. The LED you saw on the front indicates when it is active.\n\n\n\n\nThe battery connector on the right edge accepts a standard 2× AAA battery pack. This is how you power the micro:bit away from a laptop — essential for portable projects and demos.\n\n\n\n\nThe chip left of the speaker is the processor — a Nordic nRF52833 running at 64 MHz with 512 KB of flash memory. Your programme lives here. It also contains a built-in temperature sensor that measures the chip temperature — a rough proxy for air temperature.\n\n\n\n\nThe two diamond-shaped chips on the left are the accelerometer and compass. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.\n\n\n\n\nThat is the complete micro:bit V2. Front and back, you now know what every component does."
   },
   {
     "objectID": "microbit_explorer.html",
@@ -195,281 +516,6 @@
     "crumbs": [
       "Pre-course lectures",
       "1. Microcontrollers, Sensors & Actuators"
-    ]
-  },
-  {
-    "objectID": "lecture3.html",
-    "href": "lecture3.html",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "",
-    "text": "Note\n\n\n\nThis is a pre-course lecture. Watch the recorded video, then complete the Lecture 3 quiz on Canvas before the course starts.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#learning-objectives",
-    "href": "lecture3.html#learning-objectives",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "Learning objectives",
-    "text": "Learning objectives\nBy the end of this lecture you should be able to:\n\nExplain what the Sensorbit does and how it connects to the micro:bit\nIdentify each component in the Elecfreaks Smart Health Kit\nDescribe what each sensor measures and what signal type it produces\nGive at least one medical and one agricultural use case for each component\nDescribe at least one limitation of each sensor\nExplain how to add the Elecfreaks extension in MakeCode",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#the-smart-health-kit",
-    "href": "lecture3.html#the-smart-health-kit",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "1. The Smart Health Kit",
-    "text": "1. The Smart Health Kit\nThe Elecfreaks Smart Health Kit is a collection of sensors and actuators designed to explore health and environmental monitoring with the BBC micro:bit. Although it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.\nThe kit does not include a micro:bit — that is your core controller, and you bring it to the kit.\nThe kit contains:\n\nThe Sensorbit — the interface board\nDHT11 — temperature and humidity sensor\nSoil moisture sensor\nMQ3 alcohol sensor\nAnalog UV sensor\nPIR sensor\nCrash sensor brick\nOLED screen\nRainbow LED\n180° servo motor\nDC motor with fan\n\nWe will go through each of these in this lecture.\n\n\n\n\n\n\nThe kit as it arrives — the guide booklet sits on top of the foam tray\n\n\n\n\n\n\n\nAll components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#the-sensorbit",
-    "href": "lecture3.html#the-sensorbit",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "2. The Sensorbit",
-    "text": "2. The Sensorbit\n\n\n\nThe Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.\n\n\nThe Sensorbit is the foundation of the kit. It is a breakout board that plugs onto the micro:bit’s edge connector and gives you easy, labelled access to its pins.\nWithout the Sensorbit, connecting a sensor to the micro:bit would require using crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.\nIt also provides stable 3.3 V power to the connected sensors, sourced from the micro:bit’s own power supply.\nOne important point: when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the current demand spikes.\n\nWiring: G, V, and S\nMost components in the kit connect to the Sensorbit with a three-wire cable. The three wires are not interchangeable — each one has a job:\n\n\n\n\n\n\n\n\n\nPin\nName\nJob\nUsual wire colour\n\n\n\n\nG\nGround\nCompletes the circuit\nBlack\n\n\nV\nVoltage\nSupplies 3.3 V power to the sensor\nRed\n\n\nS\nSignal\nCarries the measurement to the micro:bit\nYellow (or another colour)\n\n\n\nOn the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are labelled G, V, and S on the board itself. The sensors carry the same labels next to their pins.\nThe rule: G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually isn’t damaged, but it will not work, and a reversed cable is the single most common hardware problem in the lab. Match the labels printed on the boards, not just the wire colours — colours are a convention, the labels are the truth.\nIf a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.\nThe OLED screen is the exception — it has four pins and plugs into the Sensorbit’s dedicated IIC socket, which is keyed so it only fits one way.\nOne detail that surprises people: there is no P0 port on the Sensorbit. P0 is wired to the board’s built-in buzzer and headphone jack — when your program plays a tone, that buzzer is what sounds. The GVS ports start at P1.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
-    "href": "lecture3.html#adding-the-elecfreaks-extension-in-makecode",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "3. Adding the Elecfreaks extension in MakeCode",
-    "text": "3. Adding the Elecfreaks extension in MakeCode\nThe Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors — particularly the OLED screen — require a dedicated software library.\nTo add the Elecfreaks extension:\n\nOpen your project in MakeCode\nClick Extensions at the bottom of the toolbox (middle panel)\nIn the search box, type smarthome\nSelect the smarthome package from Elecfreaks\nNew block categories will appear in your toolbox\n\nOnce installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#environmental-sensors",
-    "href": "lecture3.html#environmental-sensors",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "4. Environmental sensors",
-    "text": "4. Environmental sensors\nThese sensors measure conditions in the surrounding environment.\n\nDHT11 — Temperature and humidity\n\n\n\n\n\nThe DHT11 measures both air temperature (0–50°C, ±2°C accuracy) and relative humidity (20–90% RH, ±5% accuracy) in a single, small package. It communicates using a simple digital protocol over a single data wire.\nMedical use: Monitoring ward temperature and humidity, which affect patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.\nAgricultural use: Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth; the DHT11 can trigger an alert when conditions become dangerous.\nLimitations: - Can only be read once every two seconds — reading it faster produces errors - Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics - Range stops at 50°C, which limits use in very hot outdoor environments\n\n\n\nSoil moisture sensor\n\n\n\n\n\nThe soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an analog signal — a number that varies continuously with moisture level.\nMedical use: Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.\nAgricultural use: The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold — saving water and preventing crop stress.\nLimitations: - The probe tips corrode over time when left in soil, causing readings to drift - The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage — you need to test your specific soil type to set meaningful thresholds - Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings\n\n\n\nMQ3 — Alcohol sensor\n\n\n\n\n\nThe MQ3 detects alcohol vapour in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an analog signal.\nMedical use: Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.\nAgricultural use: Monitoring fermentation in biogas digesters or alcohol-based crop processing.\nLimitations: - Requires a warm-up time of approximately 60 seconds after power-on before readings are reliable — during warm-up, readings are meaningless - Cross-sensitive: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols - Not calibrated — the raw output is a relative signal, not a blood-alcohol percentage. It is suitable for detecting the presence of alcohol, not measuring a precise concentration - The heating element consumes more power than most sensors, which matters in battery-powered designs\n\n\n\n\n\n\nWarningThe MQ3 gets warm — that is normal\n\n\n\nThe MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Don’t be alarmed, and don’t enclose the sensor in anything that traps heat.\n\n\n\n\n\nAnalog UV sensor\n\n\n\n\n\nThe UV sensor measures ultraviolet light intensity and produces an analog signal. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).\nMedical use: Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.\nAgricultural use: Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.\nLimitations: - The raw output requires calibration to convert to a standard UV index - Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun - Does not distinguish between UVA and UVB",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#presence-and-interaction-sensors",
-    "href": "lecture3.html#presence-and-interaction-sensors",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "5. Presence and interaction sensors",
-    "text": "5. Presence and interaction sensors\nThese sensors detect events or physical interactions rather than measuring continuous quantities.\n\nPIR sensor — Passive Infrared\n\n\n\n\n\nThe PIR sensor detects movement of warm bodies — people, animals, or anything emitting infrared radiation at body temperature. It produces a digital signal: 1 (motion detected) or 0 (no motion). It is “passive” because it does not emit anything — it only listens.\nMedical use: Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.\nAgricultural use: Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.\nLimitations: - Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals - Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m) — placement matters - Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor\n\n\n\nCrash sensor brick\n\n\n\n\n\nThe crash sensor is a simple push button with a lever, designed to detect physical contact or impact. It produces a digital signal: pressed or not pressed.\nMedical use: Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).\nAgricultural use: Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.\nLimitations: - Requires direct physical contact — it cannot detect proximity - The lever can be damaged by repeated heavy impact - Produces a single on/off signal with no information about force or duration",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#output-components",
-    "href": "lecture3.html#output-components",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "6. Output components",
-    "text": "6. Output components\nThese components display information or produce effects that a person can see.\n\nOLED screen\n\n\n\n\n\nThe OLED (Organic Light-Emitting Diode) screen is a small display that can show text and simple graphics. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.\nUnlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.\nUse cases: Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.\nLimitations: - Small physical size limits how much can be displayed at once - Not visible in direct bright sunlight - Requires the extension library; it cannot be used with the standard MakeCode blocks alone\n\n\n\nRainbow LED\n\n\n\n\n\nThe Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the Neopixel blocks.\nUse cases: Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.\nLimitations: - Draws more current than a single LED — running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply - Not suitable for precise phototherapy — the LEDs are not medically calibrated",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#actuators",
-    "href": "lecture3.html#actuators",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "7. Actuators",
-    "text": "7. Actuators\nThese components produce physical actions in response to signals from the micro:bit.\n\n180° Servo motor\nThe servo motor rotates to a specific angle between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.\nMedical use: Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).\nAgricultural use: Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.\nLimitations: - Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead - Can only exert limited force (torque) — not suitable for heavy mechanical loads - Draws significant current when under load, which can cause the micro:bit to reset if not powered externally\n\n\n\nDC motor with fan\n\n\n\n\n\nThe DC motor spins continuously in one direction when powered. In the kit it is attached to a fan blade, making it immediately useful for airflow. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.\nMedical use: Ventilation in an enclosed monitoring device. Cooling a prototype that generates heat. Air circulation in a patient room monitor.\nAgricultural use: Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.\nLimitations: - The fan draws significant current — almost always requires external battery power - Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control - The motor produces electrical noise that can interfere with sensitive analog sensors — good circuit design keeps motor and sensor wiring separate",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#choosing-the-right-component-for-your-use-case",
-    "href": "lecture3.html#choosing-the-right-component-for-your-use-case",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "8. Choosing the right component for your use case",
-    "text": "8. Choosing the right component for your use case\nHaving a kit full of sensors does not mean every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.\nAsk these questions about any sensor you are considering:\n\n\n\n\n\n\n\nQuestion\nWhy it matters\n\n\n\n\nDoes it measure the right thing?\nA soil moisture sensor cannot measure air humidity\n\n\nIs the range appropriate?\nThe DHT11 stops at 50°C — unsuitable for sterilisation monitoring\n\n\nIs the accuracy good enough?\n±2°C is fine for storage monitoring, not for clinical thermometry\n\n\nHow fast does it need to update?\nThe DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm\n\n\nDoes it need warm-up time?\nThe MQ3 needs 60 seconds — is that acceptable in your design?\n\n\nHow much power does it draw?\nMotors and servos need external power in sustained use\n\n\nWill it degrade over time?\nThe soil moisture sensor corrodes — plan for maintenance\n\n\n\nThis kind of systematic evaluation is part of what separates a prototype from a reliable device.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "lecture3.html#summary",
-    "href": "lecture3.html#summary",
-    "title": "Lecture 3: The Elecfreaks Smart Health Kit",
-    "section": "Summary",
-    "text": "Summary\n\nThe Sensorbit connects sensors to the micro:bit and provides labelled, powered ports\nThe Elecfreaks extension must be added in MakeCode for some components (especially the OLED)\nEnvironmental sensors: DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV\nPresence sensors: PIR (motion), crash sensor (contact)\nOutput displays: OLED screen, Rainbow LED\nActuators: servo motor (angle), DC motor with fan (continuous rotation)\nEvery sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lecture 3 quiz on Canvas before the course starts on 16 June.",
-    "crumbs": [
-      "Pre-course lectures",
-      "3. The Elecfreaks Smart Health Kit"
-    ]
-  },
-  {
-    "objectID": "exercise1.html",
-    "href": "exercise1.html",
-    "title": "Exercise 1: Push the button",
-    "section": "",
-    "text": "Allow 10 minutes.\n\nScenario\nBefore wiring anything, you will build a complete working device using only what is already on the micro:bit: two buttons, a temperature sensor, an accelerometer, and the LED matrix. Within ten minutes, your team has a pocket thermometer.\n\n\nWhat you will build\n\nPress button A → a heart icon appears\nPress button B → the current temperature is shown\nShake the micro:bit → the display clears\n\nNo wiring. No extension blocks. Everything is built in.\n\n\n\nBuilding the program\nKeep working in your lab-session project from the setup.\nStep 1 — React to button A\n\nFrom Input, drag an on button A pressed block onto the workspace. Notice it has the same shape as on start and forever: a container with a smooth top edge and no notch, so it cannot snap inside or underneath another block — it always starts its own stack on the workspace. This is an event block: the blocks you place inside it run only when that event happens.\nFrom Basic, put a show icon block inside it and pick the heart.\n\nStep 2 — Show the temperature on button B\n\nFrom Input, drag another on button A pressed block onto the workspace, and change it to button B.\nFrom Basic, put a show number block inside it\nFrom Input, find the temperature (°C) block — notice its oval shape. Oval blocks are reporter blocks: they return a value and must be plugged into a slot, not placed on their own line. Plug it into the show number slot.\n\nStep 3 — Clear on shake\n\nFrom Input, drag an on shake block onto the workspace\nFrom Basic, put clear screen inside it\n\nStep 4 — Download and test\nYour workspace should now look like this — four separate stacks, each starting with its own container block:\n\n\n\nThe complete Exercise 1 program. The on start block still shows Ready from the setup test. Note how the oval temperature (°C) block sits inside the show number slot.\n\n\nFlash “ready”, press A, press B, shake. All three should respond.\n\n\n\n\n\n\nTip\n\n\n\nNotice that this program has no forever loop at all. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken. Remember this — the next exercise uses the opposite approach.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nButton A shows the heart\nButton B shows a temperature\nShaking clears the display (best seen after pressing A)\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\ninput.onButtonPressed(Button.A, function () {\n    basic.showIcon(IconNames.Heart)\n})\ninput.onButtonPressed(Button.B, function () {\n    basic.showNumber(input.temperature())\n})\ninput.onGesture(Gesture.Shake, function () {\n    basic.clearScreen()\n})\nbasic.showString(\"Ready\")\n\n\n\n\n\n\nDiscussion — your first sensor limitation\nCompare the temperature your micro:bit shows with a room thermometer, or with another team’s micro:bit.\nQuestion for your team: The built-in sensor measures the temperature of the processor chip, not the air. The chip warms up as it works. What does this mean for the reading? Is this “thermometer” fit for measuring a patient’s room? Note your observation — the gap between what a sensor actually measures and what you want to know is a theme that will return all day.\n\n\n\nExtension challenge (if you finish early)\nAdd an on button A+B pressed event that scrolls your team’s name across the display.\n\nNext: Exercise 2: Emergency call button.",
-    "crumbs": [
-      "Exercises",
-      "1. Push the button"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html",
-    "href": "troubleshooting.html",
-    "title": "Troubleshooting & FAQ",
-    "section": "",
-    "text": "Things go wrong in every hardware lab — that is normal, and almost everything here is fixable in under a minute. Work through the relevant section before calling a teacher; the habit of systematic troubleshooting is itself part of what this course teaches.",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html#connecting-and-flashing",
-    "href": "troubleshooting.html#connecting-and-flashing",
-    "title": "Troubleshooting & FAQ",
-    "section": "Connecting and flashing",
-    "text": "Connecting and flashing\n\nThe MICROBIT drive does not appear on my laptop\n\nTry a different USB cable — charge-only cables look identical to data cables but cannot transfer programs. This is the most common cause.\nTry a different USB port on the laptop.\nUnplug, wait five seconds, replug.\nIf the micro:bit shows an error number on its LED matrix, see below.\n\n\n\nCopying the .hex file fails, or the micro:bit shows an error number\n\nAn error code (e.g. 529, 528) scrolling on the LED matrix means the flash failed. Delete nothing — just download the .hex again from MakeCode and copy it again.\nMake sure you copied the .hex file to the MICROBIT drive, not to a folder on your laptop.\nIf the drive is named MAINTENANCE instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.\n\n\n\nFlashing is slow and tedious\nIn Chrome or Edge you can skip the drag-and-drop entirely: click the three dots next to the Download button → Connect device, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html#the-program-runs-but-misbehaves",
-    "href": "troubleshooting.html#the-program-runs-but-misbehaves",
-    "title": "Troubleshooting & FAQ",
-    "section": "The program runs but misbehaves",
-    "text": "The program runs but misbehaves\n\nNothing happens at all\n\nDid the orange LED finish flashing? Wait for it.\nAre your blocks inside on start or forever? Blocks floating loose on the workspace (greyed out) are not part of the program.\nPress the reset button on the back of the micro:bit to restart the program.\n\n\n\nIt works in the simulator but not on the device\nThe simulator only simulates the micro:bit’s built-in components. External sensors connected through the Sensorbit do not exist in the simulator — for those, only the real hardware tells the truth.\n\n\nThe micro:bit restarts itself when the motor or servo runs\nThe motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone. (See Lecture 3, Section 2.)",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html#the-oled",
-    "href": "troubleshooting.html#the-oled",
-    "title": "Troubleshooting & FAQ",
-    "section": "The OLED",
-    "text": "The OLED\n\nThe OLED stays black\n\nIs it plugged into the IIC socket on the Sensorbit (not a numbered G/V/S port)?\nDid you add the initialize OLED width 128 height 64 block in on start? Nothing displays without it.\nDid you add the smarthome extension to this project? Extensions are per-project — a new project needs the extension added again.\n\n\n\nThe OLED flickers\nYour forever loop is clearing and rewriting the display on every pass. Either slow the loop down with a pause, or — better — only redraw when the value being shown has actually changed (compare with a variable holding the previous value).",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html#sensors",
-    "href": "troubleshooting.html#sensors",
-    "title": "Troubleshooting & FAQ",
-    "section": "Sensors",
-    "text": "Sensors\n\nA sensor reads 0, a constant value, or nonsense\n\nCheck the wiring first — G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a “dead” sensor.\nCheck that the pin number in your program matches the port the sensor is physically plugged into.\n\n\n\nThe DHT11 gives no reading or wrong readings\n\nThe DHT11 can only be read once every two seconds. Make sure your forever loop ends with pause 2000.\nMake sure the DHT11 query block runs before the blocks that fetch temperature and humidity.\n\n\n\nThe MQ3 readings make no sense\n\nThe MQ3 needs about 60 seconds of warm-up after power-on. Readings during warm-up are meaningless.\nThe sensor getting warm is normal — it contains a heater.\nIt responds to other volatiles too: cleaning spray or disinfectant used nearby will raise the reading.\n\n\n\nThe PIR triggers when nobody moved (or doesn’t trigger when they did)\n\nThe PIR needs 30–60 seconds to settle after power-on; ignore its output until then.\nDirect sunlight, a draft from a window, or a heat source near the sensor can cause false triggers.\nIt detects movement, not presence — a person standing still stops triggering it after a few seconds.\n\n\n\nWhich ports are safe for my own project?\nNot every numbered port on the Sensorbit is free to use — several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.\n\n\n\n\n\n\n\nPorts\nStatus\n\n\n\n\nP1, P2, P8, P12, P13–P16\n✅ Safe for sensors and actuators\n\n\nP3, P4, P6, P7, P9, P10\n❌ Shared with the LED matrix — nonsense readings whenever the display is in use\n\n\nP5, P11\n❌ Wired to buttons A and B\n\n\nP0\n❌ No GVS port — wired to the Sensorbit’s buzzer and headphone jack\n\n\n\nTwo more rules for project day:\n\nAnalog sensors (soil moisture, MQ3, UV — anything read with analog read pin) must go on P1 or P2. The other analog-capable pins are all shared with the LED matrix.\nP16 is the conventional home of the Rainbow LED strip — keep it free if your project uses one.\n\nIf a sensor “worked yesterday on a different pin” and now reads nonsense, check this table before suspecting the sensor.\n\n\nThe soil moisture readings drift or differ from yesterday\nThis sensor is relative, not calibrated — readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.\n\n\nThe Rainbow LED shows nothing, or only some LEDs light\n\nCheck the wiring and that the pin in the Neopixel setup block matches the physical port.\nCheck that the number of LEDs in the setup block matches your strip — if it is set too low, the remaining LEDs stay dark.\nDid the set strip to ... block run in on start? Without it, the show-colour blocks have nothing to control.",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "troubleshooting.html#still-stuck",
-    "href": "troubleshooting.html#still-stuck",
-    "title": "Troubleshooting & FAQ",
-    "section": "Still stuck?",
-    "text": "Still stuck?\nAsk a teacher — but come with answers to these three questions, because they will ask:\n\nWhat did you expect to happen?\nWhat happened instead?\nWhat have you already checked?",
-    "crumbs": [
-      "Exercises",
-      "Troubleshooting & FAQ"
-    ]
-  },
-  {
-    "objectID": "exercise3.html",
-    "href": "exercise3.html",
-    "title": "Exercise 3: Environmental monitor",
-    "section": "",
-    "text": "Allow 30 minutes.\n\nScenario\nA rural health clinic stores vaccines in a refrigerated cabinet. The cold chain requires temperatures between 2°C and 8°C. You are building a micro:bit device that sits near the cabinet and displays the current temperature and humidity continuously, so a health worker can check conditions at a glance — and so the device itself can raise an alarm if the temperature rises too high.\n\n\nWhat you will build\n\nEvery 2 seconds: read temperature and humidity from the DHT11 sensor\nDisplay both values on the OLED screen\nIf temperature exceeds your alarm threshold: LED matrix shows a warning icon\n\n\n\nHardware\n\nConnect the DHT11 sensor to the Sensorbit port labelled P1\nPlug the OLED screen into the Sensorbit’s IIC socket\n\n\n\n\n\n\n\nTip\n\n\n\nThe DHT11 connector is keyed — it only fits one way. Do not force it.\n\n\n\n\n\nBuilding the program\nStart a new project (environment-monitor). Add the Elecfreaks extension — extensions are per-project, so you need it again here.\nStep 1 — Initialise the OLED in on start\nThe OLED must be initialised once before you can write to it.\n\nIn the OLED category, find the block labelled something like initialize OLED width 128 height 64\nDrag it into the on start block on the workspace\n\nStep 2 — Store the DHT11 readings in variables\nThe DHT11 block in the SmartHome category is a reporter block — the same oval shape as the built-in temperature (°C) block you used in Exercise 1. It returns a value and must be plugged into a value slot. There is no separate “query” step: the block reads the sensor and returns the measurement in one go. It has two dropdowns: one to select the pin, one to select the measurement (temperature or humidity).\n\nFrom Variables, click Make a Variable and create one called temperature\nCreate a second variable called humidity\nIn the forever block, add a set temperature to block (from Variables). From SmartHome, find the DHT11 sensor [pin] temperature(°C) value block, set the pin to P1, and plug it into the value slot of set temperature to.\nBelow that, add set humidity to and plug in a second DHT11 sensor P1 humidity(0~100) value block — same block, different measurement selected in the dropdown.\n\nStep 3 — Display on the OLED\n\nFrom OLED, add a clear OLED display block — this wipes the screen before writing new values\nTo show the temperature: from OLED, add the show string (or show number) OLED block. Use the Text → join block (in Advanced → Text) to combine the label \"Temp: \", the temperature variable, and the unit \" C\" into one line.\nRepeat for humidity: \"Hum: \" + humidity + \" %\"\n\n\n\n\n\n\n\nTip\n\n\n\nIf the join block is unfamiliar, a simpler approach is to put temperature on its own line with just show number and humidity on the next. Labels can go on separate lines above each number.\n\n\nStep 4 — Add a temperature alarm\n\nFrom Logic, add an if / then / else block, placed before the clear OLED display\nSet the condition: temperature &gt; 8 (8°C is the cold-chain upper limit for vaccines)\nIn the if branch: from Basic, add show icon and pick the warning or exclamation symbol\nIn the else branch: from Basic, add clear screen\n\nStep 5 — Wait 2 seconds\nAt the very end of the forever block:\n\nFrom Basic, add pause (ms) set to 2000\n\nThis is essential — the DHT11 can only be read once every two seconds. Without the pause, you will get read errors.\nStep 6 — Download and test\n\n\n\nThe complete environmental monitor. Note the alarm if/else sits before the OLED display blocks, and the pause 2000 comes last.\n\n\nDownload and flash the program. Then:\n\nCheck the OLED shows values\nBreathe gently on the DHT11 — temperature and humidity should increase slightly\nTry warming the sensor in your hand — the temperature should rise above your alarm threshold and the LED matrix warning icon should appear\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows temperature and humidity\nValues change (even slightly) when you breathe on the DHT11\nLED matrix shows the warning icon when temperature exceeds your threshold; clears when it drops below\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet humidity = 0\nlet temperature = 0\nOLED.init(128, 64)\nbasic.forever(function () {\n    temperature = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_temperature_C)\n    humidity = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_humidity)\n    if (temperature &gt; 8) {\n        basic.showIcon(IconNames.No)\n    } else {\n        basic.clearScreen()\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Temp:\" + temperature + \" °C\")\n    OLED.writeStringNewLine(\"Hum:\" + humidity + \" %\")\n    basic.pause(2000)\n})\nExact function names depend on the smarthome extension version — if the above does not compile, check the block names shown in the MakeCode toolbox.\n\n\n\n\n\n\nDiscussion — accuracy and fitness for purpose\nThe DHT11 has an accuracy of ±2°C. Your alarm fires at 8°C.\n\n\n\n\n\n\nTipThink about this before looking at the hint\n\n\n\n\n\nIf the true temperature is 7°C and the sensor is reading at its worst-case high end (+2°C error), what does your program see? What might it wrongly conclude?\nThe reverse: if the true temperature has risen to 9°C and the sensor is reading at its worst-case low end (−2°C error), does the alarm fire?\n\n\n\nQuestion for your team: Is this device safe to use for vaccine cold-chain monitoring? What would a more reliable design require? Note your answer — it will appear in the Canvas quiz.\n\n\n\nExtension challenge (if you finish early)\nAdd a humidity alarm alongside the temperature alarm. WHO guidelines recommend vaccine storage below 80% relative humidity. Extend your if / else if / else block to show a different icon — or write \"HUMID!\" to the OLED — when humidity exceeds 80.\n\nNext: Exercise 4: Irrigation alarm.",
-    "crumbs": [
-      "Exercises",
-      "3. Environmental monitor"
-    ]
-  },
-  {
-    "objectID": "bonus_exercises.html",
-    "href": "bonus_exercises.html",
-    "title": "Bonus Exercises",
-    "section": "",
-    "text": "Note\n\n\n\nThese two exercises are optional. During the lab on 16 June, only start one if your team finishes Exercise 4 before ~15:25 — pick one, don’t try both, and switch to the mini challenge in good time. They also work as standalone references for project day: the PIR and MQ3 are both strong candidates for project ideas.",
-    "crumbs": [
-      "Exercises",
-      "Bonus exercises"
-    ]
-  },
-  {
-    "objectID": "bonus_exercises.html#ex5",
-    "href": "bonus_exercises.html#ex5",
-    "title": "Bonus Exercises",
-    "section": "Exercise 5 (optional): Motion-triggered alert",
-    "text": "Exercise 5 (optional): Motion-triggered alert\n\nScenario\nA clinic wants to monitor a hand-hygiene station at the ward entrance. When someone approaches, the device should alert them to use the hand sanitiser before entering. When nobody is present, the device should be ready and silent.\n\n\nWhat you will build\n\nPIR sensor monitors for movement continuously\nMotion detected → LED matrix shows an alert icon + tone plays + OLED shows \"Sanitise!\"\nNo motion → OLED shows \"Ready\", LED matrix is clear\n\n\n\nHardware\nConnect the PIR sensor to the Sensorbit port labelled P8.\n\n\n\n\n\n\nTip\n\n\n\nThe PIR needs 30–60 seconds to settle after power-on. Ignore its output until then — early readings are not your fault and not a wiring error.\n\n\n\n\n\nBuilding the program\nStart a new project (motion-alert). Add the Elecfreaks extension.\nStep 1 — Initialise the OLED in on start\nSame as before: initialize OLED width 128 height 64.\nStep 2 — Read the PIR sensor\nThe PIR is a simple digital sensor, read exactly like the crash sensor in Exercise 2: it outputs 1 when motion is detected and 0 when it is not.\n\nIn forever, from Variables, create a variable called motion\nFrom the toolbox Advanced → Pins, drag a digital read pin P8 block\nSet motion to the result of that pin read\n\nStep 3 — Respond with a conditional\n\nFrom Logic, add an if / then / else block\nCondition: motion = 1\nIn the if branch (motion detected):\n\nFrom Basic, show icon — pick an arrow, exclamation, or similar\nFrom OLED, clear OLED display, then show string \"Sanitise!\"\nFrom Music, play tone Middle A for 1 beat (or any tone you like)\n\nIn the else branch (no motion):\n\nFrom Basic, clear screen\nFrom OLED, clear OLED display, then show string \"Ready\"\n\n\nStep 4 — Download and test\n\n\n\nThe complete motion alert. Any icon works in the if branch — pick one your team likes.\n\n\nFlash the program. Wave your hand slowly in front of the PIR dome. The alert should trigger; when you stop moving, the device should return to \"Ready\" within a few seconds.\n\n\n\n\n\n\nTip\n\n\n\nThe PIR detects movement of warm bodies — not presence. A person standing still directly in front of it will not trigger it after a few seconds. This is by design (it avoids false positives from warm but stationary objects), but it matters for your application.\n\n\n\n\n\n\n\n\nTipWhy does the OLED flicker?\n\n\n\n\n\nYour forever loop clears and rewrites the OLED on every single pass — many times per second — even when nothing has changed. Each clear-and-rewrite is visible as a flicker.\nThe fix is to only redraw the screen when the state actually changes: keep a second variable (e.g. lastMotion) holding the previous reading, and only clear and rewrite the OLED when motion differs from lastMotion. At the end of the loop, set lastMotion to motion.\nThis previous-vs-current pattern is the same one the extension challenge below uses to count entries — solve one and you have solved both.\n\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nLED matrix shows an icon when you wave in front of the PIR\nOLED switches between \"Ready\" and \"Sanitise!\"\nA tone plays on detection\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet motion = 0\nOLED.init(128, 64)\n\nbasic.forever(function () {\n    motion = pins.digitalReadPin(DigitalPin.P8)\n    if (motion == 1) {\n        basic.showIcon(IconNames.Target)\n        OLED.clear()\n        OLED.writeStringNewLine(\"Sanitise!\")\n        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)\n    } else {\n        basic.clearScreen()\n        OLED.clear()\n        OLED.writeStringNewLine(\"Ready\")\n    }\n})\n\n\n\n\n\n\nDiscussion — limitations of a PIR for this application\nThink through these questions as a team:\n\nSomeone approaches the station, uses the sanitiser, then stands at the entrance talking to a colleague for 30 seconds. Does the device behave as intended?\nA window is open and sunlight moves across the floor near the sensor. Could this trigger the alert?\nCan the PIR tell the difference between a person and a large dog walking past?\n\nNote one limitation that would matter in a real deployment. This will appear in the Canvas quiz.\n\n\n\nExtension challenge\nCount entries. Every time the PIR detects a new motion event — a transition from 0 to 1, not just a sustained 1 — increment a variable called entries. Display the count on the OLED alongside the status text. Reset the count when Button A is pressed.\n\n\n\n\n\n\nTipHint\n\n\n\n\n\nYou need to track the previous state of the PIR as well as the current state. Only increment entries when the previous reading was 0 and the current reading is 1 — this counts the moment of arrival, not every frame of the forever loop during which someone is present.\nAdd an on button A pressed block in the workspace (separate from forever) that sets entries back to 0 — the same event-plus-polling combination as the latching call button in Exercise 2.",
-    "crumbs": [
-      "Exercises",
-      "Bonus exercises"
-    ]
-  },
-  {
-    "objectID": "bonus_exercises.html#ex6",
-    "href": "bonus_exercises.html#ex6",
-    "title": "Bonus Exercises",
-    "section": "Exercise 6 (optional): Sanitiser-use detector",
-    "text": "Exercise 6 (optional): Sanitiser-use detector\n\nScenario\nA clinic asks every visitor to sanitise their hands at the entrance. But did they actually do it? Alcohol-based hand sanitiser releases alcohol vapour as it evaporates — and the MQ3 sensor can detect it. You will build a device that confirms sanitiser was actually used.\n\n\nWhat you will build\n\nMQ3 alcohol sensor read continuously\nRaw value shown on the OLED\nWhen alcohol vapour is detected: LED matrix shows a tick, OLED shows \"Sanitised!\"\n\n\n\n\n\n\n\nWarningThe MQ3 gets warm — that is normal\n\n\n\nThe MQ3 contains a heating element and becomes noticeably warm during use. This is by design, not a fault.\n\n\n\n\n\n\n\n\nNoteNo hand sanitiser available?\n\n\n\nAny alcohol source works: an alcohol swab, surface disinfectant, or ethanol from the lab. Hold it a few centimetres from the sensor’s metal mesh. If you have no alcohol source at all, you can still build the program and observe the baseline behaviour and warm-up effect.\n\n\n\n\nHardware\nConnect the MQ3 sensor to the Sensorbit port labelled P2. Remember: G to G, V to V, S to S. (The MQ3 is analog, and only some pins can read analog signals — P1 and P2 are the easiest choices on the Sensorbit.)\n\n\n\nBuilding the program\nStart a new project (sanitiser-check). Add the Elecfreaks extension.\nStep 1 — Handle the warm-up in on start\nLecture 3 told you the MQ3 needs about 60 seconds of warm-up before its readings mean anything. Your program should say so, instead of showing garbage values:\n\nInitialise the OLED: initialize OLED width 128 height 64\nFrom OLED, show string \"Warming up...\" on the OLED\nFrom Basic, add pause (ms) set to 60000\nClear the OLED and show \"Ready\"\n\nStep 2 — Read the MQ3 in forever\nThe MQ3 is an analog sensor — no special extension block needed.\n\nCreate a variable called alcohol\nFrom Advanced → Pins, set alcohol to analog read pin P2\nClear the OLED and display the value: \"Air: \" joined to alcohol\nAdd a pause (ms) of 500 at the end of the loop so the display is readable\n\nStep 3 — Discover your threshold\nFlash the program and wait out the warm-up. Then (Documenter: record these below):\n\nNote the baseline reading in normal air\nApply sanitiser to your hands (or open your alcohol source) and hold them near the sensor — note the peak reading\nMove away and watch how long the value takes to fall back\n\nPick a threshold roughly halfway between baseline and peak.\n\n\n\nObservation\nRaw value\n\n\n\n\nBaseline (normal air)\n\n\n\nPeak (alcohol vapour)\n\n\n\nYour threshold\n\n\n\n\nStep 4 — Detect sanitiser use\nAdd an if / then / else after the read:\nif alcohol &gt; [your threshold]:\n    show tick icon on LED matrix\n    OLED shows \"Sanitised!\"\nelse:\n    clear LED matrix\nStep 5 — Download and test\n\n\n\nThe complete sanitiser detector: warm-up handling in on start, detection in forever. The threshold (500) is an example — use a value roughly halfway between your baseline and peak.\n\n\nFlash, wait for warm-up, then test: the tick should appear when sanitised hands approach the sensor and disappear after the vapour clears.\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nOLED shows \"Warming up...\" for the first minute, then live readings\nThe reading rises clearly when alcohol vapour is present\nThe tick appears above your threshold and clears below it\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet alcohol = 0\nOLED.init(128, 64)\nOLED.writeStringNewLine(\"Warming up...\")\nbasic.pause(60000)\nOLED.clear()\nOLED.writeStringNewLine(\"Ready\")\n\nbasic.forever(function () {\n    alcohol = pins.analogReadPin(AnalogReadWritePin.P2)\n    OLED.clear()\n    OLED.writeStringNewLine(\"Air: \" + alcohol)\n    if (alcohol &gt; 500) {\n        basic.showIcon(IconNames.Yes)\n        OLED.writeStringNewLine(\"Sanitised!\")\n    } else {\n        basic.clearScreen()\n    }\n    basic.pause(500)\n})\nReplace 500 with the threshold you observed on your hardware.\n\n\n\n\n\n\nDiscussion — what is this device actually measuring?\n\nDuring the 60-second warm-up, what did the readings look like? What would happen in a real deployment if the device lost power and restarted — and nobody knew about the warm-up?\nThe MQ3 responds to other volatile compounds too — cleaning chemicals, solvents, even some perfumes. Could this device produce false “Sanitised!” confirmations? Does that matter for this application?\nThe reading is relative, not calibrated. Can this device tell how much sanitiser was used, or only that some alcohol vapour was present?",
-    "crumbs": [
-      "Exercises",
-      "Bonus exercises"
-    ]
-  },
-  {
-    "objectID": "exercise2.html",
-    "href": "exercise2.html",
-    "title": "Exercise 2: Emergency call button",
-    "section": "",
-    "text": "Allow 15 minutes.\n\nScenario\nA bedridden patient needs a way to call for help. A call button at the bedside should produce an unmissable alert — visible and audible — the moment it is pressed. This is your first external sensor: one cable, three wires, and the wiring rule from the setup.\n\n\nWhat you will build\n\nCrash sensor pressed → heart icon + tone\nCrash sensor released → display clears\n\n\n\nHardware\nConnect the crash sensor to the Sensorbit port labelled P1. Remember: G to G, V to V, S to S.\n\n\n\n\n\n\nTip\n\n\n\nYou will not find a P0 port on the Sensorbit — P0 is wired to the board’s built-in buzzer and headphone jack. The GVS ports start at P1.\n\n\n\n\n\nBuilding the program\nStart a new project (New Project in MakeCode, name it call-button). No extension needed for this one.\nStep 1 — See the raw signal first\nBefore making the device react, look at what the sensor actually sends.\n\nFrom Basic, drag show number into the forever block\nFrom Advanced → Pins, plug a digital read pin P1 block into it\nDownload and flash\n\n\n\n\nStep 1: showing the raw pin value on the LED matrix. The digital read pin P1 reporter sits inside show number.\n\n\nWatch the LED matrix while the Hardware lead presses and releases the crash sensor’s lever. The display shows the pin’s value: 0 or 1.\nDocumenter: write down which value means pressed and which means released on your hardware.\n\n\n\nState\nValue shown\n\n\n\n\nLever pressed\n 0     1\n\n\nLever released\n 0     1\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat you enter here is saved in this browser, on this laptop — it will still be here this evening when your team answers the Canvas quiz. It is not submitted anywhere, so make sure the Documenter also keeps their own notes.\n\n\nStep 2 — React with a conditional\n\nFrom Logic, add an if / then / else block to the forever loop, replacing the show number\nCondition: from Logic, a comparison block 0 = 0; plug digital read pin P1 into the left side and your observed pressed value on the right\nIn the if branch: from Basic, show icon (heart); from Music, play tone Middle A for 1 beat\nIn the else branch: from Basic, clear screen\n\n\n\n\nThe complete call button program. This example checks for 0 — use the pressed value you observed in Step 1.\n\n\nStep 3 — Download and test\nFlash. Press the lever — icon and tone. Release — the display clears.\n\n\n\n\n\n\nTipTwo patterns, compared\n\n\n\nExercise 1 used events — code that waits for something to happen. This exercise uses polling — a forever loop that checks the pin many times per second and reacts to what it finds. Events only exist for the micro:bit’s built-in inputs; external sensors must be polled. You now know both fundamental patterns of microcontroller programming.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nThe LED matrix and tone respond to the lever, reliably, every press\nThe Documenter has noted which raw value means “pressed”\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nbasic.forever(function () {\n    if (pins.digitalReadPin(DigitalPin.P1) == 0) {\n        basic.showIcon(IconNames.Heart)\n        music.play(music.tonePlayable(440, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)\n    } else {\n        basic.clearScreen()\n    }\n})\nReplace 0 with the pressed value you observed in Step 1.\n\n\n\n\n\n\nDiscussion — what makes a call button trustworthy?\nThe alert stops the moment the patient releases the lever. Question for your team: Is that the right behaviour for an emergency call button? What should happen if a patient presses it once and then can’t keep holding it? Note your answer.\n\n\n\nExtension challenge (if you finish early)\nMake the alarm latch. Create a variable alarm. When the crash sensor is pressed, set alarm to 1. While alarm is 1, keep the icon and tone going — even after the lever is released. Add an on button A pressed event that sets alarm back to 0: the nurse’s “cancel” button. This combines both patterns you have learned: polling for the sensor, an event for the cancel.\n\n\n\n\n\n\nTipStuck? One possible solution\n\n\n\n\n\n\n\n\nThe latching alarm: the if only sets the alarm, the while loop keeps it sounding, and the button event cancels it.\n\n\n\n\n\n\nNext: Exercise 3: Environmental monitor.",
-    "crumbs": [
-      "Exercises",
-      "2. Emergency call button"
-    ]
-  },
-  {
-    "objectID": "mini_challenge.html",
-    "href": "mini_challenge.html",
-    "title": "★ Mini challenge",
-    "section": "",
-    "text": "Allow the remaining time — aim to start 15 minutes before the end of the session.\nChoose one scenario and build as much as you can before the end of the exercise time. You do not need to finish — the goal is to sketch the logic, start implementing, and identify where you get stuck.\nFor your chosen scenario:\nBring your answers to the mixer session that follows — they are the seed of your project idea for tomorrow.",
-    "crumbs": [
-      "Exercises",
-      "★ Mini challenge"
-    ]
-  },
-  {
-    "objectID": "mini_challenge.html#before-you-leave",
-    "href": "mini_challenge.html#before-you-leave",
-    "title": "★ Mini challenge",
-    "section": "Before you leave",
-    "text": "Before you leave\n\nSave your code. In MakeCode, click the save icon (floppy disk) to download the .hex files for each project. You can also copy the project URL from the browser address bar — this lets you reopen it later.\nDisconnect carefully. Unplug the USB cable before removing the micro:bit from the Sensorbit.\nReturn sensors to the foam tray. Each sensor has its own slot.\n\n\n\n\n\n\n\n\nTipReady for the quiz?\n\n\n\nComplete the Lab quiz on Canvas this evening. The questions ask about things you actually observed — your threshold values, the limitations you noticed, and what you would change. You cannot answer from memory alone; your Documenter’s notes are the answers.",
-    "crumbs": [
-      "Exercises",
-      "★ Mini challenge"
     ]
   },
   {
@@ -605,60 +651,14 @@
     ]
   },
   {
-    "objectID": "closeread/microbit_closeread.html",
-    "href": "closeread/microbit_closeread.html",
-    "title": "Microcontrollers for Health & Agriculture",
+    "objectID": "exercise1.html",
+    "href": "exercise1.html",
+    "title": "Exercise 1: Push the button",
     "section": "",
-    "text": "The BBC micro:bit V2 — front\nScroll down to explore the main components.\n\n\n\n\nThis is the complete front of the board — roughly the size of a credit card. The numbered labels identify each feature. We will work through them one by one.\n\n\n\n\nThe 5×5 LED matrix is the most visible feature on the front. 25 individually controllable red LEDs can display scrolling text, numbers, arrows, and custom images. The matrix also works as a light sensor — it can detect ambient brightness without any extra components.\n\n\n\n\nButton A is on the left side of the board. In MakeCode, pressing it triggers an on button A pressed event. You can programme any action in response — displaying a reading, toggling a light, or sending a radio message.\n\n\n\n\nButton B mirrors Button A on the right. You can programme A and B independently, or detect when both are pressed together for a third action.\n\n\n\n\nThe gold touch logo at the top is a capacitive touch sensor — unique to the V2. Your finger doesn’t need to press it: just touching it is enough.\n\n\n\n\nThe small dot to the right of the logo is the microphone activity LED. It lights up whenever the built-in microphone is recording — a privacy indicator so you always know when sound is being measured.\n\n\n\n\nThe gold band along the bottom is the edge connector. The three large holes — labelled 0, 1, and 2 — are general-purpose input/output pins: connect sensors here with crocodile clips or the Sensorbit. 3V supplies power to connected components; GND completes the circuit.\n\n\n\n\nThat covers the front. Now let’s flip it over.\n\n\n\n\nThe BBC micro:bit V2 — back\nMost of the processing and sensing happens here.\n\n\n\n\nHere is the full back of the board. The large chips, the antenna trace, and the connectors are all visible. We will go through each in turn.\n\n\n\n\nThe gold zig-zag trace in the top left is the Bluetooth and radio antenna — printed directly onto the board, no separate component needed. It handles both Bluetooth Low Energy (for phone connectivity) and the micro:bit’s own 2.4 GHz radio protocol (for micro:bit-to-micro:bit communication).\n\n\n\n\nThe micro USB port at the top centre is how you connect the micro:bit to your laptop to download programmes. It also powers the board from USB. When you drag a .hex file onto the MICROBIT drive, it enters through this port.\n\n\n\n\nThe square component in the centre is the speaker. It can play tones, melodies, and sound effects directly, with no extra wiring. In MakeCode, use the Music category.\n\n\n\n\nThe small component close to the speaker is the backside of the microphone — on the front you will see it as a little hole. It detects sound level and can recognise loud events such as claps or shouts. The LED you saw on the front indicates when it is active.\n\n\n\n\nThe battery connector on the right edge accepts a standard 2× AAA battery pack. This is how you power the micro:bit away from a laptop — essential for portable projects and demos.\n\n\n\n\nThe chip left of the speaker is the processor — a Nordic nRF52833 running at 64 MHz with 512 KB of flash memory. Your programme lives here. It also contains a built-in temperature sensor that measures the chip temperature — a rough proxy for air temperature.\n\n\n\n\nThe two diamond-shaped chips on the left are the accelerometer and compass. The accelerometer measures forces in three dimensions — tilt, shake, freefall, movement. The compass detects magnetic north. Both are available as built-in sensor blocks in MakeCode, no extra wiring needed.\n\n\n\n\nThat is the complete micro:bit V2. Front and back, you now know what every component does."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "",
-    "text": "Welcome to this intensive two-day course on microcontroller programming and interfacing. The course is designed for students with a medical or life-science background — no prior programming experience is assumed.\nWe use the BBC micro:bit and the Elecfreaks Smart Health Kit as our hardware platform, and MakeCode as our programming environment.",
+    "text": "Allow 10 minutes.\n\nScenario\nBefore wiring anything, you will build a complete working device using only what is already on the micro:bit: two buttons, a temperature sensor, an accelerometer, and the LED matrix. Within ten minutes, your team has a pocket thermometer.\n\n\nWhat you will build\n\nPress button A → a heart icon appears\nPress button B → the current temperature is shown\nShake the micro:bit → the display clears\n\nNo wiring. No extension blocks. Everything is built in.\n\n\n\nBuilding the program\nKeep working in your lab-session project from the setup.\nStep 1 — React to button A\n\nFrom Input, drag an on button A pressed block onto the workspace. Notice it has the same shape as on start and forever: a container with a smooth top edge and no notch, so it cannot snap inside or underneath another block — it always starts its own stack on the workspace. This is an event block: the blocks you place inside it run only when that event happens.\nFrom Basic, put a show icon block inside it and pick the heart.\n\nStep 2 — Show the temperature on button B\n\nFrom Input, drag another on button A pressed block onto the workspace, and change it to button B.\nFrom Basic, put a show number block inside it\nFrom Input, find the temperature (°C) block — notice its oval shape. Oval blocks are reporter blocks: they return a value and must be plugged into a slot, not placed on their own line. Plug it into the show number slot.\n\nStep 3 — Clear on shake\n\nFrom Input, drag an on shake block onto the workspace\nFrom Basic, put clear screen inside it\n\nStep 4 — Download and test\nYour workspace should now look like this — four separate stacks, each starting with its own container block:\n\n\n\nThe complete Exercise 1 program. The on start block still shows Ready from the setup test. Note how the oval temperature (°C) block sits inside the show number slot.\n\n\nFlash “ready”, press A, press B, shake. All three should respond.\n\n\n\n\n\n\nTip\n\n\n\nNotice that this program has no forever loop at all. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken. Remember this — the next exercise uses the opposite approach.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nButton A shows the heart\nButton B shows a temperature\nShaking clears the display (best seen after pressing A)\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\ninput.onButtonPressed(Button.A, function () {\n    basic.showIcon(IconNames.Heart)\n})\ninput.onButtonPressed(Button.B, function () {\n    basic.showNumber(input.temperature())\n})\ninput.onGesture(Gesture.Shake, function () {\n    basic.clearScreen()\n})\nbasic.showString(\"Ready\")\n\n\n\n\n\n\nDiscussion — your first sensor limitation\nCompare the temperature your micro:bit shows with a room thermometer, or with another team’s micro:bit.\nQuestion for your team: The built-in sensor measures the temperature of the processor chip, not the air. The chip warms up as it works. What does this mean for the reading? Is this “thermometer” fit for measuring a patient’s room? Note your observation — the gap between what a sensor actually measures and what you want to know is a theme that will return all day.\n\n\n\nExtension challenge (if you finish early)\nAdd an on button A+B pressed event that scrolls your team’s name across the display.\n\nNext: Exercise 2: Emergency call button.",
     "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#course-goals",
-    "href": "index.html#course-goals",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Course goals",
-    "text": "Course goals\nBy the end of this course you will be able to:\n\nUnderstand the process of ideation and innovation. Evaluate innovation cultures. Apply your knowledge by participating in brainstorming and team-building activities.\nUnderstand basic microcontroller architecture.\nUnderstand program flow, variables, loops, procedures, and querying peripherals with MakeCode.\nUnderstand common sensors and actuators. Evaluate and choose alternatives in the context of use cases.\nUnderstand the sensors and actuators provided with the Elecfreaks Smart Health Kit. Evaluate their utility and limitations.\nApply your knowledge by connecting or activating peripherals. Write MakeCode under supervision. Evaluate your results and propose ways to improve.\nCreate a prototype of a simple but potentially useful product. Evaluate the results and propose future improvements.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#how-this-course-works",
-    "href": "index.html#how-this-course-works",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "How this course works",
-    "text": "How this course works\nThis course follows a flipped, spaced-repetition format:\n\n\n\n\n\n\n\n\nExposure\nWhen\nWhat\n\n\n\n\nFirst\nBefore the course\nWatch the lecture videos and answer the Canvas quizzes\n\n\nSecond\nIn-class discussion\nRevisit and deepen the same content together\n\n\nThird\nLab and project\nApply the knowledge with real hardware\n\n\n\nThis means the pre-course lectures and quizzes are not optional — they are the foundation for everything that happens in the room.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Schedule",
-    "text": "Schedule\n\nBefore 16 June — Pre-course preparation\nWatch the three pre-course lectures below and complete the Canvas quizzes for each.\n\n\n\nLecture\nTopic\n\n\n\n\nLecture 1\nMicrocontrollers, sensors, and actuators\n\n\nLecture 2\nProgramming with MakeCode\n\n\nLecture 3\nThe Elecfreaks Smart Health Kit\n\n\n\n\n\n\n16 June — Introductory day\n\n\n\n\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nCourse start. Roll call. Meet the teachers. Student introductions.\n\n\n10:00\nDiscussion: Microcontroller architecture, sensors, and actuators\n\n\n11:00\nDiscussion: MakeCode programming\n\n\n12:00\nLunch break\n\n\n13:00\nDiscussion: The Elecfreaks Smart Health Kit\n\n\n14:00\nLab: Guided exercise with the Elecfreaks Smart Health Kit\n\n\n16:00\nMixer: Discuss project ideas and form teams. Tea and cookies.\n\n\n17:00\nEnd of day\n\n\n\nEvening: Complete the lab quiz on Canvas. Watch videos about additional micro:bit kits (Heart and Brain SpikerBox, Spiker:Bit, Smart greenhouse). Complete the kit quizzes on Canvas.\n\n\n\n17 June — Project day\n\n\n\nTime\nActivity\n\n\n\n\n9:30\nQuestions about additional micro:bit kits\n\n\n10:00\nDiscuss and organise projects. Start work.\n\n\n15:00\nShark tank: Present projects to teachers and students\n\n\n17:00\nTime to change the world.",
-    "crumbs": [
-      "About the course"
-    ]
-  },
-  {
-    "objectID": "index.html#teams",
-    "href": "index.html#teams",
-    "title": "Microcontroller Programming and Interfacing for Medical and Agricultural Technology",
-    "section": "Teams",
-    "text": "Teams\nYou will work in five teams of four to five students. Teams are formed during the mixer on the evening of 16 June.\nEach team will have access to one BBC micro:bit and one Elecfreaks Smart Health Kit, as well as share other kits with everyone for the group project on day 2.",
-    "crumbs": [
-      "About the course"
+      "Exercises",
+      "1. Push the button"
     ]
   }
 ]
